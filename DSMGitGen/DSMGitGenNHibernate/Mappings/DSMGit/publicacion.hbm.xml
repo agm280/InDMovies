@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="DSMGitGenNHibernate"
+		                   namespace="DSMGitGenNHibernate.EN.DSMGit">
+		    
+		    
+			
+				<class name="PublicacionEN" table="Publicacion"> 
+				  	
+						<id name="Id" column="idPublicacion" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Titulo" type="string"> 
+						<column name="titulo"  not-null="true"/>
+					</property>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Grupo" class="DSMGitGenNHibernate.EN.DSMGit.GrupoEN" >	
+								<column name="FK_nombre_idGrupo"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="PublicacionENReadAllHQL">from PublicacionEN</query>
+		  <query name="PublicacionENdamePublicacionesDelGrupoHQL"><![CDATA[FROM PublicacionEN as pub WHERE pub.Grupo.Nombre=:p_nombre]]></query>
+		</hibernate-mapping>
+	

@@ -1,0 +1,16 @@
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\hibernate.cfg.xml
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\DSMGitGenNHibernate.dll.config
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\DSMGitGenNHibernate.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\DSMGitGenNHibernate.pdb
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\Castle.DynamicProxy2.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\LinFu.DynamicProxy.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\NHibernate.ByteCode.Castle.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\NHibernate.ByteCode.LinFu.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\NHibernate.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\Iesi.Collections.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\Antlr3.Runtime.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\bin\Debug\log4net.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csproj.CoreCompileInputs.cache
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.dll
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.pdb
+C:\ooh4ria\workspaceMars\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="DSMGitGenNHibernate"
+		                   namespace="DSMGitGenNHibernate.EN.DSMGit">
+		    
+		    
+			
+				
+<joined-subclass name="AdminEN" extends="DSMGitGenNHibernate.EN.DSMGit.UsuarioEN" table="Admin"> 
+	<key>
+    	
+				<column name="email"/>
+		
+    	
+   	</key>
+
+			
+					
+			
+		
+ 	  
+		 </joined-subclass>
+		  
+		  <query name="AdminENReadAllHQL">from AdminEN</query>
+		</hibernate-mapping>
+	

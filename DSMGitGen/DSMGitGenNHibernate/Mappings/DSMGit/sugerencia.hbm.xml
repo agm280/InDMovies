@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="DSMGitGenNHibernate"
+		                   namespace="DSMGitGenNHibernate.EN.DSMGit">
+		    
+		    
+			
+				<class name="SugerenciaEN" table="Sugerencia"> 
+						<id name="Id" column="id"/> 
+			
+					
+					<property name="Titulo" type="string"> 
+						<column name="titulo"  not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+		  			
+						<many-to-one name="Usuario" class="DSMGitGenNHibernate.EN.DSMGit.UsuarioEN" >	
+								<column name="FK_email_idUsuario"/> 
+						</many-to-one>
+											 					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="SugerenciaENReadAllHQL">from SugerenciaEN</query>
+		  <query name="SugerenciaENdameSugerenciaPorEmailHQL"><![CDATA[FROM SugerenciaEN as sug WHERE sug.Usuario.Email=:p_email]]></query>
+		</hibernate-mapping>
+	

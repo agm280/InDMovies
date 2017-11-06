@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+		<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		  <PropertyGroup>
+		    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		    <ProductVersion>8.0.30703</ProductVersion>
+		    <SchemaVersion>2.0</SchemaVersion>
+		    <ProjectGuid>{66C66636-FD6A-4A3F-A7C5-FE88BBA117AF}</ProjectGuid>
+		    <OutputType>Library</OutputType>
+		    <AppDesignerFolder>Properties</AppDesignerFolder>
+		    <RootNamespace>DSMGitGenNHibernate</RootNamespace>
+		    <AssemblyName>DSMGitGenNHibernate</AssemblyName>
+		    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+		    <FileAlignment>512</FileAlignment>
+		    <PublishUrl>publish\</PublishUrl>
+		    <Install>true</Install>
+		    <InstallFrom>Disk</InstallFrom>
+		    <UpdateEnabled>false</UpdateEnabled>
+		    <UpdateMode>Foreground</UpdateMode>
+		    <UpdateInterval>7</UpdateInterval>
+		    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		    <UpdatePeriodically>false</UpdatePeriodically>
+		    <UpdateRequired>false</UpdateRequired>
+		    <MapFileExtensions>true</MapFileExtensions>
+		    <ApplicationRevision>0</ApplicationRevision>
+		    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		    <IsWebBootstrapper>false</IsWebBootstrapper>
+		    <UseApplicationTrust>false</UseApplicationTrust>
+		    <BootstrapperEnabled>true</BootstrapperEnabled>
+		  </PropertyGroup>
+		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		    <DebugSymbols>true</DebugSymbols>
+		    <DebugType>full</DebugType>
+		    <Optimize>false</Optimize>
+		    <OutputPath>bin\Debug\</OutputPath>
+		    <DefineConstants>DEBUG;TRACE</DefineConstants>
+		    <ErrorReport>prompt</ErrorReport>
+		    <WarningLevel>4</WarningLevel>
+		  </PropertyGroup>
+		  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		    <DebugType>pdbonly</DebugType>
+		    <Optimize>true</Optimize>
+		    <OutputPath>bin\Release\</OutputPath>
+		    <DefineConstants>TRACE</DefineConstants>
+		    <ErrorReport>prompt</ErrorReport>
+		    <WarningLevel>4</WarningLevel>
+		  </PropertyGroup>
+		<ItemGroup>
+		    <Reference Include="Castle.DynamicProxy2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\DSMGitGenNHibernate\AppLib\Castle.DynamicProxy2.dll</HintPath>
+		    </Reference>
+		    <Reference Include="LinFu.DynamicProxy, Version=1.0.3.14911, Culture=neutral, PublicKeyToken=62a6874124340d6e, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\DSMGitGenNHibernate\AppLib\LinFu.DynamicProxy.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\DSMGitGenNHibernate\AppLib\NHibernate.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\DSMGitGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll</HintPath>
+		    </Reference>
+		    <Reference Include="NHibernate.ByteCode.LinFu, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+		      <SpecificVersion>False</SpecificVersion>
+		      <HintPath>..\DSMGitGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll</HintPath>
+		    </Reference>
+		    <Reference Include="System" />
+		    <Reference Include="System.Core">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+		    <Reference Include="System.Transactions" />
+		    <Reference Include="System.Xml.Linq">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data.DataSetExtensions">
+		      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+		    </Reference>
+		    <Reference Include="System.Data" />
+		    <Reference Include="System.Xml" />
+		</ItemGroup>
+		
+		<ItemGroup>
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\Antlr3.Runtime.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\Castle.DynamicProxy2.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\Iesi.Collections.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\LinFu.DynamicProxy.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\log4net.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\NHibernate.ByteCode.Castle.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\NHibernate.ByteCode.LinFu.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\NHibernate.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\nunit.core.dll" />
+		    <Content Include="..\DSMGitGenNHibernate\AppLib\nunit.framework.dll" />
+  		</ItemGroup>
+  		
+		<ItemGroup>
+			<Compile Include="NHibernateHelper.cs" />
+		    <Compile Include="Utils\Util.cs" />
+		    <Compile Include="Exceptions\ModelException.cs"/>
+		    <Compile Include="Exceptions\DataLayerException.cs"/>
+		    
+	<Compile Include="CAD\BasicCAD.cs"/>
+	<Compile Include="CP\BasicCP.cs"/>
+	<Compile Include="EN\DSMGit\UsuarioEN.cs" />
+	<Compile Include="CEN\DSMGit\UsuarioCEN.cs" />
+	<Compile Include="CAD\DSMGit\IUsuarioCAD.cs" />
+	<Compile Include="CAD\DSMGit\UsuarioCAD.cs" />
+	<Compile Include="CP\DSMGit\UsuarioCP.cs" />
+			
+			
+			
+			<Compile Include="CEN\DSMGit\UsuarioCEN_Iniciar_sesion.cs" />
+			
+			<Compile Include="CEN\DSMGit\UsuarioCEN_Cerrar_sesion.cs" />
+			
+			
+			
+			<Compile Include="CEN\DSMGit\UsuarioCEN_Modificar_perfil.cs" />
+			
+			<Compile Include="CEN\DSMGit\UsuarioCEN_Buscar.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\NotificacionEN.cs" />
+	<Compile Include="CEN\DSMGit\NotificacionCEN.cs" />
+	<Compile Include="CAD\DSMGit\INotificacionCAD.cs" />
+	<Compile Include="CAD\DSMGit\NotificacionCAD.cs" />
+	<Compile Include="CP\DSMGit\NotificacionCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\SugerenciaEN.cs" />
+	<Compile Include="CEN\DSMGit\SugerenciaCEN.cs" />
+	<Compile Include="CAD\DSMGit\ISugerenciaCAD.cs" />
+	<Compile Include="CAD\DSMGit\SugerenciaCAD.cs" />
+	<Compile Include="CP\DSMGit\SugerenciaCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\GrupoEN.cs" />
+	<Compile Include="CEN\DSMGit\GrupoCEN.cs" />
+	<Compile Include="CAD\DSMGit\IGrupoCAD.cs" />
+	<Compile Include="CAD\DSMGit\GrupoCAD.cs" />
+	<Compile Include="CP\DSMGit\GrupoCP.cs" />
+			
+			
+			
+			
+			
+			<Compile Include="CEN\DSMGit\GrupoCEN_Buscar.cs" />
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\VideoEN.cs" />
+	<Compile Include="CEN\DSMGit\VideoCEN.cs" />
+	<Compile Include="CAD\DSMGit\IVideoCAD.cs" />
+	<Compile Include="CAD\DSMGit\VideoCAD.cs" />
+	<Compile Include="CP\DSMGit\VideoCP.cs" />
+			
+			
+			
+			
+			
+			<Compile Include="CEN\DSMGit\VideoCEN_Buscar.cs" />
+			
+			<Compile Include="CEN\DSMGit\VideoCEN_Calcular_valoracion.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\ValoracionEN.cs" />
+	<Compile Include="CEN\DSMGit\ValoracionCEN.cs" />
+	<Compile Include="CAD\DSMGit\IValoracionCAD.cs" />
+	<Compile Include="CAD\DSMGit\ValoracionCAD.cs" />
+	<Compile Include="CP\DSMGit\ValoracionCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\ComentarioEN.cs" />
+	<Compile Include="CEN\DSMGit\ComentarioCEN.cs" />
+	<Compile Include="CAD\DSMGit\IComentarioCAD.cs" />
+	<Compile Include="CAD\DSMGit\ComentarioCAD.cs" />
+	<Compile Include="CP\DSMGit\ComentarioCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\RespuestaEN.cs" />
+	<Compile Include="CEN\DSMGit\RespuestaCEN.cs" />
+	<Compile Include="CAD\DSMGit\IRespuestaCAD.cs" />
+	<Compile Include="CAD\DSMGit\RespuestaCAD.cs" />
+	<Compile Include="CP\DSMGit\RespuestaCP.cs" />
+			
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\TemaEN.cs" />
+	<Compile Include="CEN\DSMGit\TemaCEN.cs" />
+	<Compile Include="CAD\DSMGit\ITemaCAD.cs" />
+	<Compile Include="CAD\DSMGit\TemaCAD.cs" />
+	<Compile Include="CP\DSMGit\TemaCP.cs" />
+			
+			
+			
+			
+			
+			<Compile Include="CEN\DSMGit\TemaCEN_Cerrar.cs" />
+			
+			<Compile Include="CEN\DSMGit\TemaCEN_Abrir.cs" />
+			
+			<Compile Include="CEN\DSMGit\TemaCEN_Buscar.cs" />
+			
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\PublicacionEN.cs" />
+	<Compile Include="CEN\DSMGit\PublicacionCEN.cs" />
+	<Compile Include="CAD\DSMGit\IPublicacionCAD.cs" />
+	<Compile Include="CAD\DSMGit\PublicacionCAD.cs" />
+	<Compile Include="CP\DSMGit\PublicacionCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\InvitacionEN.cs" />
+	<Compile Include="CEN\DSMGit\InvitacionCEN.cs" />
+	<Compile Include="CAD\DSMGit\IInvitacionCAD.cs" />
+	<Compile Include="CAD\DSMGit\InvitacionCAD.cs" />
+	<Compile Include="CP\DSMGit\InvitacionCP.cs" />
+			
+			
+			
+			
+			
+			
+	<Compile Include="EN\DSMGit\AdminEN.cs" />
+	<Compile Include="CEN\DSMGit\AdminCEN.cs" />
+	<Compile Include="CAD\DSMGit\IAdminCAD.cs" />
+	<Compile Include="CAD\DSMGit\AdminCAD.cs" />
+	<Compile Include="CP\DSMGit\AdminCP.cs" />
+			
+			
+			
+			
+			
+	<Compile Include="Enumerated\DSMGit\RolEnum.cs" />
+	<Compile Include="Enumerated\DSMGit\EstadoTemaEnum.cs" />
+	
+	
+
+		    
+	
+
+		    <Compile Include="Properties\AssemblyInfo.cs" />
+		    <Compile Include="Properties\Settings.Designer.cs">
+		      <AutoGen>True</AutoGen>
+		      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+		      <DependentUpon>Settings.settings</DependentUpon>
+		    </Compile>
+		  </ItemGroup>
+		  <ItemGroup>
+		  
+	<EmbeddedResource Include="Mappings\DSMGit\usuario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\notificacion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\sugerencia.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\grupo.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\video.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\valoracion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\comentario.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\respuesta.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\tema.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\publicacion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\invitacion.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\admin.hbm.xml" />
+	
+	
+
+		  </ItemGroup>
+		  <ItemGroup>
+		    <Content Include="hibernate.cfg.xml">
+		      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		    </Content>
+		  </ItemGroup>
+		  <ItemGroup>
+		    <None Include="app.config" />
+		    <None Include="Properties\Settings.settings">
+		      <Generator>SettingsSingleFileGenerator</Generator>
+		      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		    </None>
+		        <None Include="Resources\xsd\nhibernate-configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\xsd\nhibernate-mapping.xsd">
+      <SubType>Designer</SubType>
+    </None>
+		  </ItemGroup>
+	 	
+		
+	
+		  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+		  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+		       Other similar extension points exist, see Microsoft.Common.targets.
+		  <Target Name="BeforeBuild">
+		  </Target>
+		  <Target Name="AfterBuild">
+		  </Target>
+		  -->
+		</Project>

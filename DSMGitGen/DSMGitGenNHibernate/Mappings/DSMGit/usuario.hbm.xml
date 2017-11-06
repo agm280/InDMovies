@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="DSMGitGenNHibernate"
+		                   namespace="DSMGitGenNHibernate.EN.DSMGit">
+		    
+		    
+			
+				<class name="UsuarioEN" table="Usuario"> 
+						<id name="Email" column="email"/> 
+			
+					
+					<property name="Nombre" type="string"> 
+						<column name="nombre"  not-null="true"/>
+					</property>
+					<property name="Apellidos" type="string"> 
+						<column name="apellidos"  not-null="true"/>
+					</property>
+					<property name="Nick" type="string"> 
+						<column name="nick"  unique="true" not-null="true"/>
+					</property>
+					<property name="Contrasenya" type="string"> 
+						<column name="contrasenya"  not-null="true"/>
+					</property>
+					<property name="Fecha_nac" type="date"> 
+						<column name="fecha_nac"  not-null="true"/>
+					</property>
+					<property name="Rol" > 
+						<column name="rol"  not-null="true"/>
+					</property>
+					<property name="Imagen" type="string"> 
+						<column name="imagen"  not-null="true"/>
+					</property>
+					<property name="Descripcion" type="string"> 
+						<column name="descripcion"  not-null="true"/>
+					</property>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		  			
+						<bag name="Notificaciones" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.NotificacionEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Sugerencias" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.SugerenciaEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Grupos" table="[grupo_usuario]" inverse="true" >
+							<key>
+								
+									<column name="FK_email_idUsuario"/> 
+							</key>
+      						<many-to-many class="DSMGitGenNHibernate.EN.DSMGit.GrupoEN">
+									<column name="FK_nombre_idGrupo"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Grupos_lidera" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario_0"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.GrupoEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Invitaciones_enviadas" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.InvitacionEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Videos" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario_1"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.VideoEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Valoraciones" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.ValoracionEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Invitaciones_recibidas" table="[usuario_0_invitacion_0]"  >
+							<key>
+								
+									<column name="FK_email_idUsuario_invitado"/> 
+							</key>
+      						<many-to-many class="DSMGitGenNHibernate.EN.DSMGit.InvitacionEN">
+									<column name="FK_idInvitacion_idInvitacion_0"/> 
+      						</many-to-many>
+    					</bag>
+			
+		  			
+						<bag name="Comentarios" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.ComentarioEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Temas" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.TemaEN"/>
+					    </bag>
+					
+			
+		  			
+						<bag name="Respuestas" >
+							<key>
+							
+								
+								<column name="FK_email_idUsuario"/>
+					      	</key>
+							<one-to-many class="DSMGitGenNHibernate.EN.DSMGit.RespuestaEN"/>
+					    </bag>
+					
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+		
+		 </class>	
+		  
+		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
+		  <query name="UsuarioENdameUsuarioPorNickHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Nick like '%:p_nick%']]></query>
+		  <query name="UsuarioENdameUsuarioPorEmailHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Email=:p_email]]></query>
+		  <query name="UsuarioENdameUsuarioPorNombreYApellidosHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Nombre LIKE '%:p_nombre%' AND usu.Apellidos LIKE '%:p_apellidos%']]></query>
+		  <query name="UsuarioENdameUsuarioPorRolHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Rol=:p_rol]]></query>
+		  <query name="UsuarioENdameUsuarioPorDescripcionHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Descripcion LIKE '%:p_descripcion%']]></query>
+		</hibernate-mapping>
+	
