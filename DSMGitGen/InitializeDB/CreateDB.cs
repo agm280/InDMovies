@@ -83,8 +83,9 @@ public static void InitializeData ()
                 // p.e. CustomerCEN customer = new CustomerCEN();
                 // customer.New_ (p_user:"user", p_password:"1234");
                 UsuarioCEN usuario = new UsuarioCEN ();
-                usuario.New_ (p_email: "ejemplo@gmail.com", p_nombre: "Pepito", p_apellidos: "Palotes Vidal", p_nick: "PepitoPV", p_contrasenya: "1234", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 1, p_imagen: "imagen1.png", p_descripcion: "hola");
                 usuario.New_ (p_email: "ejemplo2@gmail.com", p_nombre: "Juanito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPV", p_contrasenya: "4321", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 3, p_imagen: "imagen2.png", p_descripcion: "hola");
+                UsuarioCEN usuario2 = new UsuarioCEN ();
+                usuario2.New_ (p_email: "ejemplo@gmail.com", p_nombre: "Pepito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPeter", p_contrasenya: "1234", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 1, p_imagen: "imagen1.png", p_descripcion: "hola");
 
                 VideoCEN video = new VideoCEN ();
                 int a = video.New_ (p_titulo: "primer video", p_descripcion: "descripcion", p_usuario: "ejemplo@gmail.com", p_fecha_subida: new DateTime (2017, 1, 3));
@@ -95,16 +96,22 @@ public static void InitializeData ()
                 GrupoCEN grupo = new GrupoCEN ();
                 grupo.New_ (p_nombre: "Grupo1", p_imagen: "imagen.png", p_descripcion: "El mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false);
 
-                IList<UsuarioEN> pipas = usuario.DameUsuarioPorEmail("ejemplo2@gmail.com");
-                System.Console.WriteLine(pipas[0].Nick);
+                IList<UsuarioEN> pipas = usuario.DameUsuarioPorEmail ("ejemplo2@gmail.com");
+                //System.Console.WriteLine(pipas[0].Nick);
 
-                foreach (UsuarioEN adsfsdf in pipas)
-                {
-                    System.Console.WriteLine(adsfsdf.Nick);
+                foreach (UsuarioEN adsfsdf in pipas) {
+                        System.Console.WriteLine (adsfsdf.Nick);
                 }
+
+                IList<UsuarioEN> listajuanito = usuario.DameUsuarioPorNick ("uanito");
+
+                foreach (UsuarioEN usuarios in listajuanito) {
+                        System.Console.WriteLine (usuarios.Nick);
+                }
+
                 /*PROTECTED REGION END*/
-            }
-            catch (Exception ex)
+        }
+        catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
                 throw ex;

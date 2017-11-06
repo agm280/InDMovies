@@ -62,9 +62,9 @@
 		  <query name="TemaENReadAllHQL">from TemaEN</query>
 		  <query name="TemaENdameTemasAbiertosHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Estado=abierto]]></query>
 		  <query name="TemaENdameTemasCerradosHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Estado=cerrado]]></query>
-		  <query name="TemaENdameTemaPorNickHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Usuario.Nick like '%:p_nick%']]></query>
+		  <query name="TemaENdameTemaPorNickHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Usuario.Nick like ('%'+:p_nick+'%')]]></query>
 		  <query name="TemaENdameTemaPorEmailHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Usuario.Email=:p_email]]></query>
-		  <query name="TemaENdameTemaPorDescHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Descripcion LIKE '%:p_desc%']]></query>
-		  <query name="TemaENdameTemaPorTituloHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Titulo LIKE '%:p_titulo%']]></query>
+		  <query name="TemaENdameTemaPorDescHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Descripcion LIKE ('%'+:p_desc+'%')]]></query>
+		  <query name="TemaENdameTemaPorTituloHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Titulo LIKE ('%'+:p_titulo+'%')]]></query>
 		</hibernate-mapping>
 	

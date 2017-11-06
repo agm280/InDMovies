@@ -337,7 +337,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.TemaEN> Da
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Usuario.Nick like '%:p_nick%'";
+                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Usuario.Nick like ('%'+:p_nick+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("TemaENdameTemaPorNickHQL");
                 query.SetParameter ("p_nick", p_nick);
@@ -397,7 +397,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.TemaEN> Da
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Descripcion LIKE '%:p_desc%'";
+                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Descripcion LIKE ('%'+:p_desc+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("TemaENdameTemaPorDescHQL");
                 query.SetParameter ("p_desc", p_desc);
@@ -427,7 +427,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.TemaEN> Da
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Titulo LIKE '%:p_titulo%'";
+                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Titulo LIKE ('%'+:p_titulo+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("TemaENdameTemaPorTituloHQL");
                 query.SetParameter ("p_titulo", p_titulo);

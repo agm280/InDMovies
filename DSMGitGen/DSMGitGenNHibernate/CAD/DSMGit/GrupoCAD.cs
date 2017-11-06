@@ -342,7 +342,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> D
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.Lider.Nick LIKE '%:p_nick%'";
+                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.Lider.Nick LIKE ('%'+:p_nick+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("GrupoENdameGruposLideradosPorNickHQL");
                 query.SetParameter ("p_nick", p_nick);
@@ -402,7 +402,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> D
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.Nombre LIKE '%:p_nombre%'";
+                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.Nombre LIKE ('%'+:p_nombre+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("GrupoENdameGruposPorNombreHQL");
                 query.SetParameter ("p_nombre", p_nombre);
@@ -432,7 +432,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> D
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.Descripcion LIKE '%:p_desc%'";
+                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.Descripcion LIKE ('%'+:p_desc+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("GrupoENdameGruposPorDescHQL");
                 query.SetParameter ("p_desc", p_desc);

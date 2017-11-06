@@ -72,10 +72,10 @@
 		 </class>	
 		  
 		  <query name="VideoENReadAllHQL">from VideoEN</query>
-		  <query name="VideoENdameVideoPorTituloHQL"><![CDATA[FROM VideoEN as vid WHERE vid.Titulo LIKE '%:p_titulo%']]></query>
-		  <query name="VideoENdameVideoPorNickHQL"><![CDATA[FROM VideoEN as vid WHERE vid.Usuario.Nick LIKE '%:p_nick%']]></query>
+		  <query name="VideoENdameVideoPorTituloHQL"><![CDATA[FROM VideoEN as vid WHERE vid.Titulo LIKE ('%'+:p_titulo+'%')]]></query>
+		  <query name="VideoENdameVideoPorNickHQL"><![CDATA[FROM VideoEN as vid WHERE vid.Usuario.Nick LIKE ('%'+:p_nick+'%')]]></query>
 		  <query name="VideoENdameVideoPorFechaHQL"><![CDATA[FROM VideoEN as vid WHERE day(vid.Fecha_subida)=:p_dia AND month(vid.Fecha_subida)=:p_mes AND year(vid.Fecha_subida)=:p_anyo]]></query>
 		  <query name="VideoENdameVideoPorEmailHQL"><![CDATA[FROM VideoEN as vid WHERE vid.Usuario.Email=:p_email]]></query>
-		  <query name="VideoENdameVideoPorDescripcionHQL"><![CDATA[FROM VideoEN as vid WHERE vid.Descripcion LIKE '%:p_descripcion%']]></query>
+		  <query name="VideoENdameVideoPorDescripcionHQL"><![CDATA[FROM VideoEN as vid WHERE vid.Descripcion LIKE ('%'+:p_descripcion+'%')]]></query>
 		</hibernate-mapping>
 	

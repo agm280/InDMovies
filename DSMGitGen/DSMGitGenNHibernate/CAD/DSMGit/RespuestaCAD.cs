@@ -331,7 +331,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaE
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM RespuestaEN self where FROM RespuestaEN as res WHERE res.Usuario.Nick LIKE '%:p_nick%'";
+                //String sql = @"FROM RespuestaEN self where FROM RespuestaEN as res WHERE res.Usuario.Nick LIKE ('%'+:p_nick+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("RespuestaENdameRespuestaPorNickHQL");
                 query.SetParameter ("p_nick", p_nick);

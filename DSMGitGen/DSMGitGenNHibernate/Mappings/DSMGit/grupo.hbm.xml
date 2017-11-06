@@ -76,9 +76,9 @@
 		  <query name="GrupoENReadAllHQL">from GrupoEN</query>
 		  <query name="GrupoENdameGruposNoLlenosHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Completo=false]]></query>
 		  <query name="GrupoENdameGruposLlenosHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Completo=true]]></query>
-		  <query name="GrupoENdameGruposLideradosPorNickHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Lider.Nick LIKE '%:p_nick%']]></query>
+		  <query name="GrupoENdameGruposLideradosPorNickHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Lider.Nick LIKE ('%'+:p_nick+'%')]]></query>
 		  <query name="GrupoENdameGruposLideradosPorEmailHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Lider.Email=:p_email]]></query>
-		  <query name="GrupoENdameGruposPorNombreHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Nombre LIKE '%:p_nombre%']]></query>
-		  <query name="GrupoENdameGruposPorDescHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Descripcion LIKE '%:p_desc%']]></query>
+		  <query name="GrupoENdameGruposPorNombreHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Nombre LIKE ('%'+:p_nombre+'%')]]></query>
+		  <query name="GrupoENdameGruposPorDescHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Descripcion LIKE ('%'+:p_desc+'%')]]></query>
 		</hibernate-mapping>
 	

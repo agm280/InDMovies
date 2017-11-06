@@ -40,6 +40,6 @@
 		  <query name="RespuestaENReadAllHQL">from RespuestaEN</query>
 		  <query name="RespuestaENdameRespuestaPorTemaHQL"><![CDATA[FROM RespuestaEN as res WHERE res.Tema.Id=:p_id]]></query>
 		  <query name="RespuestaENdameRespuestaPorEmailHQL"><![CDATA[FROM RespuestaEN as res WHERE res.Usuario.Email=:p_email]]></query>
-		  <query name="RespuestaENdameRespuestaPorNickHQL"><![CDATA[FROM RespuestaEN as res WHERE res.Usuario.Nick LIKE '%:p_nick%']]></query>
+		  <query name="RespuestaENdameRespuestaPorNickHQL"><![CDATA[FROM RespuestaEN as res WHERE res.Usuario.Nick LIKE ('%'+:p_nick+'%')]]></query>
 		</hibernate-mapping>
 	

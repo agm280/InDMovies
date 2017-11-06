@@ -280,7 +280,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> D
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM VideoEN self where FROM VideoEN as vid WHERE vid.Titulo LIKE '%:p_titulo%'";
+                //String sql = @"FROM VideoEN self where FROM VideoEN as vid WHERE vid.Titulo LIKE ('%'+:p_titulo+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("VideoENdameVideoPorTituloHQL");
                 query.SetParameter ("p_titulo", p_titulo);
@@ -310,7 +310,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> D
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM VideoEN self where FROM VideoEN as vid WHERE vid.Usuario.Nick LIKE '%:p_nick%'";
+                //String sql = @"FROM VideoEN self where FROM VideoEN as vid WHERE vid.Usuario.Nick LIKE ('%'+:p_nick+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("VideoENdameVideoPorNickHQL");
                 query.SetParameter ("p_nick", p_nick);
@@ -402,7 +402,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> D
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM VideoEN self where FROM VideoEN as vid WHERE vid.Descripcion LIKE '%:p_descripcion%'";
+                //String sql = @"FROM VideoEN self where FROM VideoEN as vid WHERE vid.Descripcion LIKE ('%'+:p_descripcion+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("VideoENdameVideoPorDescripcionHQL");
                 query.SetParameter ("p_descripcion", p_descripcion);

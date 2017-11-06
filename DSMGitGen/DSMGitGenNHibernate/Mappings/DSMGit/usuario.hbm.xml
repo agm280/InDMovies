@@ -188,10 +188,10 @@
 		 </class>	
 		  
 		  <query name="UsuarioENReadAllHQL">from UsuarioEN</query>
-		  <query name="UsuarioENdameUsuarioPorNickHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Nick like '%:p_nick%']]></query>
+		  <query name="UsuarioENdameUsuarioPorNickHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Nick like('%'+:p_nick+'%')]]></query>
 		  <query name="UsuarioENdameUsuarioPorEmailHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Email=:p_email]]></query>
-		  <query name="UsuarioENdameUsuarioPorNombreYApellidosHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Nombre LIKE '%:p_nombre%' AND usu.Apellidos LIKE '%:p_apellidos%']]></query>
+		  <query name="UsuarioENdameUsuarioPorNombreYApellidosHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Nombre LIKE ('%'+:p_nombre+'%') AND usu.Apellidos LIKE ('%'+:p_apellidos+'%')]]></query>
 		  <query name="UsuarioENdameUsuarioPorRolHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Rol=:p_rol]]></query>
-		  <query name="UsuarioENdameUsuarioPorDescripcionHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Descripcion LIKE '%:p_descripcion%']]></query>
+		  <query name="UsuarioENdameUsuarioPorDescripcionHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Descripcion LIKE ('%'+:p_descripcion+'%')]]></query>
 		</hibernate-mapping>
 	

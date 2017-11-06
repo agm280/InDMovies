@@ -46,20 +46,20 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_QfccobizEeeZr70_jq7rZA" name="p_oid" type="OID" typeObject="_IVb4kLgDEeeQKK3fhnmurw"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_1A0PAL1tEeeaif9I-Hf2NQ" name="texto"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_1EPLsL-4EeeJ9st6qZQ9lA" name="dameUsuarioPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Nick like '%:p_nick%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_1EPLsL-4EeeJ9st6qZQ9lA" name="dameUsuarioPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Nick like('%'+:p_nick+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_9J5rQL-4EeeJ9st6qZQ9lA" name="p_nick"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_A-61AL-5EeeJ9st6qZQ9lA" name="dameUsuarioPorEmail" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Email=:p_email" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Et3L8L-5EeeJ9st6qZQ9lA" name="p_email"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_N6esgL-5EeeJ9st6qZQ9lA" name="dameUsuarioPorNombreYApellidos" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Nombre LIKE '%:p_nombre%' AND usu.Apellidos LIKE '%:p_apellidos%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_N6esgL-5EeeJ9st6qZQ9lA" name="dameUsuarioPorNombreYApellidos" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Nombre LIKE ('%'+:p_nombre+'%') AND usu.Apellidos LIKE ('%'+:p_apellidos+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Z3aYkL-5EeeJ9st6qZQ9lA" name="p_nombre"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_aoU4IL-5EeeJ9st6qZQ9lA" name="p_apellidos"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_dU6kwL-6EeeJ9st6qZQ9lA" name="dameUsuarioPorRol" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Rol=:p_rol" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_iJE3UL-6EeeJ9st6qZQ9lA" name="p_rol"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_oVMXIL_BEeeJ9st6qZQ9lA" name="dameUsuarioPorDescripcion" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Descripcion LIKE '%:p_descripcion%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_oVMXIL_BEeeJ9st6qZQ9lA" name="dameUsuarioPorDescripcion" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Descripcion LIKE ('%'+:p_descripcion+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_twKyEL_BEeeJ9st6qZQ9lA" name="p_descripcion"/>
       </operations>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_WT47ALgEEeeQKK3fhnmurw" alias="email" name="email" isOID="true" unique="true"/>
@@ -171,16 +171,16 @@
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_NNhN8L-7EeeJ9st6qZQ9lA" name="dameGruposNoLlenos" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Completo=false" automaticSynchronize="false"/>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_TxGPsL-7EeeJ9st6qZQ9lA" name="dameGruposLlenos" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Completo=true" automaticSynchronize="false"/>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_Oty4cL-8EeeJ9st6qZQ9lA" name="dameGruposLideradosPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Lider.Nick LIKE '%:p_nick%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_Oty4cL-8EeeJ9st6qZQ9lA" name="dameGruposLideradosPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Lider.Nick LIKE ('%'+:p_nick+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_ZCNukL-8EeeJ9st6qZQ9lA" name="p_nick"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_RljvwL-8EeeJ9st6qZQ9lA" name="dameGruposLideradosPorEmail" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Lider.Email=:p_email" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_ftukUL-8EeeJ9st6qZQ9lA" name="p_email"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_h2PzML_AEeeJ9st6qZQ9lA" name="dameGruposPorNombre" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Nombre LIKE '%:p_nombre%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_h2PzML_AEeeJ9st6qZQ9lA" name="dameGruposPorNombre" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Nombre LIKE ('%'+:p_nombre+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_uf6pcL_AEeeJ9st6qZQ9lA" name="p_nombre"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_Fbf-8L_CEeeJ9st6qZQ9lA" name="dameGruposPorDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Descripcion LIKE '%:p_desc%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_Fbf-8L_CEeeJ9st6qZQ9lA" name="dameGruposPorDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="FROM GrupoEN as gru WHERE gru.Descripcion LIKE ('%'+:p_desc+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_KTTbYL_CEeeJ9st6qZQ9lA" name="p_desc"/>
       </operations>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_1Ha80LgIEeeQKK3fhnmurw" alias="nombre" name="nombre" isOID="true" unique="true"/>
@@ -220,10 +220,10 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_N4AHAL2aEeeaif9I-Hf2NQ" name="calcular_valoracion" type="Void">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_N4AHAb2aEeeaif9I-Hf2NQ" name="p_oid" type="OID" typeObject="_Ps2G0LgKEeeQKK3fhnmurw"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_DXYeAL-1EeeJ9st6qZQ9lA" name="dameVideoPorTitulo" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Titulo LIKE '%:p_titulo%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_DXYeAL-1EeeJ9st6qZQ9lA" name="dameVideoPorTitulo" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Titulo LIKE ('%'+:p_titulo+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Xz1UEL-1EeeJ9st6qZQ9lA" name="p_titulo"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_KNUloL-2EeeJ9st6qZQ9lA" name="dameVideoPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Usuario.Nick LIKE '%:p_nick%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_KNUloL-2EeeJ9st6qZQ9lA" name="dameVideoPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Usuario.Nick LIKE ('%'+:p_nick+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_cgKD0L-2EeeJ9st6qZQ9lA" name="p_nick"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_gw4SIL-2EeeJ9st6qZQ9lA" name="dameVideoPorFecha" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE day(vid.Fecha_subida)=:p_dia AND month(vid.Fecha_subida)=:p_mes AND year(vid.Fecha_subida)=:p_anyo" automaticSynchronize="false">
@@ -234,7 +234,7 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_98h3gL-3EeeJ9st6qZQ9lA" name="dameVideoPorEmail" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Usuario.Email=:p_email" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Fn4ZoL-4EeeJ9st6qZQ9lA" name="p_email"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_yPO-YL_BEeeJ9st6qZQ9lA" name="dameVideoPorDescripcion" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Descripcion LIKE '%:p_descripcion%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_yPO-YL_BEeeJ9st6qZQ9lA" name="dameVideoPorDescripcion" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Descripcion LIKE ('%'+:p_descripcion+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_2so90L_BEeeJ9st6qZQ9lA" name="p_descripcion"/>
       </operations>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_RJm_wLgKEeeQKK3fhnmurw" alias="titulo" name="titulo"/>
@@ -319,7 +319,7 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_M6iVoL-9EeeJ9st6qZQ9lA" name="dameRespuestaPorEmail" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_ZwY9cLgMEeeQKK3fhnmurw" filter="FROM RespuestaEN as res WHERE res.Usuario.Email=:p_email" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_SlUHIL-9EeeJ9st6qZQ9lA" name="p_email"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_TiUh8L-9EeeJ9st6qZQ9lA" name="dameRespuestaPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_ZwY9cLgMEeeQKK3fhnmurw" filter="FROM RespuestaEN as res WHERE res.Usuario.Nick LIKE '%:p_nick%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_TiUh8L-9EeeJ9st6qZQ9lA" name="dameRespuestaPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_ZwY9cLgMEeeQKK3fhnmurw" filter="FROM RespuestaEN as res WHERE res.Usuario.Nick LIKE ('%'+:p_nick+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_ZXY34L-9EeeJ9st6qZQ9lA" name="p_nick"/>
       </operations>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_buPKMLgMEeeQKK3fhnmurw" alias="idRespuesta" name="id" type="Autogenerated" isOID="true"/>
@@ -359,16 +359,16 @@
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_rlIFkL-7EeeJ9st6qZQ9lA" name="dameTemasAbiertos" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Estado=abierto" automaticSynchronize="false"/>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_zi-s8L-7EeeJ9st6qZQ9lA" name="dameTemasCerrados" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Estado=cerrado" automaticSynchronize="false"/>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_4fN9cL-7EeeJ9st6qZQ9lA" name="dameTemaPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Usuario.Nick like '%:p_nick%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_4fN9cL-7EeeJ9st6qZQ9lA" name="dameTemaPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Usuario.Nick like ('%'+:p_nick+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_BkkYYL-8EeeJ9st6qZQ9lA" name="p_nick"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_64VJ4L-7EeeJ9st6qZQ9lA" name="dameTemaPorEmail" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Usuario.Email=:p_email" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Gp4FUL-8EeeJ9st6qZQ9lA" name="p_email"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_RIV2AL_BEeeJ9st6qZQ9lA" name="dameTemaPorDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Descripcion LIKE '%:p_desc%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_RIV2AL_BEeeJ9st6qZQ9lA" name="dameTemaPorDesc" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Descripcion LIKE ('%'+:p_desc+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_c9Z_gL_BEeeJ9st6qZQ9lA" name="p_desc"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_7RyukL_CEeeJ9st6qZQ9lA" name="dameTemaPorTitulo" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Titulo LIKE '%:p_titulo%'" automaticSynchronize="false">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_7RyukL_CEeeJ9st6qZQ9lA" name="dameTemaPorTitulo" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Titulo LIKE ('%'+:p_titulo+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_BRDiUL_DEeeJ9st6qZQ9lA" name="p_titulo"/>
       </operations>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_hpu4QLgMEeeQKK3fhnmurw" alias="idTema" name="id" type="Autogenerated" isOID="true"/>

@@ -308,7 +308,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu WHERE usu.Nick like '%:p_nick%'";
+                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu WHERE usu.Nick like('%'+:p_nick+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENdameUsuarioPorNickHQL");
                 query.SetParameter ("p_nick", p_nick);
@@ -368,7 +368,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu WHERE usu.Nombre LIKE '%:p_nombre%' AND usu.Apellidos LIKE '%:p_apellidos%'";
+                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu WHERE usu.Nombre LIKE ('%'+:p_nombre+'%') AND usu.Apellidos LIKE ('%'+:p_apellidos+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENdameUsuarioPorNombreYApellidosHQL");
                 query.SetParameter ("p_nombre", p_nombre);
@@ -429,7 +429,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu WHERE usu.Descripcion LIKE '%:p_descripcion%'";
+                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu WHERE usu.Descripcion LIKE ('%'+:p_descripcion+'%')";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENdameUsuarioPorDescripcionHQL");
                 query.SetParameter ("p_descripcion", p_descripcion);
