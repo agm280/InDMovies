@@ -95,10 +95,16 @@ public static void InitializeData ()
                 GrupoCEN grupo = new GrupoCEN ();
                 grupo.New_ (p_nombre: "Grupo1", p_imagen: "imagen.png", p_descripcion: "El mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false);
 
+                IList<UsuarioEN> pipas = usuario.DameUsuarioPorEmail("ejemplo2@gmail.com");
+                System.Console.WriteLine(pipas[0].Nick);
 
+                foreach (UsuarioEN adsfsdf in pipas)
+                {
+                    System.Console.WriteLine(adsfsdf.Nick);
+                }
                 /*PROTECTED REGION END*/
-        }
-        catch (Exception ex)
+            }
+            catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
                 throw ex;
