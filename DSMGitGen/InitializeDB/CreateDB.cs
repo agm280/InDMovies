@@ -86,7 +86,6 @@ public static void InitializeData ()
                 usuario.New_ (p_email: "ejemplo2@gmail.com", p_nombre: "Juanito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPV", p_contrasenya: "4321", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 3, p_imagen: "imagen2.png", p_descripcion: "hola");
                 UsuarioCEN usuario2 = new UsuarioCEN ();
                 usuario2.New_ (p_email: "ejemplo@gmail.com", p_nombre: "Pepito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPeter", p_contrasenya: "1234", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 1, p_imagen: "imagen1.png", p_descripcion: "hola");
-
                 VideoCEN video = new VideoCEN ();
                 int a = video.New_ (p_titulo: "primer video", p_descripcion: "descripcion", p_usuario: "ejemplo@gmail.com", p_fecha_subida: new DateTime (2017, 1, 3));
 
@@ -167,10 +166,14 @@ public static void InitializeData ()
                         System.Console.WriteLine (te.Titulo);
                 }
 
+                System.Console.WriteLine(usuario.Iniciar_sesion("ejemplo2@gmail.com", "4321"));
+                System.Console.WriteLine(usuario.Iniciar_sesion("ejemplo2@gmail.com", "321"));
+
+
 
                 /*PROTECTED REGION END*/
-        }
-        catch (Exception ex)
+            }
+            catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
                 throw ex;

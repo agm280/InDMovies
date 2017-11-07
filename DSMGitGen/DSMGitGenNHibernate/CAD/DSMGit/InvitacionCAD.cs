@@ -296,5 +296,43 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Invitacion
 
         return result;
 }
+public void AnadirUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs)
+{
+        DSMGitGenNHibernate.EN.DSMGit.InvitacionEN invitacionEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                invitacionEN = (InvitacionEN)session.Load (typeof(InvitacionEN), p_Invitacion_OID);
+                DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario_invitadoENAux = null;
+                if (invitacionEN.Usuario_invitado == null) {
+                        invitacionEN.Usuario_invitado = new System.Collections.Generic.List<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>();
+                }
+
+                foreach (string item in p_usuario_invitado_OIDs) {
+                        usuario_invitadoENAux = new DSMGitGenNHibernate.EN.DSMGit.UsuarioEN ();
+                        usuario_invitadoENAux = (DSMGitGenNHibernate.EN.DSMGit.UsuarioEN)session.Load (typeof(DSMGitGenNHibernate.EN.DSMGit.UsuarioEN), item);
+                        usuario_invitadoENAux.Invitaciones_recibidas.Add (invitacionEN);
+
+                        invitacionEN.Usuario_invitado.Add (usuario_invitadoENAux);
+                }
+
+
+                session.Update (invitacionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in InvitacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

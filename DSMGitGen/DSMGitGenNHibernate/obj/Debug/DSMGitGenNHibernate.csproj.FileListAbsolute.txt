@@ -45,3 +45,4 @@ C:\Users\Carlos\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenN
 C:\Users\Carlos\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csproj.CoreCompileInputs.cache
 C:\Users\Carlos\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.dll
 C:\Users\Carlos\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.pdb
+C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache

@@ -1316,7 +1316,7 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_ZwY9crgMEeeQKK3fhnmurw"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_ZwY9c7gMEeeQKK3fhnmurw" fontName="Segoe UI"/>
       <styles xmi:type="notation:FillStyle" xmi:id="_ZwY9dLgMEeeQKK3fhnmurw" fillColor="12516090"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZwY9dbgMEeeQKK3fhnmurw" x="760" y="-105"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZwY9dbgMEeeQKK3fhnmurw" x="774" y="-120"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_fVlrYbgMEeeQKK3fhnmurw" type="2003" element="_fVlrYLgMEeeQKK3fhnmurw">
       <children xmi:type="notation:DecorationNode" xmi:id="_fVlrZrgMEeeQKK3fhnmurw" type="5005"/>
