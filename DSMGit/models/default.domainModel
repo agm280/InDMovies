@@ -57,7 +57,7 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_aoU4IL-5EeeJ9st6qZQ9lA" name="p_apellidos"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_dU6kwL-6EeeJ9st6qZQ9lA" name="dameUsuarioPorRol" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Rol=:p_rol" automaticSynchronize="false">
-        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_iJE3UL-6EeeJ9st6qZQ9lA" name="p_rol"/>
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_iJE3UL-6EeeJ9st6qZQ9lA" name="p_rol" type="Integer"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_oVMXIL_BEeeJ9st6qZQ9lA" name="dameUsuarioPorDescripcion" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw" filter="FROM UsuarioEN as usu WHERE usu.Descripcion LIKE ('%'+:p_descripcion+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_twKyEL_BEeeJ9st6qZQ9lA" name="p_descripcion"/>
