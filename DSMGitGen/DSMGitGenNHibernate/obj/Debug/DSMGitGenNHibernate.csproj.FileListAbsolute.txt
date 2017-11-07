@@ -26,7 +26,6 @@ C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\bin\Debug\NHibernate.
 C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\bin\Debug\Iesi.Collections.dll
 C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\bin\Debug\Antlr3.Runtime.dll
 C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\bin\Debug\log4net.dll
-C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache
 C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csproj.CoreCompileInputs.cache
 C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.dll
 C:\Users\alvar\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.pdb

@@ -60,8 +60,8 @@
 		 </class>	
 		  
 		  <query name="TemaENReadAllHQL">from TemaEN</query>
-		  <query name="TemaENdameTemasAbiertosHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Estado=Estado.Abierto]]></query>
-		  <query name="TemaENdameTemasCerradosHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Estado=Estado.Cerrado]]></query>
+		  <query name="TemaENdameTemasAbiertosHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Estado=1]]></query>
+		  <query name="TemaENdameTemasCerradosHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Estado=2]]></query>
 		  <query name="TemaENdameTemaPorNickHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Usuario.Nick like ('%'+:p_nick+'%')]]></query>
 		  <query name="TemaENdameTemaPorEmailHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Usuario.Email=:p_email]]></query>
 		  <query name="TemaENdameTemaPorDescHQL"><![CDATA[FROM TemaEN as tem WHERE tem.Descripcion LIKE ('%'+:p_desc+'%')]]></query>

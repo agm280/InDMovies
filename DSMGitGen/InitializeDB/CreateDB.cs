@@ -151,10 +151,27 @@ public static void InitializeData ()
                         System.Console.WriteLine (te.Titulo);
                 }
 
+                System.Console.WriteLine("Ahora cerramos el tema");
+
+                tema.Cerrar(idQueQuiero);
+
+                listaTemasAbiertos = tema.DameTemasAbiertos();
+                System.Console.WriteLine("Temas abiertos");
+                foreach (TemaEN te in listaTemasAbiertos)
+                {
+                    System.Console.WriteLine(te.Titulo);
+                }
+
+                listaTemasCerrados = tema.DameTemasCerrados();
+                System.Console.WriteLine("Temas cerrados");
+                foreach (TemaEN te in listaTemasCerrados)
+                {
+                    System.Console.WriteLine(te.Titulo);
+                }
 
 
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

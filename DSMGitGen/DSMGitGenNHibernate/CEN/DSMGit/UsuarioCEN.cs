@@ -123,7 +123,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
 {
         return _IUsuarioCAD.DameUsuarioPorNombreYApellidos (p_nombre, p_apellidos);
 }
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorRol (string p_rol)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorRol (int ? p_rol)
 {
         return _IUsuarioCAD.DameUsuarioPorRol (p_rol);
 }

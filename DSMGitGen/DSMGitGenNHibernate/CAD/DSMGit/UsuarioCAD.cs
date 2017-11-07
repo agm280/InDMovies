@@ -393,7 +393,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
 
         return result;
 }
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorRol (string p_rol)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorRol (int ? p_rol)
 {
         System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> result;
         try

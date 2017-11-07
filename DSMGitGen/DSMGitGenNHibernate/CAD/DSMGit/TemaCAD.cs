@@ -279,7 +279,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.TemaEN> Da
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Estado=Estado.Abierto";
+                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Estado=1";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("TemaENdameTemasAbiertosHQL");
 
@@ -308,7 +308,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.TemaEN> Da
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Estado=Estado.Cerrado";
+                //String sql = @"FROM TemaEN self where FROM TemaEN as tem WHERE tem.Estado=2";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("TemaENdameTemasCerradosHQL");
 
