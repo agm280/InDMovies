@@ -357,8 +357,8 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_SnqtYbizEeeZr70_jq7rZA" name="p_oid" type="OID" typeObject="_fVlrYLgMEeeQKK3fhnmurw"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_D2BIsL1uEeeaif9I-Hf2NQ" name="texto" scope="InOut"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_rlIFkL-7EeeJ9st6qZQ9lA" name="dameTemasAbiertos" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Estado=abierto" automaticSynchronize="false"/>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_zi-s8L-7EeeJ9st6qZQ9lA" name="dameTemasCerrados" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Estado=cerrado" automaticSynchronize="false"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_rlIFkL-7EeeJ9st6qZQ9lA" name="dameTemasAbiertos" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Estado=1" automaticSynchronize="false"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_zi-s8L-7EeeJ9st6qZQ9lA" name="dameTemasCerrados" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Estado=2" automaticSynchronize="false"/>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_4fN9cL-7EeeJ9st6qZQ9lA" name="dameTemaPorNick" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_fVlrYLgMEeeQKK3fhnmurw" filter="FROM TemaEN as tem WHERE tem.Usuario.Nick like ('%'+:p_nick+'%')" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_BkkYYL-8EeeJ9st6qZQ9lA" name="p_nick"/>
       </operations>
