@@ -772,7 +772,7 @@
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_tKO5QrgHEeeQKK3fhnmurw"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_tKO5Q7gHEeeQKK3fhnmurw" fontName="Segoe UI"/>
       <styles xmi:type="notation:FillStyle" xmi:id="_tKO5RLgHEeeQKK3fhnmurw" fillColor="12516090"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tKO5RbgHEeeQKK3fhnmurw" x="-30" y="65"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tKO5RbgHEeeQKK3fhnmurw" x="-78" y="48"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_TaFfgLgIEeeQKK3fhnmurw" type="2003" element="_TZ8VkLgIEeeQKK3fhnmurw">
       <children xmi:type="notation:DecorationNode" xmi:id="_TaFfhbgIEeeQKK3fhnmurw" type="5005"/>
