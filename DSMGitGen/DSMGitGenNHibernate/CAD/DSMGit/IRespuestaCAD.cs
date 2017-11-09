@@ -29,7 +29,7 @@ RespuestaEN ReadOID (int id
 System.Collections.Generic.IList<RespuestaEN> ReadAll (int first, int size);
 
 
-System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTema (string p_id);
+System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTema (int ? p_id);
 
 
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorEmail (string p_email);

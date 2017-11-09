@@ -104,7 +104,7 @@ public System.Collections.Generic.IList<RespuestaEN> ReadAll (int first, int siz
         list = _IRespuestaCAD.ReadAll (first, size);
         return list;
 }
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTema (string p_id)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTema (int ? p_id)
 {
         return _IRespuestaCAD.DameRespuestaPorTema (p_id);
 }

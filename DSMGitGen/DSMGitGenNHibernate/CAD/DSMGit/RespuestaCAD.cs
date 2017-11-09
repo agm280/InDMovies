@@ -265,7 +265,7 @@ public System.Collections.Generic.IList<RespuestaEN> ReadAll (int first, int siz
         return result;
 }
 
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTema (string p_id)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTema (int ? p_id)
 {
         System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> result;
         try

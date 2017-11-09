@@ -99,9 +99,6 @@ public static void InitializeData ()
                 GrupoCEN grupo2 = new GrupoCEN ();
                 grupo.New_ (p_nombre: "Grupo2", p_imagen: "imagen.png", p_descripcion: "El segundo mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false);
 
-                TemaCEN tema = new TemaCEN ();
-                tema.New_ (p_descripcion: "Hola, buenas tardes", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo@gmail.com", p_titulo: "Pregunta personal");
-
                 InvitacionCEN invitacion = new InvitacionCEN ();
                 invitacion.New_ (p_descripcion: "Invitacion 1", p_grupo: "Grupo1", p_invitador: "ejemplo2@gmail.com");
                 InvitacionCEN invitacion2 = new InvitacionCEN ();
@@ -109,24 +106,42 @@ public static void InitializeData ()
                 InvitacionCEN invitacion3 = new InvitacionCEN ();
                 invitacion3.New_ (p_descripcion: "Invitacion 3", p_grupo: "Grupo2", p_invitador: "ejemplo2@gmail.com");
 
-                
-                //COMPROBACIONES
+                TemaCEN tema = new TemaCEN ();
+                int idtema = tema.New_ (p_descripcion: "Hola, buenas tardes", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo2@gmail.com", p_titulo: "Pregunta personal");
+                TemaCEN tema2 = new TemaCEN ();
+                int idtema2 = tema2.New_ (p_descripcion: "�C�mo sacar un 10 en esto?", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_usuario: "ejemplo2@gmail.com", p_titulo: "Desesperaci�n");
+                TemaCEN tema3 = new TemaCEN ();
+                int idtema3 = tema3.New_ (p_descripcion: "Adios", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo@gmail.com", p_titulo: "Despedida");
 
-                /* COMPROBACIONES DE USUARIOS
+                RespuestaCEN respuesta = new RespuestaCEN ();
+                respuesta.New_ (p_descripcion: "Buenas tardes", p_tema: idtema, p_usuario: "ejemplo2@gmail.com");
+                RespuestaCEN respuesta2 = new RespuestaCEN ();
+                respuesta2.New_ (p_descripcion: "Es imposible", p_tema: idtema2, p_usuario: "ejemplo@gmail.com");
+                RespuestaCEN respuesta3 = new RespuestaCEN ();
+                respuesta3.New_ (p_descripcion: "rt", p_tema: idtema2, p_usuario: "ejemplo2@gmail.com");
+                RespuestaCEN respuesta4 = new RespuestaCEN ();
+                respuesta4.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");
+
+
+
+                //COMPROBACIONES
+                /*
+                 * COMPROBACIONES DE USUARIOS
                  * IList<UsuarioEN> pipas = usuario.DameUsuarioPorEmail ("ejemplo2@gmail.com");
                  * System.Console.WriteLine("DAME USUARIO POR EMAIL");
                  * foreach (UsuarioEN usus in pipas) {
-                 *      System.Console.WriteLine (usus.Nick);
+                 * System.Console.WriteLine (usus.Nick);
                  * }
                  * System.Console.WriteLine("DAME USUARIO POR NICK");
                  * IList<UsuarioEN> listajuanito = usuario.DameUsuarioPorNick ("uanito");
                  *
                  * foreach (UsuarioEN usuarios in listajuanito) {
-                 *      System.Console.WriteLine (usuarios.Nick);
+                 * System.Console.WriteLine (usuarios.Nick);
                  * }
                  * System.Console.WriteLine("INICIAR SESION");
                  * System.Console.WriteLine(usuario.Iniciar_sesion("ejemplo2@gmail.com", "4321"));
                  * System.Console.WriteLine(usuario.Iniciar_sesion("ejemplo2@gmail.com", "321"));
+                 *
                  */
 
 
@@ -140,20 +155,20 @@ public static void InitializeData ()
                  * IList<TemaEN> listaTemasAbiertos = tema.DameTemasAbiertos ();
                  * System.Console.WriteLine ("Temas abiertos");
                  * foreach (TemaEN te in listaTemasAbiertos) {
-                 *      System.Console.WriteLine (te.Titulo);
+                 *   System.Console.WriteLine (te.Titulo);
                  * }
                  *
                  * IList<TemaEN> listaTemasCerrados = tema.DameTemasCerrados ();
                  * System.Console.WriteLine ("Temas cerrados");
                  * foreach (TemaEN te in listaTemasCerrados) {
-                 *      System.Console.WriteLine (te.Titulo);
+                 *   System.Console.WriteLine (te.Titulo);
                  * }
                  *
                  * System.Console.WriteLine ("Ejecuto abrir de tema (metodo custom) y vuelvo a hacer la HQL:");
                  * IList<TemaEN> dameElTemaQueQuiero = tema.DameTemaPorTitulo ("Pregunta personal");
                  * int idQueQuiero = -1;
                  * foreach (TemaEN te in listaTemasCerrados) {
-                 *      idQueQuiero = te.Id;
+                 *   idQueQuiero = te.Id;
                  * }
                  *
                  * tema.Abrir (idQueQuiero);
@@ -161,13 +176,13 @@ public static void InitializeData ()
                  * listaTemasAbiertos = tema.DameTemasAbiertos ();
                  * System.Console.WriteLine ("Temas abiertos");
                  * foreach (TemaEN te in listaTemasAbiertos) {
-                 *      System.Console.WriteLine (te.Titulo);
+                 *   System.Console.WriteLine (te.Titulo);
                  * }
                  *
                  * listaTemasCerrados = tema.DameTemasCerrados ();
                  * System.Console.WriteLine ("Temas cerrados");
                  * foreach (TemaEN te in listaTemasCerrados) {
-                 *      System.Console.WriteLine (te.Titulo);
+                 *   System.Console.WriteLine (te.Titulo);
                  * }
                  *
                  * System.Console.WriteLine ("Ahora cerramos el tema");
@@ -177,34 +192,53 @@ public static void InitializeData ()
                  * listaTemasAbiertos = tema.DameTemasAbiertos ();
                  * System.Console.WriteLine ("Temas abiertos");
                  * foreach (TemaEN te in listaTemasAbiertos) {
-                 *      System.Console.WriteLine (te.Titulo);
+                 *   System.Console.WriteLine (te.Titulo);
                  * }
                  *
                  * listaTemasCerrados = tema.DameTemasCerrados ();
                  * System.Console.WriteLine ("Temas cerrados");
                  * foreach (TemaEN te in listaTemasCerrados) {
-                 *      System.Console.WriteLine (te.Titulo);
+                 *   System.Console.WriteLine (te.Titulo);
                  * }
                  */
 
-                /* COMPROBACIONES DE INVITACION*/
-                
+
                 /* COMPROBACIONES DE INVITACIONES
-                IList<InvitacionEN> invis = invitacion.DameInvitacionEnviadaPorEmail ("ejemplo@gmail.com");
-                System.Console.WriteLine ("DAME INVITACION POR EMAIL (INVITADOR)");
-                foreach (InvitacionEN invi in invis) {
-                        System.Console.WriteLine (invi.Descripcion);
-                }
+                 * IList<InvitacionEN> invis = invitacion.DameInvitacionEnviadaPorEmail ("ejemplo@gmail.com");
+                 * System.Console.WriteLine ("DAME INVITACION POR EMAIL (INVITADOR)");
+                 * foreach (InvitacionEN invi in invis) {
+                 *      System.Console.WriteLine (invi.Descripcion);
+                 * }
+                 *
+                 * IList<InvitacionEN> invis2 = invitacion.DameInvitacionEnviadaPorGrupo("Grupo2");
+                 * System.Console.WriteLine("DAME INVITACION POR GRUPO");
+                 * foreach (InvitacionEN invi2 in invis2)
+                 * {
+                 *  System.Console.WriteLine(invi2.Descripcion);
+                 * }*/
 
-                IList<InvitacionEN> invis2 = invitacion.DameInvitacionEnviadaPorGrupo("Grupo2");
-                System.Console.WriteLine("DAME INVITACION POR GRUPO");
-                foreach (InvitacionEN invi2 in invis2)
-                {
-                    System.Console.WriteLine(invi2.Descripcion);
-                }*/
-
+                /* COMPROBACIONES DE RESPUESTAS
+                 * IList<RespuestaEN> respus = respuesta.DameRespuestaPorEmail ("ejemplo2@gmail.com");
+                 * System.Console.WriteLine ("DAME RESPUESTA POR EMAIL");
+                 * foreach (RespuestaEN respu in respus) {
+                 *      System.Console.WriteLine (respu.Descripcion);
+                 * }
+                 *
+                 *
+                 * IList<RespuestaEN> respus2 = respuesta.DameRespuestaPorNick ("Pet");
+                 * System.Console.WriteLine ("DAME RESPUESTA POR NICK");
+                 * foreach (RespuestaEN respu2 in respus2) {
+                 *      System.Console.WriteLine (respu2.Descripcion);
+                 * }
+                 *
+                 * IList<RespuestaEN> respus3 = respuesta.DameRespuestaPorTema (idtema2);
+                 * System.Console.WriteLine ("DAME RESPUESTA POR TEMA");
+                 * foreach (RespuestaEN respu3 in respus3) {
+                 *      System.Console.WriteLine (respu3.Descripcion);
+                 * }
+                 */
                 /*PROTECTED REGION END*/
-            }
+        }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
