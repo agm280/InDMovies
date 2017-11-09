@@ -114,5 +114,9 @@ public void AnadirUsuario (int p_Invitacion_OID, System.Collections.Generic.ILis
 
         _IInvitacionCAD.AnadirUsuario (p_Invitacion_OID, p_usuario_invitado_OIDs);
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionEnviadaPorGrupo (string p_grupo)
+{
+        return _IInvitacionCAD.DameInvitacionEnviadaPorGrupo (p_grupo);
+}
 }
 }

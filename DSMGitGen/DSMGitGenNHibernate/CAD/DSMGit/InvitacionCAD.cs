@@ -334,5 +334,36 @@ public void AnadirUsuario (int p_Invitacion_OID, System.Collections.Generic.ILis
                 SessionClose ();
         }
 }
+
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionEnviadaPorGrupo (string p_grupo)
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM InvitacionEN self where FROM InvitacionEN as inv WHERE inv.Grupo.Nombre=:p_grupo";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("InvitacionENdameInvitacionEnviadaPorGrupoHQL");
+                query.SetParameter ("p_grupo", p_grupo);
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in InvitacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

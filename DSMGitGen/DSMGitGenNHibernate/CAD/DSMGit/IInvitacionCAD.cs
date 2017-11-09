@@ -33,5 +33,7 @@ System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> Dam
 
 
 void AnadirUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs);
+
+System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionEnviadaPorGrupo (string p_grupo);
 }
 }

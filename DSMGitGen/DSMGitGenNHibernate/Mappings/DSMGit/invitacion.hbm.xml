@@ -51,5 +51,6 @@
 		  
 		  <query name="InvitacionENReadAllHQL">from InvitacionEN</query>
 		  <query name="InvitacionENdameInvitacionEnviadaPorEmailHQL"><![CDATA[FROM InvitacionEN as inv WHERE inv.Invitador.Email=:p_email]]></query>
+		  <query name="InvitacionENdameInvitacionEnviadaPorGrupoHQL"><![CDATA[FROM InvitacionEN as inv WHERE inv.Grupo.Nombre=:p_grupo]]></query>
 		</hibernate-mapping>
 	
