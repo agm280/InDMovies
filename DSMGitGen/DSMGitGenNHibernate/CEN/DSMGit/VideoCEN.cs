@@ -110,9 +110,9 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> D
 {
         return _IVideoCAD.DameVideoPorNick (p_nick);
 }
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorFecha (int? p_dia, int? p_mes, int ? p_anyo)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorFecha (int? p_anyo, int? p_mes, int ? p_dia)
 {
-        return _IVideoCAD.DameVideoPorFecha (p_dia, p_mes, p_anyo);
+        return _IVideoCAD.DameVideoPorFecha (p_anyo, p_mes, p_dia);
 }
 public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorEmail (string p_email)
 {

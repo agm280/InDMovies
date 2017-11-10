@@ -227,9 +227,9 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_cgKD0L-2EeeJ9st6qZQ9lA" name="p_nick"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_gw4SIL-2EeeJ9st6qZQ9lA" name="dameVideoPorFecha" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE day(vid.Fecha_subida)=:p_dia AND month(vid.Fecha_subida)=:p_mes AND year(vid.Fecha_subida)=:p_anyo" automaticSynchronize="false">
-        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_UQ0OYL-3EeeJ9st6qZQ9lA" name="p_dia" type="Integer"/>
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_UQ0OYL-3EeeJ9st6qZQ9lA" name="p_anyo" type="Integer"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_XFpGcL-3EeeJ9st6qZQ9lA" name="p_mes" type="Integer"/>
-        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_YhsNsL-3EeeJ9st6qZQ9lA" name="p_anyo" type="Integer"/>
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_YhsNsL-3EeeJ9st6qZQ9lA" name="p_dia" type="Integer"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_98h3gL-3EeeJ9st6qZQ9lA" name="dameVideoPorEmail" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Usuario.Email=:p_email" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Fn4ZoL-4EeeJ9st6qZQ9lA" name="p_email"/>

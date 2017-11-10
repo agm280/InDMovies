@@ -37,7 +37,7 @@ System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVide
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorNick (string p_nick);
 
 
-System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorFecha (int? p_dia, int? p_mes, int ? p_anyo);
+System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorFecha (int? p_anyo, int? p_mes, int ? p_dia);
 
 
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorEmail (string p_email);

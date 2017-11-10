@@ -334,7 +334,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> D
 
         return result;
 }
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorFecha (int? p_dia, int? p_mes, int ? p_anyo)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorFecha (int? p_anyo, int? p_mes, int ? p_dia)
 {
         System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> result;
         try
@@ -343,9 +343,9 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> D
                 //String sql = @"FROM VideoEN self where FROM VideoEN as vid WHERE day(vid.Fecha_subida)=:p_dia AND month(vid.Fecha_subida)=:p_mes AND year(vid.Fecha_subida)=:p_anyo";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("VideoENdameVideoPorFechaHQL");
-                query.SetParameter ("p_dia", p_dia);
-                query.SetParameter ("p_mes", p_mes);
                 query.SetParameter ("p_anyo", p_anyo);
+                query.SetParameter ("p_mes", p_mes);
+                query.SetParameter ("p_dia", p_dia);
 
                 result = query.List<DSMGitGenNHibernate.EN.DSMGit.VideoEN>();
                 SessionCommit ();
