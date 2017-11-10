@@ -121,7 +121,6 @@ public static void InitializeData ()
                 respuesta3.New_ (p_descripcion: "rt", p_tema: idtema2, p_usuario: "ejemplo2@gmail.com");
                 RespuestaCEN respuesta4 = new RespuestaCEN ();
                 respuesta4.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");
-                tema.Buscar (p_oid: idtema, texto: "buenas");
 
                 //COMPROBACIONES
                 /*
