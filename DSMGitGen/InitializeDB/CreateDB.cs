@@ -88,11 +88,20 @@ public static void InitializeData ()
                 UsuarioCEN usuario2 = new UsuarioCEN ();
                 usuario2.New_ (p_email: "ejemplo@gmail.com", p_nombre: "Pepito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPeter", p_contrasenya: "1234", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 1, p_imagen: "imagen1.png", p_descripcion: "hola");
 
-                VideoCEN video = new VideoCEN ();
-                int a = video.New_ (p_titulo: "primer video", p_descripcion: "descripcion", p_usuario: "ejemplo@gmail.com", p_fecha_subida: new DateTime (2017, 1, 3));
+                VideoCEN video = new VideoCEN();
+                int idVideo1 = video.New_(p_titulo: "Haz tu vida mas facil con GitHub", p_descripcion: "Amazing life Hacks", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime(2015, 1, 3));
+                VideoCEN video2 = new VideoCEN();
+                int idVideo2 = video.New_(p_titulo: "Investigacion de MAC", p_descripcion: "Mi proyecto de MAC", p_usuario: "ejemplo@gmail.com", p_fecha_subida: new DateTime(2015, 1, 3));
+                VideoCEN video3 = new VideoCEN();
+                int idVideo3 = video.New_(p_titulo: "Video de Investigacion", p_descripcion: "Me at the zoo", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime(2017, 1, 3));
+                VideoCEN video4 = new VideoCEN();
+                int idVideo4 = video.New_(p_titulo: "Video Terror Halloween", p_descripcion: "you WONT BELIEVE this. MUST WATCH. Best thing in ur life", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime(2017, 2, 3));
+                //Date time: year month day
+
+
 
                 ValoracionCEN valoracion = new ValoracionCEN ();
-                valoracion.New_ (p_valor: 97, p_usuario: "ejemplo@gmail.com", p_video: a);
+                valoracion.New_ (p_valor: 97, p_usuario: "ejemplo@gmail.com", p_video: idVideo1);
 
                 GrupoCEN grupo = new GrupoCEN ();
                 grupo.New_ (p_nombre: "Grupo1", p_imagen: "imagen.png", p_descripcion: "El mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false);
@@ -121,6 +130,67 @@ public static void InitializeData ()
                 respuesta3.New_ (p_descripcion: "rt", p_tema: idtema2, p_usuario: "ejemplo2@gmail.com");
                 RespuestaCEN respuesta4 = new RespuestaCEN ();
                 respuesta4.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");
+
+                /*
+                //COMPROBACIONES DE HQL VIDEOS
+                IList<VideoEN> videos = video.DameVideoPorDescripcion("life");
+                System.Console.WriteLine("DAME VIDEO POR DESCRIPCION (AUTOCOMPLETA EL PR. Y EL FINAL) life");
+                foreach (VideoEN vid in videos)
+                {
+                    System.Console.WriteLine(vid.Titulo);
+                    System.Console.WriteLine("Desripcion: " + vid.Descripcion);
+                }
+                IList<VideoEN> videos2 = video.DameVideoPorDescripcion("hack");
+                System.Console.WriteLine("DAME VIDEO POR DESCRIPCION (AUTOCOMPLETA EL PR. Y EL FINAL) hack");
+                foreach (VideoEN vid in videos2)
+                {
+                    System.Console.WriteLine(vid.Titulo);
+                    System.Console.WriteLine("Descripcion: " + vid.Descripcion);
+                }
+                IList<VideoEN> videos3 = video.DameVideoPorTitulo("Investigacion");
+                System.Console.WriteLine("DAME VIDEO POR TITULO (AUTOCOMPLETA EL PR. Y EL FINAL) Investigacion");
+                foreach (VideoEN vid in videos3)
+                {
+                    System.Console.WriteLine(vid.Titulo);
+                }
+                IList<VideoEN> videos4 = video.DameVideoPorTitulo("Video");
+                System.Console.WriteLine("DAME VIDEO POR TITULO (AUTOCOMPLETA EL PR. Y EL FINAL) Video");
+                foreach (VideoEN vid in videos4)
+                {
+                    System.Console.WriteLine(vid.Titulo);
+                }
+                IList<VideoEN> videos5 = video.DameVideoPorEmail("ejemplo2@gmail.com");
+                System.Console.WriteLine("DAME VIDEO POR EMAIL Ejemplo2");
+                foreach (VideoEN vid in videos5)
+                {
+                    System.Console.WriteLine(vid.Titulo);
+                }
+
+                //DateTime fecha1 = new DateTime(2017, 1, 3);
+                //Date time: year month day
+                IList<VideoEN> videos6 = video.DameVideoPorFecha(2017, 1, 3);
+                System.Console.WriteLine("DAME VIDEO POR FECHA 2017 1 3");
+                foreach (VideoEN vid in videos6)
+                {
+                    System.Console.WriteLine(vid.Titulo);
+                }
+
+                IList<VideoEN> videos7 = video.DameVideoPorNick("Juanito");
+                System.Console.WriteLine("DAME VIDEO POR NICK DE USER (se autocompleta, me va a dar todos los videos de todos los juanitos) - Juanito");
+                foreach (VideoEN vid in videos7)
+                {
+                    System.Console.WriteLine(vid.Titulo);
+                }
+
+
+                IList<VideoEN> videos8 = video.DameVideoPorNick("JuanitoPV");
+                System.Console.WriteLine("DAME VIDEO POR NICK DE USER (se autocompleta) - JuanitoPV");
+                foreach (VideoEN vid in videos8)
+                {
+                    System.Console.WriteLine(vid.Titulo);
+                }
+
+                */
 
                 //COMPROBACIONES
                 /*
@@ -265,8 +335,8 @@ public static void InitializeData ()
                  * }
                  */
                 /*PROTECTED REGION END*/
-        }
-        catch (Exception ex)
+            }
+            catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
                 throw ex;

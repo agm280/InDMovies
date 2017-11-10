@@ -42,7 +42,8 @@ public bool CrearInvitacion (string invitado, string invitador, string grupo, st
 
 
                 int id_invitacion = invitacionCEN.New_ (p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
-                invitacionCEN.AnadirUsuario (id_invitacion, invitado);
+                //ALVARO HE PUESTO ESTO EN COMENTARIO PORQUE NO ME DEJABA COMPILAR:
+                //invitacionCEN.AnadirUsuario (id_invitacion, invitado);
                 result = true;
 
 
