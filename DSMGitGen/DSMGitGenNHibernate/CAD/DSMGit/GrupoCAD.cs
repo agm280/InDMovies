@@ -456,5 +456,82 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> D
 
         return result;
 }
+public void MeterUsuario (string p_Grupo_OID, System.Collections.Generic.IList<string> p_miembros_OIDs)
+{
+        DSMGitGenNHibernate.EN.DSMGit.GrupoEN grupoEN = null;
+        try
+        {
+                SessionInitializeTransaction ();
+                grupoEN = (GrupoEN)session.Load (typeof(GrupoEN), p_Grupo_OID);
+                DSMGitGenNHibernate.EN.DSMGit.UsuarioEN miembrosENAux = null;
+                if (grupoEN.Miembros == null) {
+                        grupoEN.Miembros = new System.Collections.Generic.List<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>();
+                }
+
+                foreach (string item in p_miembros_OIDs) {
+                        miembrosENAux = new DSMGitGenNHibernate.EN.DSMGit.UsuarioEN ();
+                        miembrosENAux = (DSMGitGenNHibernate.EN.DSMGit.UsuarioEN)session.Load (typeof(DSMGitGenNHibernate.EN.DSMGit.UsuarioEN), item);
+                        miembrosENAux.Grupos.Add (grupoEN);
+
+                        grupoEN.Miembros.Add (miembrosENAux);
+                }
+
+
+                session.Update (grupoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in GrupoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+
+public void SacarUsuario (string p_Grupo_OID, System.Collections.Generic.IList<string> p_miembros_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                DSMGitGenNHibernate.EN.DSMGit.GrupoEN grupoEN = null;
+                grupoEN = (GrupoEN)session.Load (typeof(GrupoEN), p_Grupo_OID);
+
+                DSMGitGenNHibernate.EN.DSMGit.UsuarioEN miembrosENAux = null;
+                if (grupoEN.Miembros != null) {
+                        foreach (string item in p_miembros_OIDs) {
+                                miembrosENAux = (DSMGitGenNHibernate.EN.DSMGit.UsuarioEN)session.Load (typeof(DSMGitGenNHibernate.EN.DSMGit.UsuarioEN), item);
+                                if (grupoEN.Miembros.Contains (miembrosENAux) == true) {
+                                        grupoEN.Miembros.Remove (miembrosENAux);
+                                        miembrosENAux.Grupos.Remove (grupoEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_miembros_OIDs you are trying to unrelationer, doesn't exist in GrupoEN");
+                        }
+                }
+
+                session.Update (grupoEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in GrupoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

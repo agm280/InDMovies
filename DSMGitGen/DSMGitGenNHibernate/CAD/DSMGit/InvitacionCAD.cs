@@ -296,7 +296,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Invitacion
 
         return result;
 }
-public void AnadirUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs)
+public void MeterUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs)
 {
         DSMGitGenNHibernate.EN.DSMGit.InvitacionEN invitacionEN = null;
         try

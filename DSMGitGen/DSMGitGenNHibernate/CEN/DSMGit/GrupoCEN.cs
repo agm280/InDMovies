@@ -142,5 +142,17 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> D
 {
         return _IGrupoCAD.DameGruposPorDesc (p_desc);
 }
+public void MeterUsuario (string p_Grupo_OID, System.Collections.Generic.IList<string> p_miembros_OIDs)
+{
+        //Call to GrupoCAD
+
+        _IGrupoCAD.MeterUsuario (p_Grupo_OID, p_miembros_OIDs);
+}
+public void SacarUsuario (string p_Grupo_OID, System.Collections.Generic.IList<string> p_miembros_OIDs)
+{
+        //Call to GrupoCAD
+
+        _IGrupoCAD.SacarUsuario (p_Grupo_OID, p_miembros_OIDs);
+}
 }
 }

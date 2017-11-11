@@ -32,7 +32,7 @@ System.Collections.Generic.IList<InvitacionEN> ReadAll (int first, int size);
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionEnviadaPorEmail (string p_email);
 
 
-void AnadirUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs);
+void MeterUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs);
 
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionEnviadaPorGrupo (string p_grupo);
 }

@@ -108,11 +108,11 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Invitacion
 {
         return _IInvitacionCAD.DameInvitacionEnviadaPorEmail (p_email);
 }
-public void AnadirUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs)
+public void MeterUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs)
 {
         //Call to InvitacionCAD
 
-        _IInvitacionCAD.AnadirUsuario (p_Invitacion_OID, p_usuario_invitado_OIDs);
+        _IInvitacionCAD.MeterUsuario (p_Invitacion_OID, p_usuario_invitado_OIDs);
 }
 public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionEnviadaPorGrupo (string p_grupo)
 {
