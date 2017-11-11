@@ -131,6 +131,14 @@ public static void InitializeData ()
                 RespuestaCEN respuesta4 = new RespuestaCEN ();
                 respuesta4.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");
 
+                GrupoCEN grupo3 = new GrupoCEN();
+                grupo3.New_(p_nombre: "Excalibur", p_imagen: "http...etc", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false);
+
+
+                
+
+
+
                 //COMPROBACIONES DE HQL VIDEOS
                 IList<VideoEN> videos = video.DameVideoPorDescripcion ("life");
                 System.Console.WriteLine ("DAME VIDEO POR DESCRIPCION (AUTOCOMPLETA EL PR. Y EL FINAL) life");
@@ -184,6 +192,7 @@ public static void InitializeData ()
                   {
                   System.Console.WriteLine(vid.Titulo);
                   }
+
                  
                   //
                  
