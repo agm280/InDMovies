@@ -8,6 +8,7 @@ using System.Data;
 using DSMGitGenNHibernate.EN.DSMGit;
 using DSMGitGenNHibernate.CEN.DSMGit;
 using DSMGitGenNHibernate.CAD.DSMGit;
+using DSMGitGenNHibernate.CP.DSMGit;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -131,11 +132,38 @@ public static void InitializeData ()
                 RespuestaCEN respuesta4 = new RespuestaCEN ();
                 respuesta4.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");
 
-                GrupoCEN grupo3 = new GrupoCEN();
-                grupo3.New_(p_nombre: "Excalibur", p_imagen: "http...etc", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false);
+
+                GrupoCEN grupo3 = new GrupoCEN ();
+
+                grupo3.New_ (p_nombre: "Excalibur", p_imagen: "http...etc", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false);
 
 
-                
+
+                //Comprobaciones CP: Salir de grupo. Entrar de grupo. Metodos de usuario.
+                //(No funciona, no se como invocar a un CP desde createdb, y no me deja acceder desde el cen.)
+                /*
+                System.Console.WriteLine("Entrar a excalibur. Metodo de ejemplo@gmail.com");
+                UsuarioCP userCP = null;
+                userCP.EntrarAGrupo("ejemplo@gmail.com", "Excalibur");
+
+                System.Console.WriteLine("Miembros de excalibur");
+                foreach (UsuarioEN miembro in grupo3.ReadOID("Excalibur").Miembros)
+                {
+                    System.Console.WriteLine(miembro.Nick);
+                    System.Console.WriteLine("Email: " + miembro.Email);
+                }
+
+                System.Console.WriteLine("Salir de Excalibur. Metodo de ejemplo@gmail.com");
+                userCP.SalirDeGrupo("ejemplo@gmail.com", "Excalibur");
+                System.Console.WriteLine("Miembros de excalibur");
+
+                foreach (UsuarioEN miembro in grupo3.ReadOID("Excalibur").Miembros)
+                {
+                    System.Console.WriteLine(miembro.Nick);
+                    System.Console.WriteLine("Email: " + miembro.Email);
+                }
+                */
+
 
 
 
@@ -149,8 +177,8 @@ public static void InitializeData ()
                 IList<VideoEN> videos2 = video.DameVideoPorDescripcion ("hack");
                 System.Console.WriteLine ("DAME VIDEO POR DESCRIPCION (AUTOCOMPLETA EL PR. Y EL FINAL) hack");
                 foreach (VideoEN vid in videos2) {
-                    System.Console.WriteLine(vid.Titulo);
-                    System.Console.WriteLine("Descripcion: " + vid.Descripcion);
+                        System.Console.WriteLine (vid.Titulo);
+                        System.Console.WriteLine ("Descripcion: " + vid.Descripcion);
                 }
                 IList<VideoEN> videos3 = video.DameVideoPorTitulo ("Investigacion");
                 System.Console.WriteLine ("DAME VIDEO POR TITULO (AUTOCOMPLETA EL PR. Y EL FINAL) Investigacion");
@@ -170,34 +198,33 @@ public static void InitializeData ()
 
                 //DateTime fecha1 = new DateTime(2017, 1, 3);
                 //Date time: year month day
-                
-                 IList<VideoEN> videos6 = video.DameVideoPorFecha(2017, 1, 3);
-                 System.Console.WriteLine("DAME VIDEO POR FECHA 2017 1 3");
-                 foreach (VideoEN vid in videos6)
-                 {
-                 System.Console.WriteLine(vid.Titulo);
-                 }
-                 
-                 IList<VideoEN> videos7 = video.DameVideoPorNick("Juanito");
-                 System.Console.WriteLine("DAME VIDEO POR NICK DE USER (se autocompleta, me va a dar todos los videos de todos los juanitos) - Juanito");
-                 foreach (VideoEN vid in videos7)
-                  {
-                  System.Console.WriteLine(vid.Titulo);
-                  }
-                 
-                 
-                  IList<VideoEN> videos8 = video.DameVideoPorNick("JuanitoPV");
-                  System.Console.WriteLine("DAME VIDEO POR NICK DE USER (se autocompleta) - JuanitoPV");
-                  foreach (VideoEN vid in videos8)
-                  {
-                  System.Console.WriteLine(vid.Titulo);
-                  }
 
-                 
-                  //
-                 
-                  //COMPROBACIONES
-                 /*
+                IList<VideoEN> videos6 = video.DameVideoPorFecha (2017, 1, 3);
+                System.Console.WriteLine ("DAME VIDEO POR FECHA 2017 1 3");
+                foreach (VideoEN vid in videos6) {
+                        System.Console.WriteLine (vid.Titulo);
+                }
+
+                IList<VideoEN> videos7 = video.DameVideoPorNick ("Juanito");
+                System.Console.WriteLine ("DAME VIDEO POR NICK DE USER (se autocompleta, me va a dar todos los videos de todos los juanitos) - Juanito");
+                foreach (VideoEN vid in videos7) {
+                        System.Console.WriteLine (vid.Titulo);
+                }
+
+
+                IList<VideoEN> videos8 = video.DameVideoPorNick ("JuanitoPV");
+                System.Console.WriteLine ("DAME VIDEO POR NICK DE USER (se autocompleta) - JuanitoPV");
+                foreach (VideoEN vid in videos8) {
+                        System.Console.WriteLine (vid.Titulo);
+                }
+
+                System.Console.WriteLine ("3");
+
+
+                //
+
+                //COMPROBACIONES
+                /*
                  * COMPROBACIONES DE USUARIOS
                  * IList<UsuarioEN> pipas = usuario.DameUsuarioPorEmail ("ejemplo2@gmail.com");
                  * System.Console.WriteLine("DAME USUARIO POR EMAIL");
@@ -221,7 +248,7 @@ public static void InitializeData ()
                 //La siguiente lista la hago porque no tengo ni idea de como coger el id de TemaEn desde temaCEN.
                 //Creo que es porque el id de tema es 'autogenerated", asi que cuando se crea en el cen no
                 //deja especificar ningun valor.
-                
+
 
                 /*COMPROBACIONES DE TEMAS
                  * IList<TemaEN> temas = tema.DameTemaPorNick("PV");
