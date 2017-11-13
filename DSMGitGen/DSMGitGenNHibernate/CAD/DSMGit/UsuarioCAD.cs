@@ -453,5 +453,36 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
 
         return result;
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorNombreOApellidos (string p_nombre, string p_apellidos)
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu WHERE usu.Nombre LIKE ('%'+:p_nombre+'%') OR usu.Apellidos LIKE ('%'+:p_apellidos+'%')";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENdameUsuarioPorNombreOApellidosHQL");
+                query.SetParameter ("p_nombre", p_nombre);
+                query.SetParameter ("p_apellidos", p_apellidos);
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

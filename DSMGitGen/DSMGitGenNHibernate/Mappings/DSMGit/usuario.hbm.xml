@@ -193,5 +193,6 @@
 		  <query name="UsuarioENdameUsuarioPorNombreYApellidosHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Nombre LIKE ('%'+:p_nombre+'%') AND usu.Apellidos LIKE ('%'+:p_apellidos+'%')]]></query>
 		  <query name="UsuarioENdameUsuarioPorRolHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Rol=:p_rol]]></query>
 		  <query name="UsuarioENdameUsuarioPorDescripcionHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Descripcion LIKE ('%'+:p_descripcion+'%')]]></query>
+		  <query name="UsuarioENdameUsuarioPorNombreOApellidosHQL"><![CDATA[FROM UsuarioEN as usu WHERE usu.Nombre LIKE ('%'+:p_nombre+'%') OR usu.Apellidos LIKE ('%'+:p_apellidos+'%')]]></query>
 		</hibernate-mapping>
 	

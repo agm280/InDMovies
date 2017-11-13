@@ -131,5 +131,9 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
 {
         return _IUsuarioCAD.DameUsuarioPorDescripcion (p_descripcion);
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorNombreOApellidos (string p_nombre, string p_apellidos)
+{
+        return _IUsuarioCAD.DameUsuarioPorNombreOApellidos (p_nombre, p_apellidos);
+}
 }
 }

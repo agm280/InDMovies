@@ -89,44 +89,43 @@ public static void InitializeData ()
                 UsuarioCEN usuario2 = new UsuarioCEN ();
                 usuario2.New_ (p_email: "ejemplo@gmail.com", p_nombre: "Pepito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPeter", p_contrasenya: "1234", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 1, p_imagen: "imagen1.png", p_descripcion: "hola");
 
-                IList<UsuarioEN> usuarios = usuario.DameUsuarioPorNick("Juan");
-                System.Console.WriteLine("DAME USUARIO POR NICK");
-                foreach (UsuarioEN usu in usuarios)
-                {
-                    System.Console.WriteLine(usu.Nick);
+                IList<UsuarioEN> usuarios = usuario.DameUsuarioPorNick ("Juan");
+                System.Console.WriteLine ("DAME USUARIO POR NICK");
+                foreach (UsuarioEN usu in usuarios) {
+                        System.Console.WriteLine (usu.Nick);
                 }
 
-                IList<UsuarioEN> usuarios2 = usuario.DameUsuarioPorEmail("ejemplo2@gmail.com");
-                System.Console.WriteLine("DAME USUARIO POR EMAIL");
-                foreach (UsuarioEN usu2 in usuarios2)
-                {
-                    System.Console.WriteLine(usu2.Email);
-                }
-
-                
-
-                IList<UsuarioEN> usuarios3 = usuario.DameUsuarioPorNombreYApellidos("Juan", "J");
-                System.Console.WriteLine("DAME USUARIO POR NOMBRE Y APELLIDOS");
-                foreach (UsuarioEN usu in usuarios3)
-                {
-                    System.Console.WriteLine(usu.Nombre + usu.Apellidos);
-                }
-
-                IList<UsuarioEN> usuarios4 = usuario.DameUsuarioPorRol(3);
-                System.Console.WriteLine("DAME USUARIO POR ROL");
-                foreach (UsuarioEN usu in usuarios4)
-                {
-                    System.Console.WriteLine(usu.Nombre);
-                }
-
-                IList<UsuarioEN> usuarios5 = usuario.DameUsuarioPorDescripcion("la");
-                System.Console.WriteLine("DAME USUARIO POR DESCRIPCION");
-                foreach (UsuarioEN usu in usuarios5)
-                {
-                    System.Console.WriteLine(usu.Nombre);
+                IList<UsuarioEN> usuarios2 = usuario.DameUsuarioPorEmail ("ejemplo2@gmail.com");
+                System.Console.WriteLine ("DAME USUARIO POR EMAIL");
+                foreach (UsuarioEN usu2 in usuarios2) {
+                        System.Console.WriteLine (usu2.Email);
                 }
 
 
+
+                IList<UsuarioEN> usuarios3 = usuario.DameUsuarioPorNombreYApellidos ("Juan", "J");
+                System.Console.WriteLine ("DAME USUARIO POR NOMBRE Y APELLIDOS");
+                foreach (UsuarioEN usu in usuarios3) {
+                        System.Console.WriteLine (usu.Nombre + usu.Apellidos);
+                }
+
+                IList<UsuarioEN> usuarios6 = usuario.DameUsuarioPorNombreOApellidos ("Juan", "J");
+                System.Console.WriteLine ("DAME USUARIO POR NOMBRE O APELLIDOS");
+                foreach (UsuarioEN usu in usuarios6) {
+                        System.Console.WriteLine (usu.Nombre + usu.Apellidos);
+                }
+
+                IList<UsuarioEN> usuarios4 = usuario.DameUsuarioPorRol (3);
+                System.Console.WriteLine ("DAME USUARIO POR ROL");
+                foreach (UsuarioEN usu in usuarios4) {
+                        System.Console.WriteLine (usu.Nombre);
+                }
+
+                IList<UsuarioEN> usuarios5 = usuario.DameUsuarioPorDescripcion ("la");
+                System.Console.WriteLine ("DAME USUARIO POR DESCRIPCION");
+                foreach (UsuarioEN usu in usuarios5) {
+                        System.Console.WriteLine (usu.Nombre);
+                }
 
 
                 VideoCEN video = new VideoCEN ();
