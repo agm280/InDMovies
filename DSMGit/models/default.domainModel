@@ -203,6 +203,10 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_uRE6AMcEEeeMH-oQdueBSA" name="p_Grupo_OID" type="OID" typeObject="_0AkpgLgIEeeQKK3fhnmurw"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_uRGIIMcEEeeMH-oQdueBSA" name="p_miembros_OIDs" type="OID" collectionType="List" typeObject="_IVb4kLgDEeeQKK3fhnmurw"/>
       </operations>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_ELC1kMk3EeeWt89tK5GCDA" name="anadirUsuario" operationType="CustomTransaction" type="Boolean">
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_ELQQ8Mk3EeeWt89tK5GCDA" name="p_oid" type="OID" typeObject="_0AkpgLgIEeeQKK3fhnmurw"/>
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_SNjHAMk3EeeWt89tK5GCDA" name="p_email"/>
+      </operations>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_1Ha80LgIEeeQKK3fhnmurw" alias="nombre" name="nombre" isOID="true" unique="true"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_548LELgIEeeQKK3fhnmurw" alias="imagen" name="imagen"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_6f3BILgIEeeQKK3fhnmurw" alias="descripcion" name="descripcion"/>
@@ -1033,6 +1037,13 @@
           <styles xmi:type="notation:FontStyle" xmi:id="_sfBGgscEEeeMH-oQdueBSA" fontName="Segoe UI"/>
           <styles xmi:type="notation:FillStyle" xmi:id="_sfBGg8cEEeeMH-oQdueBSA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sfBGhMcEEeeMH-oQdueBSA"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_ELQQ8ck3EeeWt89tK5GCDA" type="3004" element="_ELC1kMk3EeeWt89tK5GCDA">
+          <children xmi:type="notation:DecorationNode" xmi:id="_ELQQ9sk3EeeWt89tK5GCDA" type="5004"/>
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_ELQQ8sk3EeeWt89tK5GCDA"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_ELQQ88k3EeeWt89tK5GCDA" fontName="Segoe UI"/>
+          <styles xmi:type="notation:FillStyle" xmi:id="_ELQQ9Mk3EeeWt89tK5GCDA"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ELQQ9ck3EeeWt89tK5GCDA"/>
         </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_0AtzergIEeeQKK3fhnmurw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_0Atze7gIEeeQKK3fhnmurw"/>

@@ -144,7 +144,11 @@ public static void InitializeData ()
                 valoracion.New_ (p_valor: 97, p_usuario: "ejemplo@gmail.com", p_video: idVideo1);
 
                 GrupoCEN grupo = new GrupoCEN ();
-                grupo.New_ (p_nombre: "Grupo1", p_imagen: "imagen.png", p_descripcion: "El mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false);
+
+                IList<string> enviaUsu = new List<string>();
+                enviaUsu.Add("ejemplo@gmail.com");
+
+                grupo.New_ (p_nombre: "Grupo1", p_imagen: "imagen.png", p_descripcion: "El mejor grupo", p_miembros: enviaUsu, p_lider: "ejemplo@gmail.com", p_completo: false);
                 GrupoCEN grupo2 = new GrupoCEN ();
                 grupo.New_ (p_nombre: "Grupo2", p_imagen: "imagen.png", p_descripcion: "El segundo mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false);
 
@@ -175,6 +179,22 @@ public static void InitializeData ()
                 GrupoCEN grupo3 = new GrupoCEN ();
 
                 grupo3.New_ (p_nombre: "Excalibur", p_imagen: "http...etc", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false);
+
+                DSMGitGenNHibernate.CP.DSMGit.GrupoCP grupoCP = new DSMGitGenNHibernate.CP.DSMGit.GrupoCP();
+
+
+                System.Console.WriteLine("\n---------CPs---------\n");
+
+                System.Console.WriteLine( grupoCP.AnadirUsuario("Grupo1", "ejemplo2@gmail.com") + "\n");
+
+                /*GrupoEN grupito = grupo3.ReadOID("Grupo1");
+                IList<UsuarioEN> usuGrupo = grupito.Miembros;
+                foreach (UsuarioEN usu in usuGrupo)
+                {
+                   System.Console.WriteLine(usu.Email);
+                }*/
+
+                System.Console.WriteLine("\n---------------------\n");
 
 
 
