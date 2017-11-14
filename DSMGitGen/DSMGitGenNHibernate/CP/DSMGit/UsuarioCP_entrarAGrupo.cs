@@ -20,7 +20,7 @@ namespace DSMGitGenNHibernate.CP.DSMGit
 {
 public partial class UsuarioCP : BasicCP
 {
-public void EntrarAGrupo (string p_oid, string p_nombreGrupo)
+public bool EntrarAGrupo (string p_oid, string p_nombreGrupo)
 {
         /*PROTECTED REGION ID(DSMGitGenNHibernate.CP.DSMGit_Usuario_entrarAGrupo) ENABLED START*/
 

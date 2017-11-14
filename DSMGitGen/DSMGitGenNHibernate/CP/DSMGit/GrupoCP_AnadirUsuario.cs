@@ -12,7 +12,6 @@ using DSMGitGenNHibernate.CEN.DSMGit;
 
 
 
-
 /*PROTECTED REGION ID(usingDSMGitGenNHibernate.CP.DSMGit_Grupo_anadirUsuario) ENABLED START*/
 //  references to other libraries
 using System.Collections.Generic;
@@ -39,53 +38,41 @@ public bool AnadirUsuario (string p_oid, string p_email)
                 SessionInitializeTransaction ();
                 grupoCAD = new GrupoCAD (session);
                 grupoCEN = new  GrupoCEN (grupoCAD);
-                usuarioCAD = new UsuarioCAD(session);
-                usuarioCEN = new UsuarioCEN(usuarioCAD);
+                usuarioCAD = new UsuarioCAD (session);
+                usuarioCEN = new UsuarioCEN (usuarioCAD);
 
 
                 // Write here your custom transaction ...
 
                 //throw new NotImplementedException ("Method AnadirUsuario() not yet implemented.");
 
-                IList<UsuarioEN> usuarios = usuarioCEN.DameUsuarioPorEmail(p_email);
-                if (usuarios.Count == 0)
-                {
-                    System.Console.WriteLine("Pos no hay na");
-                    result = false;
+                IList<UsuarioEN> usuarios = usuarioCEN.DameUsuarioPorEmail (p_email);
+                if (usuarios.Count == 0) {
+                        System.Console.WriteLine ("Pos no hay na");
+                        result = false;
                 }
-                else
-                {
+                else{
+                        GrupoEN grupito = grupoCEN.ReadOID (p_oid);
+                        IList<UsuarioEN> usuGrupo = grupito.Miembros;
 
-                    
-                    GrupoEN grupito = grupoCEN.ReadOID(p_oid);
-                    IList<UsuarioEN> usuGrupo = grupito.Miembros;
-
-                    foreach (UsuarioEN usu in usuGrupo)
-                    {
-
-                        if (usu.Email == p_email)
-                        {
-                            result = false;
-                            break;
+                        foreach (UsuarioEN usu in usuGrupo) {
+                                if (usu.Email == p_email) {
+                                        result = false;
+                                        break;
+                                }
                         }
 
 
-                    }
-                    
-                    
-                    if (result == true) {
+                        if (result == true) {
+                                //-------------ERROR AQUI-------------
 
-                        //-------------ERROR AQUI-------------
+                                IList<string> enviaUsu = new List<string>();
+                                enviaUsu.Add (p_email);
 
-                        IList<string> enviaUsu = new List<string>();
-                        enviaUsu.Add(p_email);
+                                grupoCEN.MeterUsuario (p_oid, enviaUsu);
 
-                        grupoCEN.MeterUsuario(p_oid, enviaUsu);
-
-                        //------------------------------------
-                    }
-
-
+                                //------------------------------------
+                        }
                 }
 
 

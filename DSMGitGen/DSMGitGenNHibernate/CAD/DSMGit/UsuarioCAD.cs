@@ -484,5 +484,35 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
 
         return result;
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorGrupo (string p_nombre)
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu inner join usu.Grupos as g where g.Nombre =:p_nombre ";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENdameUsuarioPorGrupoHQL");
+                query.SetParameter ("p_nombre", p_nombre);
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }
