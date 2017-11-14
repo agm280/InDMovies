@@ -9,6 +9,7 @@ using DSMGitGenNHibernate.EN.DSMGit;
 using DSMGitGenNHibernate.CEN.DSMGit;
 using DSMGitGenNHibernate.CAD.DSMGit;
 using DSMGitGenNHibernate.CP.DSMGit;
+using System.Collections;
 
 /*PROTECTED REGION END*/
 namespace InitializeDB
@@ -175,12 +176,45 @@ public static void InitializeData ()
                 RespuestaCEN respuesta4 = new RespuestaCEN ();
                 respuesta4.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");
 
+                NotificacionCEN notificacion = new NotificacionCEN();
+                notificacion.New_(p_id: "1234", p_descripcion: "Tienes una nueva invitacion de grupo", p_usuario: "ejemplo@gmail.com");
+                NotificacionCEN notificacion2 = new NotificacionCEN();
+                notificacion2.New_(p_id: "5678", p_descripcion: "El usuario Pepito ha aceptado tu peticion", p_usuario: "ejemplo2@gmail.com");
+                NotificacionCEN notificacion3 = new NotificacionCEN();
+                notificacion3.New_(p_id: "9876", p_descripcion: "Tienes una nueva valoracion en uno de tus videos", p_usuario: "ejemplo@gmail.com");
+
+
+                IList<NotificacionEN> notificaciones = notificacion.DameNotificacionPorEmail("ejemplo2@gmail.com");
+                System.Console.WriteLine("DAME NOTIFICACION POR EMAIL");
+                foreach (NotificacionEN vid in notificaciones)
+                {
+                    System.Console.WriteLine(vid.Descripcion);
+                }
+
+
+                SugerenciaCEN sugerencia = new SugerenciaCEN();
+                sugerencia.New_(p_id: "S1", p_titulo: "Reproductor", p_descripcion: "El tamaño del reproductor esta un poco desproporcionado", p_usuario: "ejemplo@gmail.com");
+                SugerenciaCEN sugerencia2 = new SugerenciaCEN();
+                sugerencia2.New_(p_id: "S2", p_titulo: "Temas", p_descripcion: "Deberia haber mas control en los temas", p_usuario: "ejemplo2@gmail.com");
+                SugerenciaCEN sugerencia3 = new SugerenciaCEN();
+                sugerencia3.New_(p_id: "S3", p_titulo: "Grupos", p_descripcion: "Mejora en el manejo de las invitaciones porfa", p_usuario: "ejemplo@gmail.com");
+
+                IList<SugerenciaEN> sugerencias = sugerencia.DameSugerenciaPorEmail("ejemplo@gmail.com");
+                System.Console.WriteLine("DAME SUGERENCIA POR EMAIL");
+                foreach (SugerenciaEN vid in sugerencias)
+                {
+                    System.Console.WriteLine(vid.Descripcion);
+                }
+
 
                 GrupoCEN grupo3 = new GrupoCEN ();
 
                 grupo3.New_ (p_nombre: "Excalibur", p_imagen: "http...etc", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false);
 
                 DSMGitGenNHibernate.CP.DSMGit.GrupoCP grupoCP = new DSMGitGenNHibernate.CP.DSMGit.GrupoCP ();
+
+                DSMGitGenNHibernate.CP.DSMGit.UsuarioCP usuarioCP = new DSMGitGenNHibernate.CP.DSMGit.UsuarioCP();
+
 
 
                 System.Console.WriteLine ("\n---------CPs---------\n");
@@ -194,7 +228,16 @@ public static void InitializeData ()
                  * System.Console.WriteLine(usu.Email);
                  * }*/
 
-                System.Console.WriteLine ("\n---------------------\n");
+                /*
+                IList<UsuarioEN> lista = usuario.DameUsuarioPorGrupo("Grupo1");
+                foreach (UsuarioEN usu in lista)
+                    {
+                    System.Console.WriteLine(usu.Email);
+                     }
+                */
+
+
+            System.Console.WriteLine ("\n---------------------\n");
 
 
 
