@@ -29,6 +29,6 @@ ValoracionEN ReadOID (int id
 System.Collections.Generic.IList<ValoracionEN> ReadAll (int first, int size);
 
 
-System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> DameValoracionPorVideoID (string p_id);
+System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> DameValoracionPorVideoID (int ? p_id);
 }
 }

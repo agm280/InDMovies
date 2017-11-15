@@ -104,7 +104,7 @@ public System.Collections.Generic.IList<ValoracionEN> ReadAll (int first, int si
         list = _IValoracionCAD.ReadAll (first, size);
         return list;
 }
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> DameValoracionPorVideoID (string p_id)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> DameValoracionPorVideoID (int ? p_id)
 {
         return _IValoracionCAD.DameValoracionPorVideoID (p_id);
 }

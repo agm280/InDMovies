@@ -265,7 +265,7 @@ public System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int si
         return result;
 }
 
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> DameComentarioPorVideoID (string p_id)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> DameComentarioPorVideoID (int ? p_id)
 {
         System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> result;
         try

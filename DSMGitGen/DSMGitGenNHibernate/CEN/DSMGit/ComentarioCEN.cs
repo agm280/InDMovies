@@ -104,7 +104,7 @@ public System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int si
         list = _IComentarioCAD.ReadAll (first, size);
         return list;
 }
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> DameComentarioPorVideoID (string p_id)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> DameComentarioPorVideoID (int ? p_id)
 {
         return _IComentarioCAD.DameComentarioPorVideoID (p_id);
 }

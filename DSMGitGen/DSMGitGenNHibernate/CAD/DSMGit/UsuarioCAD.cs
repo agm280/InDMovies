@@ -490,7 +490,7 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
         try
         {
                 SessionInitializeTransaction ();
-                //String sql = @"FROM UsuarioEN self where FROM UsuarioEN as usu inner join usu.Grupos as g where g.Nombre =:p_nombre ";
+                //String sql = @"FROM UsuarioEN self where Select usu FROM UsuarioEN as usu inner join usu.Grupos as g where g.Nombre=:p_nombre ";
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("UsuarioENdameUsuarioPorGrupoHQL");
                 query.SetParameter ("p_nombre", p_nombre);

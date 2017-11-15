@@ -265,7 +265,7 @@ public System.Collections.Generic.IList<ValoracionEN> ReadAll (int first, int si
         return result;
 }
 
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> DameValoracionPorVideoID (string p_id)
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> DameValoracionPorVideoID (int ? p_id)
 {
         System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> result;
         try

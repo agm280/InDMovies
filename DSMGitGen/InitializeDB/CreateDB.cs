@@ -176,35 +176,60 @@ public static void InitializeData ()
                 RespuestaCEN respuesta4 = new RespuestaCEN ();
                 respuesta4.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");
 
-                NotificacionCEN notificacion = new NotificacionCEN();
-                notificacion.New_(p_id: "1234", p_descripcion: "Tienes una nueva invitacion de grupo", p_usuario: "ejemplo@gmail.com");
-                NotificacionCEN notificacion2 = new NotificacionCEN();
-                notificacion2.New_(p_id: "5678", p_descripcion: "El usuario Pepito ha aceptado tu peticion", p_usuario: "ejemplo2@gmail.com");
-                NotificacionCEN notificacion3 = new NotificacionCEN();
-                notificacion3.New_(p_id: "9876", p_descripcion: "Tienes una nueva valoracion en uno de tus videos", p_usuario: "ejemplo@gmail.com");
+                NotificacionCEN notificacion = new NotificacionCEN ();
+                notificacion.New_ (p_id: "1234", p_descripcion: "Tienes una nueva invitacion de grupo", p_usuario: "ejemplo@gmail.com");
+                NotificacionCEN notificacion2 = new NotificacionCEN ();
+                notificacion2.New_ (p_id: "5678", p_descripcion: "El usuario Pepito ha aceptado tu peticion", p_usuario: "ejemplo2@gmail.com");
+                NotificacionCEN notificacion3 = new NotificacionCEN ();
+                notificacion3.New_ (p_id: "9876", p_descripcion: "Tienes una nueva valoracion en uno de tus videos", p_usuario: "ejemplo@gmail.com");
 
 
-                IList<NotificacionEN> notificaciones = notificacion.DameNotificacionPorEmail("ejemplo2@gmail.com");
-                System.Console.WriteLine("DAME NOTIFICACION POR EMAIL");
-                foreach (NotificacionEN vid in notificaciones)
-                {
-                    System.Console.WriteLine(vid.Descripcion);
+                IList<NotificacionEN> notificaciones = notificacion.DameNotificacionPorEmail ("ejemplo2@gmail.com");
+                System.Console.WriteLine ("DAME NOTIFICACION POR EMAIL");
+                foreach (NotificacionEN vid in notificaciones) {
+                        System.Console.WriteLine (vid.Descripcion);
                 }
 
 
-                SugerenciaCEN sugerencia = new SugerenciaCEN();
-                sugerencia.New_(p_id: "S1", p_titulo: "Reproductor", p_descripcion: "El tamaño del reproductor esta un poco desproporcionado", p_usuario: "ejemplo@gmail.com");
-                SugerenciaCEN sugerencia2 = new SugerenciaCEN();
-                sugerencia2.New_(p_id: "S2", p_titulo: "Temas", p_descripcion: "Deberia haber mas control en los temas", p_usuario: "ejemplo2@gmail.com");
-                SugerenciaCEN sugerencia3 = new SugerenciaCEN();
-                sugerencia3.New_(p_id: "S3", p_titulo: "Grupos", p_descripcion: "Mejora en el manejo de las invitaciones porfa", p_usuario: "ejemplo@gmail.com");
+                SugerenciaCEN sugerencia = new SugerenciaCEN ();
+                sugerencia.New_ (p_id: "S1", p_titulo: "Reproductor", p_descripcion: "El tamaï¿½o del reproductor esta un poco desproporcionado", p_usuario: "ejemplo@gmail.com");
+                SugerenciaCEN sugerencia2 = new SugerenciaCEN ();
+                sugerencia2.New_ (p_id: "S2", p_titulo: "Temas", p_descripcion: "Deberia haber mas control en los temas", p_usuario: "ejemplo2@gmail.com");
+                SugerenciaCEN sugerencia3 = new SugerenciaCEN ();
+                sugerencia3.New_ (p_id: "S3", p_titulo: "Grupos", p_descripcion: "Mejora en el manejo de las invitaciones porfa", p_usuario: "ejemplo@gmail.com");
 
-                IList<SugerenciaEN> sugerencias = sugerencia.DameSugerenciaPorEmail("ejemplo@gmail.com");
-                System.Console.WriteLine("DAME SUGERENCIA POR EMAIL");
-                foreach (SugerenciaEN vid in sugerencias)
-                {
-                    System.Console.WriteLine(vid.Descripcion);
+                IList<SugerenciaEN> sugerencias = sugerencia.DameSugerenciaPorEmail ("ejemplo@gmail.com");
+                System.Console.WriteLine ("DAME SUGERENCIA POR EMAIL");
+                foreach (SugerenciaEN vid in sugerencias) {
+                        System.Console.WriteLine (vid.Descripcion);
                 }
+
+                ValoracionCEN valoracion1 = new ValoracionCEN ();
+                valoracion1.New_ (p_valor: 97, p_usuario: "ejemplo@gmail.com", p_video: idVideo1);
+                valoracion1.New_ (p_valor: 65, p_usuario: "ejemplo2@gmail.com", p_video: idVideo2);
+                valoracion1.New_ (p_valor: 32, p_usuario: "ejemplo2@gmail.com", p_video: idVideo3);
+
+                IList<ValoracionEN> valoraciones = valoracion.DameValoracionPorVideoID (idVideo1);
+                System.Console.WriteLine ("DAME LA VALORACION MEDIANTE LA ID DEL VIDEO");
+                foreach (ValoracionEN val in valoraciones) {
+                        System.Console.WriteLine ("Valoracion: " + val.Valor);
+                    System.Console.WriteLine("Valorado por");
+                    System.Console.WriteLine ("Usuario con email: " + val.Usuario.Email);
+                }
+
+                ComentarioCEN comentario = new ComentarioCEN ();
+                comentario.New_ (p_texto: "Me ha parecido que esta bastante guapa", p_usuario: "ejemplo@gmail.com", p_video: idVideo1);
+                comentario.New_ (p_texto: "tbh me esperaba mas", p_usuario: "ejemplo2@gmail.com", p_video: idVideo2);
+                comentario.New_ (p_texto: "un poco desagradable", p_usuario: "ejemplo@gmail.com", p_video: idVideo3);
+
+                IList<ComentarioEN> comentarios = comentario.DameComentarioPorVideoID (idVideo1);
+                System.Console.WriteLine ("DAME LOS COMENTARIOS POR ID DE VIDEO");
+                foreach (ComentarioEN com in comentarios) {
+                        System.Console.WriteLine ("Comentarios: " + com.Texto);
+                    System.Console.WriteLine("Comentado por");
+                    System.Console.WriteLine ("Usuario: " + com.Usuario.Email);
+                }
+
 
 
                 GrupoCEN grupo3 = new GrupoCEN ();
@@ -213,31 +238,35 @@ public static void InitializeData ()
 
                 DSMGitGenNHibernate.CP.DSMGit.GrupoCP grupoCP = new DSMGitGenNHibernate.CP.DSMGit.GrupoCP ();
 
-                DSMGitGenNHibernate.CP.DSMGit.UsuarioCP usuarioCP = new DSMGitGenNHibernate.CP.DSMGit.UsuarioCP();
+                DSMGitGenNHibernate.CP.DSMGit.UsuarioCP usuarioCP = new DSMGitGenNHibernate.CP.DSMGit.UsuarioCP ();
 
 
 
                 System.Console.WriteLine ("\n---------CPs---------\n");
 
-                System.Console.WriteLine (grupoCP.AnadirUsuario ("Grupo1", "ejemplo2@gmail.com") + "\n");
+                System.Console.WriteLine (grupoCP.AnadirUsuario ("Excalibur", "ejemplo2@gmail.com") + "\n");
 
-                /*GrupoEN grupito = grupo3.ReadOID("Grupo1");
-                 * IList<UsuarioEN> usuGrupo = grupito.Miembros;
-                 * foreach (UsuarioEN usu in usuGrupo)
-                 * {
-                 * System.Console.WriteLine(usu.Email);
-                 * }*/
+
+
+                System.Console.WriteLine ("La HQL esta peta:");
+
+                //Es interesante, porque si ningun usuario ejecuta AnadirUsuario, la hql no peta:
+                //Me imagino que sera porque ningun usuario estaria relacionado con Excalibur.
 
                 /*
-                IList<UsuarioEN> lista = usuario.DameUsuarioPorGrupo("Grupo1");
-                foreach (UsuarioEN usu in lista)
-                    {
-                    System.Console.WriteLine(usu.Email);
-                     }
-                */
+                 * IList<UsuarioEN> lista = usuario.DameUsuarioPorGrupo("Excalibur");
+                 *
+                 * System.Console.WriteLine(lista != null);
+                 *
+                 *
+                 * foreach (UsuarioEN usu in lista)
+                 *  {
+                 *  System.Console.WriteLine(usu.Email);
+                 *   }
+                 */
 
 
-            System.Console.WriteLine ("\n---------------------\n");
+                System.Console.WriteLine ("\n---------------------\n");
 
 
 
@@ -321,6 +350,10 @@ public static void InitializeData ()
                 }
 
                 System.Console.WriteLine ("3");
+
+
+
+
 
 
                 //
