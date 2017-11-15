@@ -236,37 +236,11 @@ public static void InitializeData ()
 
                 grupo3.New_ (p_nombre: "Excalibur", p_imagen: "http...etc", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false);
 
-                DSMGitGenNHibernate.CP.DSMGit.GrupoCP grupoCP = new DSMGitGenNHibernate.CP.DSMGit.GrupoCP ();
-
-                DSMGitGenNHibernate.CP.DSMGit.UsuarioCP usuarioCP = new DSMGitGenNHibernate.CP.DSMGit.UsuarioCP ();
+               
 
 
 
-                System.Console.WriteLine ("\n---------CPs---------\n");
 
-                System.Console.WriteLine (grupoCP.AnadirUsuario ("Excalibur", "ejemplo2@gmail.com") + "\n");
-
-
-
-                System.Console.WriteLine ("La HQL esta peta:");
-
-                //Es interesante, porque si ningun usuario ejecuta AnadirUsuario, la hql no peta:
-                //Me imagino que sera porque ningun usuario estaria relacionado con Excalibur.
-
-                /*
-                 * IList<UsuarioEN> lista = usuario.DameUsuarioPorGrupo("Excalibur");
-                 *
-                 * System.Console.WriteLine(lista != null);
-                 *
-                 *
-                 * foreach (UsuarioEN usu in lista)
-                 *  {
-                 *  System.Console.WriteLine(usu.Email);
-                 *   }
-                 */
-
-
-                System.Console.WriteLine ("\n---------------------\n");
 
 
 
@@ -499,9 +473,55 @@ public static void InitializeData ()
                  * foreach (RespuestaEN respu3 in respus3) {
                  *  System.Console.WriteLine (respu3.Descripcion);
                  * }
+                 * 
+                 * 
+                 * 
                  */
+
+
+                System.Console.WriteLine("\n---------CPs---------\n");
+
+                //Grupo Excalibur creado por ejemplo2@gmail.com. Empieza sin miembros.
+
+
+                DSMGitGenNHibernate.CP.DSMGit.GrupoCP grupoCP = new DSMGitGenNHibernate.CP.DSMGit.GrupoCP();
+
+                DSMGitGenNHibernate.CP.DSMGit.UsuarioCP usuarioCP = new DSMGitGenNHibernate.CP.DSMGit.UsuarioCP();
+
+
+                //Salir del grupo. El usuario exige salir de un grupo. No puede salir de Excalibur porque no pertenece.
+                System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
+                //El lider del grupo desea meter a un usuario en el grupo. 
+                //Alternativa agil a utilizar el Relationer, pues se le pasa un unico usuario, y no una lista.
+                System.Console.WriteLine(grupoCP.AnadirUsuario("Excalibur", "ejemplo2@gmail.com") + "\n");
+                //Salir del grupo. El usuario exige salir del grupo. Pertenece a Excalibur por lo que puede salir.
+                System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
+
+
+                //System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
+
+                System.Console.WriteLine("La HQL esta peta:");
+
+                //Es interesante, porque si ningun usuario ejecuta AnadirUsuario, la hql no peta:
+                //Me imagino que sera porque ningun usuario estaria relacionado con Excalibur.
+
+                
+                 //IList<UsuarioEN> lista = usuario.DameUsuarioPorGrupo("Excalibur");
+                 
+                  //System.Console.WriteLine(lista != null);
+                 
+                 
+                  //foreach (UsuarioEN usu in lista)
+                 //{
+                 //System.Console.WriteLine(usu.Email);
+                 //}
+                 
+
+
+                System.Console.WriteLine("\n---------------------\n");
+
                 /*PROTECTED REGION END*/
-        }
+            }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);
