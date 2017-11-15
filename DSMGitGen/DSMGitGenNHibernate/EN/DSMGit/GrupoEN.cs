@@ -61,6 +61,13 @@ private bool completo;
 
 
 
+/**
+ *	Atributo aceptaMiembros
+ */
+private bool aceptaMiembros;
+
+
+
 
 
 
@@ -112,6 +119,12 @@ public virtual bool Completo {
 
 
 
+public virtual bool AceptaMiembros {
+        get { return aceptaMiembros; } set { aceptaMiembros = value;  }
+}
+
+
+
 
 
 public GrupoEN()
@@ -123,20 +136,20 @@ public GrupoEN()
 
 
 
-public GrupoEN(string nombre, string imagen, string descripcion, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> miembros, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.PublicacionEN> publicaciones, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> invitaciones, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN lider, bool completo
+public GrupoEN(string nombre, string imagen, string descripcion, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> miembros, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.PublicacionEN> publicaciones, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> invitaciones, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN lider, bool completo, bool aceptaMiembros
                )
 {
-        this.init (Nombre, imagen, descripcion, miembros, publicaciones, invitaciones, lider, completo);
+        this.init (Nombre, imagen, descripcion, miembros, publicaciones, invitaciones, lider, completo, aceptaMiembros);
 }
 
 
 public GrupoEN(GrupoEN grupo)
 {
-        this.init (Nombre, grupo.Imagen, grupo.Descripcion, grupo.Miembros, grupo.Publicaciones, grupo.Invitaciones, grupo.Lider, grupo.Completo);
+        this.init (Nombre, grupo.Imagen, grupo.Descripcion, grupo.Miembros, grupo.Publicaciones, grupo.Invitaciones, grupo.Lider, grupo.Completo, grupo.AceptaMiembros);
 }
 
 private void init (string nombre
-                   , string imagen, string descripcion, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> miembros, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.PublicacionEN> publicaciones, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> invitaciones, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN lider, bool completo)
+                   , string imagen, string descripcion, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> miembros, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.PublicacionEN> publicaciones, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> invitaciones, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN lider, bool completo, bool aceptaMiembros)
 {
         this.Nombre = nombre;
 
@@ -154,6 +167,8 @@ private void init (string nombre
         this.Lider = lider;
 
         this.Completo = completo;
+
+        this.AceptaMiembros = aceptaMiembros;
 }
 
 public override bool Equals (object obj)

@@ -18,6 +18,9 @@
 					<property name="Completo" type="boolean"> 
 						<column name="completo"  not-null="true"/>
 					</property>
+					<property name="AceptaMiembros" type="boolean"> 
+						<column name="aceptaMiembros"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -62,6 +65,8 @@
 						</many-to-one>
 											 					
 			
+			
+					
 					
 					
 					
@@ -80,5 +85,7 @@
 		  <query name="GrupoENdameGruposLideradosPorEmailHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Lider.Email=:p_email]]></query>
 		  <query name="GrupoENdameGruposPorNombreHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Nombre LIKE ('%'+:p_nombre+'%')]]></query>
 		  <query name="GrupoENdameGruposPorDescHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Descripcion LIKE ('%'+:p_desc+'%')]]></query>
+		  <query name="GrupoENdameGruposQueAceptenNuevosHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.AceptaMiembros=true]]></query>
+		  <query name="GrupoENdameGruposQueRechacenNuevosHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.AceptaMiembros=false]]></query>
 		</hibernate-mapping>
 	

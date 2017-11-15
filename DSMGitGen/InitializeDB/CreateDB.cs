@@ -149,9 +149,9 @@ public static void InitializeData ()
                 IList<string> enviaUsu = new List<string>();
                 enviaUsu.Add ("ejemplo@gmail.com");
 
-                grupo.New_ (p_nombre: "Grupo1", p_imagen: "imagen.png", p_descripcion: "El mejor grupo", p_miembros: enviaUsu, p_lider: "ejemplo@gmail.com", p_completo: false);
+                grupo.New_ (p_nombre: "Grupo1", p_imagen: "imagen.png", p_descripcion: "El mejor grupo", p_miembros: enviaUsu, p_lider: "ejemplo@gmail.com", p_completo: false, p_aceptaMiembros: true);
                 GrupoCEN grupo2 = new GrupoCEN ();
-                grupo.New_ (p_nombre: "Grupo2", p_imagen: "imagen.png", p_descripcion: "El segundo mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false);
+                grupo.New_ (p_nombre: "Grupo2", p_imagen: "imagen.png", p_descripcion: "El segundo mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false, p_aceptaMiembros: true);
 
                 InvitacionCEN invitacion = new InvitacionCEN ();
                 invitacion.New_ (p_descripcion: "Invitacion 1", p_grupo: "Grupo1", p_invitador: "ejemplo2@gmail.com");
@@ -213,8 +213,8 @@ public static void InitializeData ()
                 System.Console.WriteLine ("DAME LA VALORACION MEDIANTE LA ID DEL VIDEO");
                 foreach (ValoracionEN val in valoraciones) {
                         System.Console.WriteLine ("Valoracion: " + val.Valor);
-                    System.Console.WriteLine("Valorado por");
-                    System.Console.WriteLine ("Usuario con email: " + val.Usuario.Email);
+                        System.Console.WriteLine ("Valorado por");
+                        System.Console.WriteLine ("Usuario con email: " + val.Usuario.Email);
                 }
 
                 ComentarioCEN comentario = new ComentarioCEN ();
@@ -226,17 +226,17 @@ public static void InitializeData ()
                 System.Console.WriteLine ("DAME LOS COMENTARIOS POR ID DE VIDEO");
                 foreach (ComentarioEN com in comentarios) {
                         System.Console.WriteLine ("Comentarios: " + com.Texto);
-                    System.Console.WriteLine("Comentado por");
-                    System.Console.WriteLine ("Usuario: " + com.Usuario.Email);
+                        System.Console.WriteLine ("Comentado por");
+                        System.Console.WriteLine ("Usuario: " + com.Usuario.Email);
                 }
 
 
 
                 GrupoCEN grupo3 = new GrupoCEN ();
 
-                grupo3.New_ (p_nombre: "Excalibur", p_imagen: "http...etc", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false);
+                grupo3.New_ (p_nombre: "Excalibur", p_imagen: "http...etc", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false, p_aceptaMiembros: true);
 
-               
+
 
 
 
@@ -473,55 +473,59 @@ public static void InitializeData ()
                  * foreach (RespuestaEN respu3 in respus3) {
                  *  System.Console.WriteLine (respu3.Descripcion);
                  * }
-                 * 
-                 * 
-                 * 
+                 *
+                 *
+                 *
                  */
 
 
-                System.Console.WriteLine("\n---------CPs---------\n");
+                System.Console.WriteLine ("\n---------CPs---------\n");
 
                 //Grupo Excalibur creado por ejemplo2@gmail.com. Empieza sin miembros.
 
 
-                DSMGitGenNHibernate.CP.DSMGit.GrupoCP grupoCP = new DSMGitGenNHibernate.CP.DSMGit.GrupoCP();
+                DSMGitGenNHibernate.CP.DSMGit.GrupoCP grupoCP = new DSMGitGenNHibernate.CP.DSMGit.GrupoCP ();
 
-                DSMGitGenNHibernate.CP.DSMGit.UsuarioCP usuarioCP = new DSMGitGenNHibernate.CP.DSMGit.UsuarioCP();
+                DSMGitGenNHibernate.CP.DSMGit.UsuarioCP usuarioCP = new DSMGitGenNHibernate.CP.DSMGit.UsuarioCP ();
 
 
                 //Salir del grupo. El usuario exige salir de un grupo. No puede salir de Excalibur porque no pertenece.
-                System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
-                //El lider del grupo desea meter a un usuario en el grupo. 
+                System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
+                //El lider del grupo desea meter a un usuario en el grupo.
                 //Alternativa agil a utilizar el Relationer, pues se le pasa un unico usuario, y no una lista.
-                System.Console.WriteLine(grupoCP.AnadirUsuario("Excalibur", "ejemplo2@gmail.com") + "\n");
+                System.Console.WriteLine (grupoCP.AnadirUsuario ("Excalibur", "ejemplo2@gmail.com") + "\n");
                 //Salir del grupo. El usuario exige salir del grupo. Pertenece a Excalibur por lo que puede salir.
-                System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
+                System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
 
+
+                System.Console.WriteLine(usuarioCP.EntrarAGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
+
+                System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
 
                 //System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
 
-                System.Console.WriteLine("La HQL esta peta:");
+                System.Console.WriteLine ("La HQL esta peta:");
 
                 //Es interesante, porque si ningun usuario ejecuta AnadirUsuario, la hql no peta:
                 //Me imagino que sera porque ningun usuario estaria relacionado con Excalibur.
 
-                
-                 //IList<UsuarioEN> lista = usuario.DameUsuarioPorGrupo("Excalibur");
-                 
-                  //System.Console.WriteLine(lista != null);
-                 
-                 
-                  //foreach (UsuarioEN usu in lista)
-                 //{
-                 //System.Console.WriteLine(usu.Email);
-                 //}
-                 
+
+                //IList<UsuarioEN> lista = usuario.DameUsuarioPorGrupo("Excalibur");
+
+                //System.Console.WriteLine(lista != null);
 
 
-                System.Console.WriteLine("\n---------------------\n");
+                //foreach (UsuarioEN usu in lista)
+                //{
+                //System.Console.WriteLine(usu.Email);
+                //}
+
+
+
+                System.Console.WriteLine ("\n---------------------\n");
 
                 /*PROTECTED REGION END*/
-            }
+        }
         catch (Exception ex)
         {
                 System.Console.WriteLine (ex.InnerException);

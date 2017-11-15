@@ -103,6 +103,9 @@ public void ModifyDefault (GrupoEN grupo)
 
                 grupoEN.Completo = grupo.Completo;
 
+
+                grupoEN.AceptaMiembros = grupo.AceptaMiembros;
+
                 session.Update (grupoEN);
                 SessionCommit ();
         }
@@ -175,6 +178,9 @@ public void Modify (GrupoEN grupo)
 
 
                 grupoEN.Completo = grupo.Completo;
+
+
+                grupoEN.AceptaMiembros = grupo.AceptaMiembros;
 
                 session.Update (grupoEN);
                 SessionCommit ();
@@ -532,6 +538,64 @@ public void SacarUsuario (string p_Grupo_OID, System.Collections.Generic.IList<s
         {
                 SessionClose ();
         }
+}
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposQueAceptenNuevos ()
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.AceptaMiembros=true";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("GrupoENdameGruposQueAceptenNuevosHQL");
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.GrupoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in GrupoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposQueRechacenNuevos ()
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.AceptaMiembros=false";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("GrupoENdameGruposQueRechacenNuevosHQL");
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.GrupoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in GrupoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
 }
 }
 }

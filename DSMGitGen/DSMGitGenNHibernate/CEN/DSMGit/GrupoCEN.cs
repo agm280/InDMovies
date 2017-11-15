@@ -38,7 +38,7 @@ public IGrupoCAD get_IGrupoCAD ()
         return this._IGrupoCAD;
 }
 
-public string New_ (string p_nombre, string p_imagen, string p_descripcion, System.Collections.Generic.IList<string> p_miembros, string p_lider, bool p_completo)
+public string New_ (string p_nombre, string p_imagen, string p_descripcion, System.Collections.Generic.IList<string> p_miembros, string p_lider, bool p_completo, bool p_aceptaMiembros)
 {
         GrupoEN grupoEN = null;
         string oid;
@@ -75,13 +75,15 @@ public string New_ (string p_nombre, string p_imagen, string p_descripcion, Syst
 
         grupoEN.Completo = p_completo;
 
+        grupoEN.AceptaMiembros = p_aceptaMiembros;
+
         //Call to GrupoCAD
 
         oid = _IGrupoCAD.New_ (grupoEN);
         return oid;
 }
 
-public void Modify (string p_Grupo_OID, string p_imagen, string p_descripcion, bool p_completo)
+public void Modify (string p_Grupo_OID, string p_imagen, string p_descripcion, bool p_completo, bool p_aceptaMiembros)
 {
         GrupoEN grupoEN = null;
 
@@ -91,6 +93,7 @@ public void Modify (string p_Grupo_OID, string p_imagen, string p_descripcion, b
         grupoEN.Imagen = p_imagen;
         grupoEN.Descripcion = p_descripcion;
         grupoEN.Completo = p_completo;
+        grupoEN.AceptaMiembros = p_aceptaMiembros;
         //Call to GrupoCAD
 
         _IGrupoCAD.Modify (grupoEN);
@@ -153,6 +156,14 @@ public void SacarUsuario (string p_Grupo_OID, System.Collections.Generic.IList<s
         //Call to GrupoCAD
 
         _IGrupoCAD.SacarUsuario (p_Grupo_OID, p_miembros_OIDs);
+}
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposQueAceptenNuevos ()
+{
+        return _IGrupoCAD.DameGruposQueAceptenNuevos ();
+}
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposQueRechacenNuevos ()
+{
+        return _IGrupoCAD.DameGruposQueRechacenNuevos ();
 }
 }
 }
