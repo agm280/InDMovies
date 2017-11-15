@@ -490,19 +490,29 @@ public static void InitializeData ()
 
 
                 //Salir del grupo. El usuario exige salir de un grupo. No puede salir de Excalibur porque no pertenece.
+                System.Console.WriteLine("ejemplo2@gmail.com - Salir de Excalibur");
                 System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
-                //El lider del grupo desea meter a un usuario en el grupo.
+
                 //Alternativa agil a utilizar el Relationer, pues se le pasa un unico usuario, y no una lista.
+                //Accion del grupo para meter a un usuario.
+                System.Console.WriteLine("Excalibur añade a ejemplo2@gmail.com");
                 System.Console.WriteLine (grupoCP.AnadirUsuario ("Excalibur", "ejemplo2@gmail.com") + "\n");
+
                 //Salir del grupo. El usuario exige salir del grupo. Pertenece a Excalibur por lo que puede salir.
+                System.Console.WriteLine("ejemplo2@gmail.com - Salir de Excalibur");
                 System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
 
+                //El usuario entra por su cuenta a Excalibur, que acepta nuevos miembros.
+                System.Console.WriteLine("ejemplo2@gmail.com - Entrar a Excalibur (peticion)");
+                System.Console.WriteLine (usuarioCP.EntrarAGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
 
-                System.Console.WriteLine(usuarioCP.EntrarAGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
+                //Salir del grupo. El usuario exige salir de un grupo. Sale sin problema de Excalibur
+                System.Console.WriteLine("ejemplo2@gmail.com - Salir de Excalibur");
+                System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
 
+                //Salir del grupo. El usuario exige salir de un grupo. No puede salir de Excalibur porque ya no pertenece.
+                System.Console.WriteLine("ejemplo2@gmail.com - Salir de Excalibur");
                 System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
-
-                //System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
 
                 System.Console.WriteLine ("La HQL esta peta:");
 
