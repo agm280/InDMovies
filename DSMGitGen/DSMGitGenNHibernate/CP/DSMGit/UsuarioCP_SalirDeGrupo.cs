@@ -9,7 +9,6 @@ using NHibernate.Exceptions;
 using DSMGitGenNHibernate.EN.DSMGit;
 using DSMGitGenNHibernate.CAD.DSMGit;
 using DSMGitGenNHibernate.CEN.DSMGit;
-using System.Collections.Generic;
 
 
 
