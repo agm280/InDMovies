@@ -488,6 +488,8 @@ public static void InitializeData ()
 
                 DSMGitGenNHibernate.CP.DSMGit.UsuarioCP usuarioCP = new DSMGitGenNHibernate.CP.DSMGit.UsuarioCP ();
 
+                IList<UsuarioEN> listaUsuariosExcalibur = new List<UsuarioEN>();
+
 
                 //Salir del grupo. El usuario exige salir de un grupo. No puede salir de Excalibur porque no pertenece.
                 System.Console.WriteLine("ejemplo2@gmail.com - Salir de Excalibur");
@@ -498,20 +500,65 @@ public static void InitializeData ()
                 System.Console.WriteLine("Excalibur añade a ejemplo2@gmail.com");
                 System.Console.WriteLine (grupoCP.AnadirUsuario ("Excalibur", "ejemplo2@gmail.com") + "\n");
 
+                listaUsuariosExcalibur = usuario.DameUsuarioPorGrupo("Excalibur");
+                System.Console.WriteLine("Veamos los usuarios de Excalibur");
+                foreach (UsuarioEN usu in listaUsuariosExcalibur)
+                {
+
+                    System.Console.WriteLine(usu.Nick);
+                    System.Console.WriteLine("Email: " + usu.Email);
+                }
+
                 //Salir del grupo. El usuario exige salir del grupo. Pertenece a Excalibur por lo que puede salir.
-                System.Console.WriteLine("ejemplo2@gmail.com - Salir de Excalibur");
+                System.Console.WriteLine(" ");
+                System.Console.WriteLine("\n ejemplo2@gmail.com - Salir de Excalibur");
                 System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
 
+
+                listaUsuariosExcalibur = usuario.DameUsuarioPorGrupo("Excalibur");
+                System.Console.WriteLine("Veamos los usuarios de Excalibur");
+                foreach (UsuarioEN usu in listaUsuariosExcalibur)
+                {
+
+                    System.Console.WriteLine(usu.Nick);
+                    System.Console.WriteLine("Email: " + usu.Email);
+                }
+
+
                 //El usuario entra por su cuenta a Excalibur, que acepta nuevos miembros.
+                System.Console.WriteLine(" ");
                 System.Console.WriteLine("ejemplo2@gmail.com - Entrar a Excalibur (peticion)");
                 System.Console.WriteLine (usuarioCP.EntrarAGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
 
+
+                listaUsuariosExcalibur = usuario.DameUsuarioPorGrupo("Excalibur");
+                System.Console.WriteLine("Veamos los usuarios de Excalibur");
+                foreach (UsuarioEN usu in listaUsuariosExcalibur)
+                {
+
+                    System.Console.WriteLine(usu.Nick);
+                    System.Console.WriteLine("Email: " + usu.Email);
+                }
+
+
                 //Salir del grupo. El usuario exige salir de un grupo. Sale sin problema de Excalibur
+                System.Console.WriteLine(" ");
                 System.Console.WriteLine("ejemplo2@gmail.com - Salir de Excalibur");
                 System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
 
+
+                listaUsuariosExcalibur = usuario.DameUsuarioPorGrupo("Excalibur");
+                System.Console.WriteLine("Veamos los usuarios de Excalibur");
+                foreach (UsuarioEN usu in listaUsuariosExcalibur)
+                {
+
+                    System.Console.WriteLine(usu.Nick);
+                    System.Console.WriteLine("Email: " + usu.Email);
+                }
+
+
                 //Salir del grupo. El usuario exige salir de un grupo. No puede salir de Excalibur porque ya no pertenece.
-                System.Console.WriteLine("ejemplo2@gmail.com - Salir de Excalibur");
+                System.Console.WriteLine("\n ejemplo2@gmail.com - Salir de Excalibur");
                 System.Console.WriteLine(usuarioCP.SalirDeGrupo("ejemplo2@gmail.com", "Excalibur") + "\n");
 
                 System.Console.WriteLine ("La HQL esta peta:");
@@ -520,7 +567,9 @@ public static void InitializeData ()
                 //Me imagino que sera porque ningun usuario estaria relacionado con Excalibur.
 
 
-                //IList<UsuarioEN> lista = usuario.DameUsuarioPorGrupo("Excalibur");
+
+
+
 
                 //System.Console.WriteLine(lista != null);
 
