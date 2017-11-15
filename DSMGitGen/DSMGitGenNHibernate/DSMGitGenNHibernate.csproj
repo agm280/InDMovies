@@ -192,7 +192,7 @@
 			
 			<Compile Include="CEN\DSMGit\VideoCEN_Buscar.cs" />
 			
-			<Compile Include="CEN\DSMGit\VideoCEN_Calcular_valoracion.cs" />
+			<Compile Include="CP\DSMGit\VideoCP_Calcular_valoracion.cs" />
 			
 			
 			

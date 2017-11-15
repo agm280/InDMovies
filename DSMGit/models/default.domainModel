@@ -253,7 +253,7 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_Ol1PobizEeeZr70_jq7rZA" name="p_oid" type="OID" typeObject="_Ps2G0LgKEeeQKK3fhnmurw"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_3PuWkL1tEeeaif9I-Hf2NQ" name="texto"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_N4AHAL2aEeeaif9I-Hf2NQ" name="calcular_valoracion" type="Void">
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_N4AHAL2aEeeaif9I-Hf2NQ" name="calcular_valoracion" operationType="CustomTransaction" type="Double">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_N4AHAb2aEeeaif9I-Hf2NQ" name="p_oid" type="OID" typeObject="_Ps2G0LgKEeeQKK3fhnmurw"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_DXYeAL-1EeeJ9st6qZQ9lA" name="dameVideoPorTitulo" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_Ps2G0LgKEeeQKK3fhnmurw" filter="FROM VideoEN as vid WHERE vid.Titulo LIKE ('%'+:p_titulo+'%')" automaticSynchronize="false">

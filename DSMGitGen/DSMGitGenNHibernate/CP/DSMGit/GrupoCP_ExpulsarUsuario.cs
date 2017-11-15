@@ -9,7 +9,6 @@ using NHibernate.Exceptions;
 using DSMGitGenNHibernate.EN.DSMGit;
 using DSMGitGenNHibernate.CAD.DSMGit;
 using DSMGitGenNHibernate.CEN.DSMGit;
-using System.Collections.Generic;
 
 
 
@@ -32,7 +31,7 @@ public bool ExpulsarUsuario (string p_oid, string p_email)
 
         Boolean resultado = false;
 
-            try
+        try
         {
                 SessionInitializeTransaction ();
                 usuarioCAD = new UsuarioCAD (session);
@@ -61,15 +60,13 @@ public bool ExpulsarUsuario (string p_oid, string p_email)
                                 GrupoEN group = grupoCEN.ReadOID (p_oid);
                                 IList<UsuarioEN> usuGrupo = group.Miembros;
 
-                                foreach (UsuarioEN usu in usuGrupo){        // Recorro el grupo
+                                foreach (UsuarioEN usu in usuGrupo) {       // Recorro el grupo
                                         if (usu.Email == p_email) {                 // Si existe ese usuario en el grupo
-
                                                 IList<string> expulsados = new List<string>();
-                                                expulsados.Add(p_oid);
-                                                grupoCEN.SacarUsuario(p_oid, expulsados);
+                                                expulsados.Add (p_oid);
+                                                grupoCEN.SacarUsuario (p_oid, expulsados);
                                                 resultado = true;
                                                 break;
-
                                         }
                                 }
                         }
