@@ -9,12 +9,13 @@ using NHibernate.Exceptions;
 using DSMGitGenNHibernate.EN.DSMGit;
 using DSMGitGenNHibernate.CAD.DSMGit;
 using DSMGitGenNHibernate.CEN.DSMGit;
-using System.Collections.Generic;
 
 
 
 /*PROTECTED REGION ID(usingDSMGitGenNHibernate.CP.DSMGit_Usuario_entrarAGrupo) ENABLED START*/
 //  references to other libraries
+using System.Collections.Generic;
+
 /*PROTECTED REGION END*/
 
 namespace DSMGitGenNHibernate.CP.DSMGit
