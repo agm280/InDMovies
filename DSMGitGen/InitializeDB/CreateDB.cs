@@ -507,10 +507,12 @@ public static void InitializeData ()
                         System.Console.WriteLine ("Email: " + usu.Email);
                 }
 
-                //Salir del grupo. El usuario exige salir del grupo. Pertenece a Excalibur por lo que puede salir.
+
+                
+                //Expulsar Usuario. Accion del grupo para echar a uno de sus usuarios.
                 System.Console.WriteLine (" ");
-                System.Console.WriteLine ("\n ejemplo2@gmail.com - Salir de Excalibur");
-                System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
+                System.Console.WriteLine ("\n Excalibur expulsa a su miembro ejemplo2@gmail.com");
+                System.Console.WriteLine (grupoCP.ExpulsarUsuario("Excalibur","ejemplo2@gmail.com") + "\n");
 
 
                 listaUsuariosExcalibur = usuario.DameUsuarioPorGrupo ("Excalibur");
@@ -519,7 +521,7 @@ public static void InitializeData ()
                         System.Console.WriteLine (usu.Nick);
                         System.Console.WriteLine ("Email: " + usu.Email);
                 }
-
+                
 
                 //El usuario entra por su cuenta a Excalibur, que acepta nuevos miembros.
                 System.Console.WriteLine (" ");
@@ -535,7 +537,7 @@ public static void InitializeData ()
                 }
 
 
-                //Salir del grupo. El usuario exige salir de un grupo. Sale sin problema de Excalibur
+                //Salir del grupo. El usuario exige salir de un grupo. Pertenece a Excalibur por lo que puede salir. Sale sin problema de Excalibur
                 System.Console.WriteLine (" ");
                 System.Console.WriteLine ("ejemplo2@gmail.com - Salir de Excalibur");
                 System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");

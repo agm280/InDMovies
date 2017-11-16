@@ -9,6 +9,7 @@ using NHibernate.Exceptions;
 using DSMGitGenNHibernate.EN.DSMGit;
 using DSMGitGenNHibernate.CAD.DSMGit;
 using DSMGitGenNHibernate.CEN.DSMGit;
+using System.Collections.Generic;
 
 
 
@@ -63,7 +64,7 @@ public bool ExpulsarUsuario (string p_oid, string p_email)
                                 foreach (UsuarioEN usu in usuGrupo) {       // Recorro el grupo
                                         if (usu.Email == p_email) {                 // Si existe ese usuario en el grupo
                                                 IList<string> expulsados = new List<string>();
-                                                expulsados.Add (p_oid);
+                                                expulsados.Add (p_email);
                                                 grupoCEN.SacarUsuario (p_oid, expulsados);
                                                 resultado = true;
                                                 break;
