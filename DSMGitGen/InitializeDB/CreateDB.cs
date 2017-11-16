@@ -500,6 +500,7 @@ public static void InitializeData ()
                 System.Console.WriteLine ("Excalibur añade a ejemplo2@gmail.com");
                 System.Console.WriteLine (grupoCP.AnadirUsuario ("Excalibur", "ejemplo2@gmail.com") + "\n");
 
+
                 listaUsuariosExcalibur = usuario.DameUsuarioPorGrupo ("Excalibur");
                 System.Console.WriteLine ("Veamos los usuarios de Excalibur");
                 foreach (UsuarioEN usu in listaUsuariosExcalibur) {
@@ -555,23 +556,7 @@ public static void InitializeData ()
                 System.Console.WriteLine ("\n ejemplo2@gmail.com - Salir de Excalibur");
                 System.Console.WriteLine (usuarioCP.SalirDeGrupo ("ejemplo2@gmail.com", "Excalibur") + "\n");
 
-                System.Console.WriteLine ("La HQL esta peta:");
 
-                //Es interesante, porque si ningun usuario ejecuta AnadirUsuario, la hql no peta:
-                //Me imagino que sera porque ningun usuario estaria relacionado con Excalibur.
-
-
-
-
-
-
-                //System.Console.WriteLine(lista != null);
-
-
-                //foreach (UsuarioEN usu in lista)
-                //{
-                //System.Console.WriteLine(usu.Email);
-                //}
 
 
 
