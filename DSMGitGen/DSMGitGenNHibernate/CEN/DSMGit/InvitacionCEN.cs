@@ -128,5 +128,17 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Invitacion
 {
         return _IInvitacionCAD.DameInvitacionRecibidaPorEmail (p_email);
 }
+public void QuitarGrupo (int p_Invitacion_OID, string p_grupo_OID)
+{
+        //Call to InvitacionCAD
+
+        _IInvitacionCAD.QuitarGrupo (p_Invitacion_OID, p_grupo_OID);
+}
+public void QuitarInvitador (int p_Invitacion_OID, string p_invitador_OID)
+{
+        //Call to InvitacionCAD
+
+        _IInvitacionCAD.QuitarInvitador (p_Invitacion_OID, p_invitador_OID);
+}
 }
 }

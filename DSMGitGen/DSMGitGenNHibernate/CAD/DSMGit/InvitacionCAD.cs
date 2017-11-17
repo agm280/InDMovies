@@ -433,5 +433,67 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Invitacion
 
         return result;
 }
+public void QuitarGrupo (int p_Invitacion_OID, string p_grupo_OID)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                DSMGitGenNHibernate.EN.DSMGit.InvitacionEN invitacionEN = null;
+                invitacionEN = (InvitacionEN)session.Load (typeof(InvitacionEN), p_Invitacion_OID);
+
+                if (invitacionEN.Grupo.Nombre == p_grupo_OID) {
+                        invitacionEN.Grupo = null;
+                }
+                else
+                        throw new ModelException ("The identifier " + p_grupo_OID + " in p_grupo_OID you are trying to unrelationer, doesn't exist in InvitacionEN");
+
+                session.Update (invitacionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in InvitacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
+public void QuitarInvitador (int p_Invitacion_OID, string p_invitador_OID)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                DSMGitGenNHibernate.EN.DSMGit.InvitacionEN invitacionEN = null;
+                invitacionEN = (InvitacionEN)session.Load (typeof(InvitacionEN), p_Invitacion_OID);
+
+                if (invitacionEN.Invitador.Email == p_invitador_OID) {
+                        invitacionEN.Invitador = null;
+                }
+                else
+                        throw new ModelException ("The identifier " + p_invitador_OID + " in p_invitador_OID you are trying to unrelationer, doesn't exist in InvitacionEN");
+
+                session.Update (invitacionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in InvitacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }
