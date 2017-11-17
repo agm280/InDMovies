@@ -35,5 +35,10 @@ System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> Dam
 void MeterUsuario (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs);
 
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionEnviadaPorGrupo (string p_grupo);
+
+
+
+
+void QuitarInvitado (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs);
 }
 }

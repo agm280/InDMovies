@@ -365,5 +365,43 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Invitacion
 
         return result;
 }
+public void QuitarInvitado (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                DSMGitGenNHibernate.EN.DSMGit.InvitacionEN invitacionEN = null;
+                invitacionEN = (InvitacionEN)session.Load (typeof(InvitacionEN), p_Invitacion_OID);
+
+                DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario_invitadoENAux = null;
+                if (invitacionEN.Usuario_invitado != null) {
+                        foreach (string item in p_usuario_invitado_OIDs) {
+                                usuario_invitadoENAux = (DSMGitGenNHibernate.EN.DSMGit.UsuarioEN)session.Load (typeof(DSMGitGenNHibernate.EN.DSMGit.UsuarioEN), item);
+                                if (invitacionEN.Usuario_invitado.Contains (usuario_invitadoENAux) == true) {
+                                        invitacionEN.Usuario_invitado.Remove (usuario_invitadoENAux);
+                                        usuario_invitadoENAux.Invitaciones_recibidas.Remove (invitacionEN);
+                                }
+                                else
+                                        throw new ModelException ("The identifier " + item + " in p_usuario_invitado_OIDs you are trying to unrelationer, doesn't exist in InvitacionEN");
+                        }
+                }
+
+                session.Update (invitacionEN);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in InvitacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+}
 }
 }

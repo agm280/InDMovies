@@ -272,6 +272,9 @@
 			
 			<Compile Include="CP\DSMGit\InvitacionCP_CrearInvitacion.cs" />
 			
+			<Compile Include="CP\DSMGit\InvitacionCP_AceptarInvitacion.cs" />
+			
+			
 	<Compile Include="EN\DSMGit\AdminEN.cs" />
 	<Compile Include="CEN\DSMGit\AdminCEN.cs" />
 	<Compile Include="CAD\DSMGit\IAdminCAD.cs" />

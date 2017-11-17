@@ -75,7 +75,7 @@ public bool EntrarAGrupo (string p_oid, string p_nombreGrupo)
                                                 resultadoOperacion = grupoCP.AnadirUsuario (p_nombreGrupo, p_oid);
                                         }
                                         else {
-                                          System.Console.WriteLine ("El grupo esta lleno.");
+                                                System.Console.WriteLine ("El grupo esta lleno.");
                                         }
                                 }
                         }

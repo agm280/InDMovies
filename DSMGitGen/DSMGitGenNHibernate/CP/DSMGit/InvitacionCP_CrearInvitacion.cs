@@ -13,7 +13,7 @@ using DSMGitGenNHibernate.CEN.DSMGit;
 
 
 /*PROTECTED REGION ID(usingDSMGitGenNHibernate.CP.DSMGit_Invitacion_crearInvitacion) ENABLED START*/
-//  references to other libraries
+using System.Collections.Generic;
 /*PROTECTED REGION END*/
 
 namespace DSMGitGenNHibernate.CP.DSMGit
@@ -26,34 +26,60 @@ public bool CrearInvitacion (string invitado, string invitador, string grupo, st
 
         IInvitacionCAD invitacionCAD = null;
         InvitacionCEN invitacionCEN = null;
-        IUsuarioCAD usuarioCAD = null;
-        UsuarioCEN usuarioCEN = null;
+            IUsuarioCAD usuarioCAD = null;
+            UsuarioCEN usuarioCEN = null;
+            IGrupoCAD grupoCAD = null;
+            GrupoCEN grupoCEN = null;
 
-        bool result = false;
+            bool result = true;
 
 
-        try
-        {
+            try
+            {
                 SessionInitializeTransaction ();
                 invitacionCAD = new InvitacionCAD (session);
                 invitacionCEN = new  InvitacionCEN (invitacionCAD);
-                usuarioCAD = new UsuarioCAD (session);
-                usuarioCEN = new UsuarioCEN (usuarioCAD);
+                usuarioCAD = new UsuarioCAD(session);
+                usuarioCEN = new UsuarioCEN(usuarioCAD);
+                grupoCAD = new GrupoCAD(session);
+                grupoCEN = new GrupoCEN(grupoCAD);
+                UsuarioEN usua = usuarioCEN.ReadOID(invitado);
+                GrupoEN gr = grupoCEN.ReadOID(grupo);
+                if (usua != null && gr != null)
+                {
+                    gr = grupoCEN.ReadOID(grupo);
+                    IList<UsuarioEN> usuGrupo = gr.Miembros;
 
+                    foreach (UsuarioEN usu in usuGrupo)
+                    {
+                        if (usu.Email == invitado)
+                        {
+                            result = false;
+                            break;
+                        }
+                    }
+                    bool dentro = false;
+                    foreach (UsuarioEN usu2 in usuGrupo)
+                    {
+                        if (usu2.Email == invitador)
+                            dentro = true;
+                    }
+                    if (result == true && dentro == true)
+                    {
+                        int id_invitacion = invitacionCEN.New_(p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
+                        IList<string> enviaUsu = new List<string>();
+                        enviaUsu.Add(invitado);
+                        invitacionCEN.MeterUsuario(id_invitacion, enviaUsu);
+                    }
+                    else
+                        result = false;
+                }
+                else
+                {
+                    result = false;
+                }
 
-                int id_invitacion = invitacionCEN.New_ (p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
-                //ALVARO HE PUESTO ESTO EN COMENTARIO PORQUE NO ME DEJABA COMPILAR:
-                //invitacionCEN.MeterUsuario (id_invitacion, invitado);
-                result = true;
-
-
-                // Write here your custom transaction ...
-
-                //throw new NotImplementedException ("Method CrearInvitacion() not yet implemented.");
-
-
-
-                SessionCommit ();
+                SessionCommit();
         }
         catch (Exception ex)
         {

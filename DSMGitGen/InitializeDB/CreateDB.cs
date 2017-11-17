@@ -477,7 +477,7 @@ public static void InitializeData ()
                 //Alternativa agil a utilizar el Relationer, pues se le pasa un unico usuario, y no una lista.
                 //Accion del grupo para meter a un usuario.
                 System.Console.WriteLine ("Excalibur añade a ejemplo2@gmail.com");
-                System.Console.WriteLine(grupoCP.AnadirUsuario("Excalibur", "ejemplo2@gmail.com") + "\n");
+                System.Console.WriteLine (grupoCP.AnadirUsuario ("Excalibur", "ejemplo2@gmail.com") + "\n");
 
 
 
