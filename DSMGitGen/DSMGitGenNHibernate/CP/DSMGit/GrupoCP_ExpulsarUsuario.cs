@@ -32,68 +32,61 @@ public bool ExpulsarUsuario (string p_oid, string p_email)
         UsuarioCEN usuarioCEN = null;
 
         Boolean resultado = false;
-            if (p_email != null && p_oid != null)
-            {
 
+        if (p_email != null && p_oid != null) {
                 try
                 {
-                    SessionInitializeTransaction();
-                    usuarioCAD = new UsuarioCAD(session);
-                    grupoCAD = new GrupoCAD(session);
-                    usuarioCEN = new UsuarioCEN(usuarioCAD);
-                    grupoCEN = new GrupoCEN(grupoCAD);
+                        SessionInitializeTransaction ();
+                        usuarioCAD = new UsuarioCAD (session);
+                        grupoCAD = new GrupoCAD (session);
+                        usuarioCEN = new UsuarioCEN (usuarioCAD);
+                        grupoCEN = new GrupoCEN (grupoCAD);
 
 
-                    GrupoEN grupoEN = new GrupoEN();
-                    UsuarioEN usuarioEN = new UsuarioEN();
+                        GrupoEN grupoEN = new GrupoEN ();
+                        UsuarioEN usuarioEN = new UsuarioEN ();
 
-                    // Write here your custom transaction ...
+                        // Write here your custom transaction ...
 
-                    IList<UsuarioEN> usuarios = usuarioCEN.DameUsuarioPorEmail(p_email);
+                        IList<UsuarioEN> usuarios = usuarioCEN.DameUsuarioPorEmail (p_email);
 
-                    if (usuarios.Count == 0)
-                    {
-                        System.Console.WriteLine("Usuario inexistente");
-                    }
-                    else
-                    {                                            // Si el usuario existe
-                        IList<GrupoEN> grupos = grupoCEN.DameGruposPorNombre(p_oid);
-
-                        if (grupos.Count == 0)
-                        {
-                            System.Console.WriteLine("No existe ese grupo");
+                        if (usuarios.Count == 0) {
+                                System.Console.WriteLine ("Usuario inexistente");
                         }
-                        else
-                        {                                           // Si el grupo tambien existe
-                            GrupoEN group = grupoCEN.ReadOID(p_oid);
-                            IList<UsuarioEN> usuGrupo = group.Miembros;
+                        else{                                    // Si el usuario existe
+                                IList<GrupoEN> grupos = grupoCEN.DameGruposPorNombre (p_oid);
 
-                            foreach (UsuarioEN usu in usuGrupo)
-                            {       // Recorro el grupo
-                                if (usu.Email == p_email)
-                                {                 // Si existe ese usuario en el grupo
-                                    IList<string> expulsados = new List<string>();
-                                    expulsados.Add(p_email);
-                                    grupoCEN.SacarUsuario(p_oid, expulsados);
-                                    resultado = true;
-                                    break;
+                                if (grupos.Count == 0) {
+                                        System.Console.WriteLine ("No existe ese grupo");
                                 }
-                            }
-                        }
-                    }
+                                else{                               // Si el grupo tambien existe
+                                        GrupoEN group = grupoCEN.ReadOID (p_oid);
+                                        IList<UsuarioEN> usuGrupo = group.Miembros;
 
-                    SessionCommit();
+                                        foreach (UsuarioEN usu in usuGrupo) { // Recorro el grupo
+                                                if (usu.Email == p_email) { // Si existe ese usuario en el grupo
+                                                        IList<string> expulsados = new List<string>();
+                                                        expulsados.Add (p_email);
+                                                        grupoCEN.SacarUsuario (p_oid, expulsados);
+                                                        resultado = true;
+                                                        break;
+                                                }
+                                        }
+                                }
+                        }
+
+                        SessionCommit ();
                 }
                 catch (Exception ex)
                 {
-                    SessionRollBack();
-                    throw ex;
+                        SessionRollBack ();
+                        throw ex;
                 }
                 finally
                 {
-                    SessionClose();
+                        SessionClose ();
                 }
-            }
+        }
         return resultado;
 
 

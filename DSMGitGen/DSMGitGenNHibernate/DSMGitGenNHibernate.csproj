@@ -117,10 +117,6 @@
 			
 			
 			
-			<Compile Include="CEN\DSMGit\UsuarioCEN_Modificar_perfil.cs" />
-			
-			<Compile Include="CEN\DSMGit\UsuarioCEN_Buscar.cs" />
-			
 			
 			
 			
@@ -164,8 +160,6 @@
 			
 			
 			
-			<Compile Include="CEN\DSMGit\GrupoCEN_Buscar.cs" />
-			
 			
 			
 			
@@ -189,8 +183,6 @@
 			
 			
 			
-			
-			<Compile Include="CEN\DSMGit\VideoCEN_Buscar.cs" />
 			
 			<Compile Include="CP\DSMGit\VideoCP_Calcular_valoracion.cs" />
 			
@@ -247,8 +239,6 @@
 			<Compile Include="CEN\DSMGit\TemaCEN_Cerrar.cs" />
 			
 			<Compile Include="CEN\DSMGit\TemaCEN_Abrir.cs" />
-			
-			<Compile Include="CEN\DSMGit\TemaCEN_Buscar.cs" />
 			
 			
 			

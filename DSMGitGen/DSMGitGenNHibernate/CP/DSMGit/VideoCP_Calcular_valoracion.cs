@@ -34,51 +34,45 @@ public double Calcular_valoracion (int p_oid)
 
         double media = -1;
 
-            if (p_oid != null)
-            {
-
-
+        if (p_oid != null) {
                 try
                 {
-                    SessionInitializeTransaction();
-                    videoCAD = new VideoCAD(session);
-                    videoCEN = new VideoCEN(videoCAD);
-                    valoracionCAD = new ValoracionCAD(session);
-                    valoracionCEN = new ValoracionCEN(valoracionCAD);
-                    media = 0;
-                    double suma = 0;
+                        SessionInitializeTransaction ();
+                        videoCAD = new VideoCAD (session);
+                        videoCEN = new VideoCEN (videoCAD);
+                        valoracionCAD = new ValoracionCAD (session);
+                        valoracionCEN = new ValoracionCEN (valoracionCAD);
+                        media = 0;
+                        double suma = 0;
 
-                    // Write here your custom transaction ...
-                    IList<ValoracionEN> lista = valoracionCEN.DameValoracionPorVideoID(p_oid);
-                    if (lista != null)
-                    {
-                        if (lista.Count > 0)
-                        {
-                            foreach (ValoracionEN i in lista)
-                            {
-                                suma = suma + i.Valor;
-                            }
+                        // Write here your custom transaction ...
+                        IList<ValoracionEN> lista = valoracionCEN.DameValoracionPorVideoID (p_oid);
+                        if (lista != null) {
+                                if (lista.Count > 0) {
+                                        foreach (ValoracionEN i in lista) {
+                                                suma = suma + i.Valor;
+                                        }
 
-                            media = suma / lista.Count;
+                                        media = suma / lista.Count;
+                                }
                         }
-                    }
-                    // throw new NotImplementedException ("Method Calcular_valoracion() not yet implemented.");
+                        // throw new NotImplementedException ("Method Calcular_valoracion() not yet implemented.");
 
 
-                    SessionCommit();
+                        SessionCommit ();
                 }
                 catch (Exception ex)
                 {
-                    SessionRollBack();
-                    throw ex;
+                        SessionRollBack ();
+                        throw ex;
                 }
                 finally
                 {
-                    SessionClose();
+                        SessionClose ();
                 }
-            }
-                return media;
-            
+        }
+        return media;
+
 
         /*PROTECTED REGION END*/
 }

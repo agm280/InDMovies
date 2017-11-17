@@ -29,7 +29,6 @@ GrupoEN ReadOID (string nombre
 System.Collections.Generic.IList<GrupoEN> ReadAll (int first, int size);
 
 
-
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposNoLlenos ();
 
 

@@ -31,8 +31,6 @@ UsuarioEN ReadOID (string email
 System.Collections.Generic.IList<UsuarioEN> ReadAll (int first, int size);
 
 
-
-
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorNick (string p_nick);
 
 

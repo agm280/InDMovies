@@ -30,7 +30,6 @@ System.Collections.Generic.IList<VideoEN> ReadAll (int first, int size);
 
 
 
-
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.VideoEN> DameVideoPorTitulo (string p_titulo);
 
 

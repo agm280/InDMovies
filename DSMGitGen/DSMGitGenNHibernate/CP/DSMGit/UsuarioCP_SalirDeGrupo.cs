@@ -33,89 +33,77 @@ public bool SalirDeGrupo (string p_oid, string p_nombreGrupo)
         GrupoCEN grupoCEN = null;
         Boolean resultadoOperacion = false;
 
-            if (p_nombreGrupo != null && p_oid != null)
-            {
-
-
+        if (p_nombreGrupo != null && p_oid != null) {
                 try
                 {
-                    SessionInitializeTransaction();
-                    usuarioCAD = new UsuarioCAD(session);
-                    grupoCAD = new GrupoCAD(session);
-                    usuarioCEN = new UsuarioCEN(usuarioCAD);
-                    grupoCEN = new GrupoCEN(grupoCAD);
+                        SessionInitializeTransaction ();
+                        usuarioCAD = new UsuarioCAD (session);
+                        grupoCAD = new GrupoCAD (session);
+                        usuarioCEN = new UsuarioCEN (usuarioCAD);
+                        grupoCEN = new GrupoCEN (grupoCAD);
 
 
-                    GrupoEN grupoEN = new GrupoEN();
-                    UsuarioEN usuarioEN = new UsuarioEN();
-                    Boolean existe = false;
-                    Boolean perteneceAlGrupo = false;
+                        GrupoEN grupoEN = new GrupoEN ();
+                        UsuarioEN usuarioEN = new UsuarioEN ();
+                        Boolean existe = false;
+                        Boolean perteneceAlGrupo = false;
 
 
-                    // Write here your custom transaction ...
+                        // Write here your custom transaction ...
 
-                    IList<UsuarioEN> usuarios = usuarioCEN.DameUsuarioPorEmail(p_oid);
+                        IList<UsuarioEN> usuarios = usuarioCEN.DameUsuarioPorEmail (p_oid);
 
-                    if (usuarios.Count == 0)
-                    {
-                        System.Console.WriteLine("No existe ese usuario");
-                    }
-                    else
-                    {
-                        IList<GrupoEN> grupos = grupoCEN.DameGruposPorNombre(p_nombreGrupo);
-
-                        if (grupos.Count == 0)
-                        {
-                            System.Console.WriteLine("No existe ese grupo");
+                        if (usuarios.Count == 0) {
+                                System.Console.WriteLine ("No existe ese usuario");
                         }
-                        else
-                        {
-                            if (grupoCEN.ReadOID(p_nombreGrupo) != null)
-                            {
-                                usuarioEN = usuarioCEN.ReadOID(p_oid);
-                                //System.Console.WriteLine("El grupo existe!");
-                                grupoEN = grupoCEN.ReadOID(p_nombreGrupo);
-                                existe = true;
-                            }
+                        else{
+                                IList<GrupoEN> grupos = grupoCEN.DameGruposPorNombre (p_nombreGrupo);
+
+                                if (grupos.Count == 0) {
+                                        System.Console.WriteLine ("No existe ese grupo");
+                                }
+                                else{
+                                        if (grupoCEN.ReadOID (p_nombreGrupo) != null) {
+                                                usuarioEN = usuarioCEN.ReadOID (p_oid);
+                                                //System.Console.WriteLine("El grupo existe!");
+                                                grupoEN = grupoCEN.ReadOID (p_nombreGrupo);
+                                                existe = true;
+                                        }
+                                }
                         }
-                    }
 
 
 
-                    if (existe == true && usuarioEN.Grupos != null)
-                    {
-                        foreach (GrupoEN gru in usuarioEN.Grupos)
-                        {
-                            if (gru.Nombre == p_nombreGrupo)
-                            {
-                                perteneceAlGrupo = true;
-                            }
+                        if (existe == true && usuarioEN.Grupos != null) {
+                                foreach (GrupoEN gru in usuarioEN.Grupos) {
+                                        if (gru.Nombre == p_nombreGrupo) {
+                                                perteneceAlGrupo = true;
+                                        }
+                                }
                         }
-                    }
 
 
 
-                    if (perteneceAlGrupo == true)
-                    {
-                        IList<string> emailsQueQuitarDelGrupo = new List<string>();
-                        emailsQueQuitarDelGrupo.Add(p_oid);
-                        grupoCEN.SacarUsuario(p_nombreGrupo, emailsQueQuitarDelGrupo);
-                        resultadoOperacion = true;
-                    }
+                        if (perteneceAlGrupo == true) {
+                                IList<string> emailsQueQuitarDelGrupo = new List<string>();
+                                emailsQueQuitarDelGrupo.Add (p_oid);
+                                grupoCEN.SacarUsuario (p_nombreGrupo, emailsQueQuitarDelGrupo);
+                                resultadoOperacion = true;
+                        }
 
 
-                    SessionCommit();
+                        SessionCommit ();
                 }
                 catch (Exception ex)
                 {
-                    SessionRollBack();
-                    throw ex;
+                        SessionRollBack ();
+                        throw ex;
                 }
                 finally
                 {
-                    SessionClose();
+                        SessionClose ();
                 }
-            }
+        }
         return resultadoOperacion;
         /*PROTECTED REGION END*/
 }
