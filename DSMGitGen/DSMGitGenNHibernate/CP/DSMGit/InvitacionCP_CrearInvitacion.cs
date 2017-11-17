@@ -20,7 +20,7 @@ namespace DSMGitGenNHibernate.CP.DSMGit
 {
 public partial class InvitacionCP : BasicCP
 {
-public bool CrearInvitacion (string invitado, string invitador, string grupo, string descripcion)
+public void CrearInvitacion (System.Collections.Generic.IList<string> invitado, string invitador, string grupo, string descripcion)
 {
         /*PROTECTED REGION ID(DSMGitGenNHibernate.CP.DSMGit_Invitacion_crearInvitacion) ENABLED START*/
 
@@ -43,34 +43,34 @@ public bool CrearInvitacion (string invitado, string invitador, string grupo, st
                 usuarioCEN = new UsuarioCEN (usuarioCAD);
                 grupoCAD = new GrupoCAD (session);
                 grupoCEN = new GrupoCEN (grupoCAD);
-                UsuarioEN usua = usuarioCEN.ReadOID (invitado);
-                GrupoEN gr = grupoCEN.ReadOID (grupo);
-                if (usua != null && gr != null) {
-                        gr = grupoCEN.ReadOID (grupo);
-                        IList<UsuarioEN> usuGrupo = gr.Miembros;
-
-                        foreach (UsuarioEN usu in usuGrupo) {
-                                if (usu.Email == invitado) {
-                                        result = false;
-                                        break;
+                foreach (string usuinvi in invitado) {
+                        UsuarioEN usua = usuarioCEN.ReadOID (usuinvi);
+                        GrupoEN gr = grupoCEN.ReadOID (grupo);
+                        if (usua != null && gr != null) {
+                                IList<UsuarioEN> usuGrupo = gr.Miembros;
+                                foreach (UsuarioEN usu in usuGrupo) {
+                                        if (usu.Email == usuinvi) {
+                                                result = false;
+                                                break;
+                                        }
                                 }
+                                bool dentro = false;
+                                foreach (UsuarioEN usu2 in usuGrupo) {
+                                        if (usu2.Email == invitador)
+                                                dentro = true;
+                                }
+                                if (result == true && dentro == true) {
+                                        int id_invitacion = invitacionCEN.New_ (p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
+                                        IList<string> enviaUsu = new List<string>();
+                                        enviaUsu.Add (usuinvi);
+                                        invitacionCEN.MeterUsuario (id_invitacion, enviaUsu);
+                                }
+                                else
+                                        result = false;
                         }
-                        bool dentro = false;
-                        foreach (UsuarioEN usu2 in usuGrupo) {
-                                if (usu2.Email == invitador)
-                                        dentro = true;
-                        }
-                        if (result == true && dentro == true) {
-                                int id_invitacion = invitacionCEN.New_ (p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
-                                IList<string> enviaUsu = new List<string>();
-                                enviaUsu.Add (invitado);
-                                invitacionCEN.MeterUsuario (id_invitacion, enviaUsu);
-                        }
-                        else
+                        else{
                                 result = false;
-                }
-                else{
-                        result = false;
+                        }
                 }
 
                 SessionCommit ();
@@ -84,7 +84,6 @@ public bool CrearInvitacion (string invitado, string invitador, string grupo, st
         {
                 SessionClose ();
         }
-        return result;
 
 
         /*PROTECTED REGION END*/
