@@ -40,5 +40,7 @@ System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> Dam
 
 
 void QuitarInvitado (int p_Invitacion_OID, System.Collections.Generic.IList<string> p_usuario_invitado_OIDs);
+
+System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionRecibidaPorEmail (string p_email);
 }
 }

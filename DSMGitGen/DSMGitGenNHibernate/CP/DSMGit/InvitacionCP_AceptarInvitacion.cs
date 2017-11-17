@@ -12,7 +12,6 @@ using DSMGitGenNHibernate.CEN.DSMGit;
 
 
 
-
 /*PROTECTED REGION ID(usingDSMGitGenNHibernate.CP.DSMGit_Invitacion_aceptarInvitacion) ENABLED START*/
 using System.Collections.Generic;
 /*PROTECTED REGION END*/
@@ -47,15 +46,17 @@ public void AceptarInvitacion (int p_oid, string idInvitado)
                 grupoCP = new GrupoCP ();
                 grupoCP.AnadirUsuario (invi.Grupo.Nombre, idInvitado);
 
-                invitacionCEN.QuitarInvitado(p_oid, new List<string>() {idInvitado});
+                invitacionCEN.QuitarInvitado (p_oid, new List<string>() {
+                                idInvitado
+                        });
 
-                invi = invitacionCEN.ReadOID(p_oid);
+                invi = invitacionCEN.ReadOID (p_oid);
                 IList<UsuarioEN> usuarios = invi.Usuario_invitado;
 
                 if (usuarios == null) {
-                    invitacionCEN.Destroy(p_oid);
+                        invitacionCEN.Destroy (p_oid);
                 }
-                
+
                 SessionCommit ();
         }
         catch (Exception ex)

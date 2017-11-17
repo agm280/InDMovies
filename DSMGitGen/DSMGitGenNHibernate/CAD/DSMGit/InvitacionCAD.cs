@@ -403,5 +403,35 @@ public void QuitarInvitado (int p_Invitacion_OID, System.Collections.Generic.ILi
                 SessionClose ();
         }
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionRecibidaPorEmail (string p_email)
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM InvitacionEN self where Select invi FROM InvitacionEN as invi inner join invi.Usuario_invitado as usu WHERE usu.Email=:p_email";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("InvitacionENdameInvitacionRecibidaPorEmailHQL");
+                query.SetParameter ("p_email", p_email);
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in InvitacionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

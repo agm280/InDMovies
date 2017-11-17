@@ -457,7 +457,7 @@ public static void InitializeData ()
                 System.Console.WriteLine ("\n---------CPs---------\n");
 
                 //Grupo Excalibur creado por ejemplo2@gmail.com. Empieza sin miembros.
-
+                DSMGitGenNHibernate.CP.DSMGit.InvitacionCP invitacionCP = new DSMGitGenNHibernate.CP.DSMGit.InvitacionCP();
 
                 DSMGitGenNHibernate.CP.DSMGit.GrupoCP grupoCP = new DSMGitGenNHibernate.CP.DSMGit.GrupoCP ();
 
@@ -487,8 +487,7 @@ public static void InitializeData ()
                         System.Console.WriteLine (usu.Nick);
                         System.Console.WriteLine ("Email: " + usu.Email);
                 }
-
-
+               
 
                 //Expulsar Usuario. Accion del grupo para echar a uno de sus usuarios.
                 System.Console.WriteLine (" ");
@@ -572,9 +571,63 @@ public static void InitializeData ()
                 System.Console.WriteLine ("\n---------CPs sobre Video/Valoracion------------\n");
 
                 //Por aqui se pueden probar los metodos CrearInvitacion y AceptarInvitacion
+                System.Console.WriteLine ("Comprobacion CrearInvitacion");
+                System.Console.WriteLine ("INVITACIONES USUARIO 1 \n");
+                IList<InvitacionEN> inviE1 = invitacion.DameInvitacionEnviadaPorEmail("ejemplo@gmail.com");
+                IList<InvitacionEN> inviR1 = invitacion.DameInvitacionRecibidaPorEmail("ejemplo@gmail.com");
+                foreach (InvitacionEN invi in inviR1)
+                {
+                    System.Console.WriteLine("--Recibida: " + invi.Descripcion);
+                }
+                foreach (InvitacionEN invi in inviE1)
+                {
+                    System.Console.WriteLine("--Enviada: " + invi.Descripcion);
+                }
+                System.Console.Write("\n");
+                System.Console.WriteLine("INVITACIONES USUARIO 2 \n");
+                IList<InvitacionEN> inviE2 = invitacion.DameInvitacionEnviadaPorEmail("ejemplo2@gmail.com");
+                IList<InvitacionEN> inviR2 = invitacion.DameInvitacionRecibidaPorEmail("ejemplo2@gmail.com");
+                foreach (InvitacionEN invi in inviR2)
+                {
+                    System.Console.WriteLine("--Recibida: " + invi.Descripcion);
+                }
+                foreach (InvitacionEN invi in inviE2)
+                {
+                    System.Console.WriteLine("--Enviada: " + invi.Descripcion);
+                }
+                System.Console.Write("\n");
+                System.Console.WriteLine("SE INVOCA A CREAR INVITACION, USUARIO 1 LE MANDA INVITACION A USUARIO 2 ");
+                invitacionCP.CrearInvitacion("ejemplo2@gmail.com", "ejemplo@gmail.com", "Grupo1", "Invitacion hecha con el CP crear Invitacion \n");
+                System.Console.WriteLine("INVITACIONES USUARIO 1 \n");
+                inviE1 = invitacion.DameInvitacionEnviadaPorEmail("ejemplo@gmail.com");
+                inviR1 = invitacion.DameInvitacionRecibidaPorEmail("ejemplo@gmail.com");
 
-
-
+                foreach (InvitacionEN invi in inviR1)
+                {
+                    System.Console.WriteLine("--Recibida: " + invi.Descripcion);
+                }
+                foreach (InvitacionEN invi in inviE1)
+                {
+                    System.Console.WriteLine("--Enviada: " + invi.Descripcion);
+                }
+                System.Console.Write("\n");
+                System.Console.WriteLine("INVITACIONES USUARIO 2 \n");
+                inviE2 = invitacion.DameInvitacionEnviadaPorEmail("ejemplo2@gmail.com");
+                inviR2 = invitacion.DameInvitacionRecibidaPorEmail("ejemplo2@gmail.com");
+                foreach (InvitacionEN invi in inviR2)
+                {
+                    System.Console.WriteLine("--Recibida: " + invi.Descripcion);
+                }
+                foreach (InvitacionEN invi in inviE2)
+                {
+                    System.Console.WriteLine("--Enviada: " + invi.Descripcion);
+                }
+                System.Console.WriteLine("\n COMPROBACIONES QUE TIENEN QUE DAR FALSE DE CREARINVITACION \n");
+                System.Console.WriteLine("El invitador no está en el grupo: " + invitacionCP.CrearInvitacion("ejemplo@gmail.com", "ejemplo2@gmail.com", "Grupo1", "Falla"));
+                System.Console.WriteLine("El invitado está en el grupo: " + invitacionCP.CrearInvitacion("ejemplo@gmail.com", "ejemplo@gmail.com", "Grupo1", "Falla"));
+                System.Console.WriteLine("El invitado no existe: " + invitacionCP.CrearInvitacion("ejemplo54@gmail.com", "ejemplo@gmail.com", "Grupo1", "Falla"));
+                System.Console.WriteLine("El grupo no existe: " + invitacionCP.CrearInvitacion("ejemplo@gmail.com", "ejemplo@gmail.com", "Grupo14353", "Falla"));
+                System.Console.WriteLine("El invitador no existe: " + invitacionCP.CrearInvitacion("ejemplo2@gmail.com", "ejemplo66@gmail.com", "Grupo1", "Falla"));
                 //ValoracionMedia de un video. Tiene 2 valoraciones, 5 y 4.
 
                 System.Console.WriteLine ("\n Valoracion media del video: " + video.ReadOID (idVideo1).Titulo);

@@ -124,5 +124,9 @@ public void QuitarInvitado (int p_Invitacion_OID, System.Collections.Generic.ILi
 
         _IInvitacionCAD.QuitarInvitado (p_Invitacion_OID, p_usuario_invitado_OIDs);
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.InvitacionEN> DameInvitacionRecibidaPorEmail (string p_email)
+{
+        return _IInvitacionCAD.DameInvitacionRecibidaPorEmail (p_email);
+}
 }
 }

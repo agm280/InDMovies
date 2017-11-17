@@ -26,60 +26,54 @@ public bool CrearInvitacion (string invitado, string invitador, string grupo, st
 
         IInvitacionCAD invitacionCAD = null;
         InvitacionCEN invitacionCEN = null;
-            IUsuarioCAD usuarioCAD = null;
-            UsuarioCEN usuarioCEN = null;
-            IGrupoCAD grupoCAD = null;
-            GrupoCEN grupoCEN = null;
+        IUsuarioCAD usuarioCAD = null;
+        UsuarioCEN usuarioCEN = null;
+        IGrupoCAD grupoCAD = null;
+        GrupoCEN grupoCEN = null;
 
-            bool result = true;
+        bool result = true;
 
 
-            try
-            {
+        try
+        {
                 SessionInitializeTransaction ();
                 invitacionCAD = new InvitacionCAD (session);
                 invitacionCEN = new  InvitacionCEN (invitacionCAD);
-                usuarioCAD = new UsuarioCAD(session);
-                usuarioCEN = new UsuarioCEN(usuarioCAD);
-                grupoCAD = new GrupoCAD(session);
-                grupoCEN = new GrupoCEN(grupoCAD);
-                UsuarioEN usua = usuarioCEN.ReadOID(invitado);
-                GrupoEN gr = grupoCEN.ReadOID(grupo);
-                if (usua != null && gr != null)
-                {
-                    gr = grupoCEN.ReadOID(grupo);
-                    IList<UsuarioEN> usuGrupo = gr.Miembros;
+                usuarioCAD = new UsuarioCAD (session);
+                usuarioCEN = new UsuarioCEN (usuarioCAD);
+                grupoCAD = new GrupoCAD (session);
+                grupoCEN = new GrupoCEN (grupoCAD);
+                UsuarioEN usua = usuarioCEN.ReadOID (invitado);
+                GrupoEN gr = grupoCEN.ReadOID (grupo);
+                if (usua != null && gr != null) {
+                        gr = grupoCEN.ReadOID (grupo);
+                        IList<UsuarioEN> usuGrupo = gr.Miembros;
 
-                    foreach (UsuarioEN usu in usuGrupo)
-                    {
-                        if (usu.Email == invitado)
-                        {
-                            result = false;
-                            break;
+                        foreach (UsuarioEN usu in usuGrupo) {
+                                if (usu.Email == invitado) {
+                                        result = false;
+                                        break;
+                                }
                         }
-                    }
-                    bool dentro = false;
-                    foreach (UsuarioEN usu2 in usuGrupo)
-                    {
-                        if (usu2.Email == invitador)
-                            dentro = true;
-                    }
-                    if (result == true && dentro == true)
-                    {
-                        int id_invitacion = invitacionCEN.New_(p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
-                        IList<string> enviaUsu = new List<string>();
-                        enviaUsu.Add(invitado);
-                        invitacionCEN.MeterUsuario(id_invitacion, enviaUsu);
-                    }
-                    else
+                        bool dentro = false;
+                        foreach (UsuarioEN usu2 in usuGrupo) {
+                                if (usu2.Email == invitador)
+                                        dentro = true;
+                        }
+                        if (result == true && dentro == true) {
+                                int id_invitacion = invitacionCEN.New_ (p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
+                                IList<string> enviaUsu = new List<string>();
+                                enviaUsu.Add (invitado);
+                                invitacionCEN.MeterUsuario (id_invitacion, enviaUsu);
+                        }
+                        else
+                                result = false;
+                }
+                else{
                         result = false;
                 }
-                else
-                {
-                    result = false;
-                }
 
-                SessionCommit();
+                SessionCommit ();
         }
         catch (Exception ex)
         {
