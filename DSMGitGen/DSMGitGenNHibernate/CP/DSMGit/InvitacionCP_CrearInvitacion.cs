@@ -30,10 +30,7 @@ public void CrearInvitacion (System.Collections.Generic.IList<string> invitado, 
         UsuarioCEN usuarioCEN = null;
         IGrupoCAD grupoCAD = null;
         GrupoCEN grupoCEN = null;
-
-        bool result = true;
-
-
+        
         try
         {
                 SessionInitializeTransaction ();
@@ -44,32 +41,28 @@ public void CrearInvitacion (System.Collections.Generic.IList<string> invitado, 
                 grupoCAD = new GrupoCAD (session);
                 grupoCEN = new GrupoCEN (grupoCAD);
                 foreach (string usuinvi in invitado) {
-                        UsuarioEN usua = usuarioCEN.ReadOID (usuinvi);
-                        GrupoEN gr = grupoCEN.ReadOID (grupo);
+                    bool result = true;
+                    UsuarioEN usua = usuarioCEN.ReadOID (usuinvi);
+                    GrupoEN gr = grupoCEN.ReadOID (grupo);
                         if (usua != null && gr != null) {
-                                IList<UsuarioEN> usuGrupo = gr.Miembros;
-                                foreach (UsuarioEN usu in usuGrupo) {
-                                        if (usu.Email == usuinvi) {
-                                                result = false;
-                                                break;
-                                        }
+                            IList<UsuarioEN> usuGrupo = gr.Miembros;
+                            foreach (UsuarioEN usu in usuGrupo) {
+                                if (usu.Email == usuinvi) {
+                                    result = false;
+                                    break;
                                 }
-                                bool dentro = false;
-                                foreach (UsuarioEN usu2 in usuGrupo) {
-                                        if (usu2.Email == invitador)
-                                                dentro = true;
-                                }
-                                if (result == true && dentro == true) {
-                                        int id_invitacion = invitacionCEN.New_ (p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
-                                        IList<string> enviaUsu = new List<string>();
-                                        enviaUsu.Add (usuinvi);
-                                        invitacionCEN.MeterUsuario (id_invitacion, enviaUsu);
-                                }
-                                else
-                                        result = false;
-                        }
-                        else{
-                                result = false;
+                            }
+                            bool dentro = false;
+                            foreach (UsuarioEN usu2 in usuGrupo) {
+                                if (usu2.Email == invitador)
+                                    dentro = true;
+                            }
+                            if (result == true && dentro == true) {
+                                int id_invitacion = invitacionCEN.New_ (p_descripcion: descripcion, p_grupo: grupo, p_invitador: invitador);
+                                IList<string> enviaUsu = new List<string>();
+                                enviaUsu.Add (usuinvi);
+                                invitacionCEN.MeterUsuario (id_invitacion, enviaUsu);
+                            }
                         }
                 }
 
