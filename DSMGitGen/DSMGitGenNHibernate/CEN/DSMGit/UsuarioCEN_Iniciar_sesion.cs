@@ -19,20 +19,24 @@ namespace DSMGitGenNHibernate.CEN.DSMGit
 {
 public partial class UsuarioCEN
 {
-public bool Iniciar_sesion (string email, String contrasenya)
-{
-        /*PROTECTED REGION ID(DSMGitGenNHibernate.CEN.DSMGit_Usuario_iniciar_sesion) ENABLED START*/
+        public bool Iniciar_sesion(string email, String contrasenya)
+        {
+            /*PROTECTED REGION ID(DSMGitGenNHibernate.CEN.DSMGit_Usuario_iniciar_sesion) ENABLED START*/
 
-        // Write here your custom code...
-        UsuarioEN usu = _IUsuarioCAD.ReadOID (email);
-        bool result = false;
+            // Write here your custom code...
+            bool result = false;
 
-        if (usu != null) {
-                if (Utils.Util.GetEncondeMD5 (contrasenya).Equals (usu.Contrasenya)) {
-                        result = true;
+            if (email != null && contrasenya != null) { 
+
+            UsuarioEN usu = _IUsuarioCAD.ReadOID(email);
+
+            if (usu != null) {
+                if (Utils.Util.GetEncondeMD5(contrasenya).Equals(usu.Contrasenya)) {
+                    result = true;
                 }
+            }
+            _IUsuarioCAD.Modify(usu);
         }
-        _IUsuarioCAD.Modify (usu);
         return result;
         //throw new NotImplementedException ("Method Iniciar_sesion() not yet implemented.");
 
