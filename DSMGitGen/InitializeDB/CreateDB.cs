@@ -617,58 +617,54 @@ public static void InitializeData ()
                         System.Console.WriteLine ("--Enviada: " + invi.Descripcion);
                 }
                 //comprobaciones Aceptar invitacion
-                System.Console.Write("\n");
-                System.Console.WriteLine("USUARIOS EN EL GRUPO 1 \n");
-                IList<UsuarioEN> usuarios_grupo1 = usuario.DameUsuarioPorGrupo("Grupo1");
+                System.Console.Write ("\n");
+                System.Console.WriteLine ("USUARIOS EN EL GRUPO 1 \n");
+                IList<UsuarioEN> usuarios_grupo1 = usuario.DameUsuarioPorGrupo ("Grupo1");
                 foreach (UsuarioEN u in usuarios_grupo1)
-                    System.Console.WriteLine("--Usuario: " + u.Email);
+                        System.Console.WriteLine ("--Usuario: " + u.Email);
 
-                System.Console.Write("\n");
-                System.Console.WriteLine("INVITACIONES DEL GRUPO 1 \n");
-                IList<InvitacionEN> invi1 = invitacion.DameInvitacionEnviadaPorGrupo("Grupo1");
+                System.Console.Write ("\n");
+                System.Console.WriteLine ("INVITACIONES DEL GRUPO 1 \n");
+                IList<InvitacionEN> invi1 = invitacion.DameInvitacionEnviadaPorGrupo ("Grupo1");
                 foreach (InvitacionEN i in invi1)
-                    System.Console.WriteLine("--Usuario: " + i.Descripcion);
+                        System.Console.WriteLine ("--Usuario: " + i.Descripcion);
 
 
-                System.Console.Write("\n");
-                System.Console.WriteLine("SE INVOCA A ACEPTAR INVITACIÓN DEL USUARIO 2 ");
-                invitacionCP.AceptarInvitacion(inviR2[0].Id, "ejemplo2@gmail.com");
+                System.Console.Write ("\n");
+                System.Console.WriteLine ("SE INVOCA A ACEPTAR INVITACIÓN DEL USUARIO 2 ");
+                invitacionCP.AceptarInvitacion (inviR2 [0].Id, "ejemplo2@gmail.com");
 
-                System.Console.WriteLine("INVITACIONES USUARIO 1 \n");
-                inviE1 = invitacion.DameInvitacionEnviadaPorEmail("ejemplo@gmail.com");
-                inviR1 = invitacion.DameInvitacionRecibidaPorEmail("ejemplo@gmail.com");
+                System.Console.WriteLine ("INVITACIONES USUARIO 1 \n");
+                inviE1 = invitacion.DameInvitacionEnviadaPorEmail ("ejemplo@gmail.com");
+                inviR1 = invitacion.DameInvitacionRecibidaPorEmail ("ejemplo@gmail.com");
 
-                foreach (InvitacionEN invi in inviR1)
-                {
-                    System.Console.WriteLine("--Recibida: " + invi.Descripcion);
+                foreach (InvitacionEN invi in inviR1) {
+                        System.Console.WriteLine ("--Recibida: " + invi.Descripcion);
                 }
-                foreach (InvitacionEN invi in inviE1)
-                {
-                    System.Console.WriteLine("--Enviada: " + invi.Descripcion);
+                foreach (InvitacionEN invi in inviE1) {
+                        System.Console.WriteLine ("--Enviada: " + invi.Descripcion);
                 }
-                System.Console.Write("\n");
-                System.Console.WriteLine("INVITACIONES USUARIO 2 \n");
-                inviE2 = invitacion.DameInvitacionEnviadaPorEmail("ejemplo2@gmail.com");
-                inviR2 = invitacion.DameInvitacionRecibidaPorEmail("ejemplo2@gmail.com");
-                foreach (InvitacionEN invi in inviR2)
-                {
-                    System.Console.WriteLine("--Recibida: " + invi.Descripcion);
+                System.Console.Write ("\n");
+                System.Console.WriteLine ("INVITACIONES USUARIO 2 \n");
+                inviE2 = invitacion.DameInvitacionEnviadaPorEmail ("ejemplo2@gmail.com");
+                inviR2 = invitacion.DameInvitacionRecibidaPorEmail ("ejemplo2@gmail.com");
+                foreach (InvitacionEN invi in inviR2) {
+                        System.Console.WriteLine ("--Recibida: " + invi.Descripcion);
                 }
-                foreach (InvitacionEN invi in inviE2)
-                {
-                    System.Console.WriteLine("--Enviada: " + invi.Descripcion);
+                foreach (InvitacionEN invi in inviE2) {
+                        System.Console.WriteLine ("--Enviada: " + invi.Descripcion);
                 }
-                System.Console.Write("\n");
-                System.Console.WriteLine("USUARIOS EN EL GRUPO 1 \n");
-                usuarios_grupo1 = usuario.DameUsuarioPorGrupo("Grupo1");
+                System.Console.Write ("\n");
+                System.Console.WriteLine ("USUARIOS EN EL GRUPO 1 \n");
+                usuarios_grupo1 = usuario.DameUsuarioPorGrupo ("Grupo1");
                 foreach (UsuarioEN u in usuarios_grupo1)
-                    System.Console.WriteLine("--Usuario: " + u.Email);
+                        System.Console.WriteLine ("--Usuario: " + u.Email);
 
-                System.Console.Write("\n");
-                System.Console.WriteLine("INVITACIONES DEL GRUPO 1 \n");
-                invi1 = invitacion.DameInvitacionEnviadaPorGrupo("Grupo1");
+                System.Console.Write ("\n");
+                System.Console.WriteLine ("INVITACIONES DEL GRUPO 1 \n");
+                invi1 = invitacion.DameInvitacionEnviadaPorGrupo ("Grupo1");
                 foreach (InvitacionEN i in invi1)
-                    System.Console.WriteLine("--Usuario: " + i.Descripcion);
+                        System.Console.WriteLine ("--Usuario: " + i.Descripcion);
 
 
                 //ValoracionMedia de un video. Tiene 2 valoraciones, 5 y 4.

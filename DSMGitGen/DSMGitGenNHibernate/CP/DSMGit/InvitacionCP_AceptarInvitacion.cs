@@ -53,11 +53,10 @@ public void AceptarInvitacion (int p_oid, string idInvitado)
                 invi = invitacionCEN.ReadOID (p_oid);
                 IList<UsuarioEN> usuarios = invi.Usuario_invitado;
 
-                if (usuarios.Count <= 0)
-                {
-                    invitacionCEN.QuitarGrupo(p_oid, invi.Grupo.Nombre);
-                    invitacionCEN.QuitarInvitador(p_oid, invi.Invitador.Email);
-                    invitacionCEN.Destroy(p_oid);
+                if (usuarios.Count <= 0) {
+                        invitacionCEN.QuitarGrupo (p_oid, invi.Grupo.Nombre);
+                        invitacionCEN.QuitarInvitador (p_oid, invi.Invitador.Email);
+                        invitacionCEN.Destroy (p_oid);
                 }
 
                 SessionCommit ();
