@@ -31,5 +31,9 @@ namespace WebApplication1.Models
         }
 
         public System.Data.Entity.DbSet<WebApplication1.Models.VideoModel> VideoModels { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication1.Models.GrupoModel> GrupoModels { get; set; }
+
+        public System.Data.Entity.DbSet<WebApplication1.Models.UsuarioModel> UsuarioModels { get; set; }
     }
 }

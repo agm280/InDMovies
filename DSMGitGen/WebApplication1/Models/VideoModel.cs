@@ -34,8 +34,6 @@ namespace WebApplication1.Models
             get; set;
         }
 
-
-
         public virtual string Usuario
         {
             get; set;
