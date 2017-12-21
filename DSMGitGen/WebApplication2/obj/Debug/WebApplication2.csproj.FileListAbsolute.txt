@@ -44,7 +44,6 @@ C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\System.Web.Razor.
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\System.Web.WebPages.xml
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\System.Web.WebPages.Razor.xml
-C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\Antlr3.Runtime.pdb
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\Newtonsoft.Json.xml
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\EntityFramework.xml
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\EntityFramework.SqlServer.xml
@@ -87,3 +86,17 @@ C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\es\Microsoft.Owin
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\obj\Debug\WebApplication2.csproj.CoreCompileInputs.cache
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\obj\Debug\WebApplication2.dll
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\obj\Debug\WebApplication2.pdb
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\hibernate.cfg.xml
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\Castle.DynamicProxy2.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\DSMGitGenNHibernate.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\Iesi.Collections.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\LinFu.DynamicProxy.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\log4net.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\NHibernate.ByteCode.Castle.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\NHibernate.ByteCode.LinFu.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\NHibernate.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\nunit.core.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\nunit.framework.dll
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\DSMGitGenNHibernate.pdb
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\bin\DSMGitGenNHibernate.dll.config
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\WebApplication2\obj\Debug\WebApplication2.csprojResolveAssemblyReference.cache

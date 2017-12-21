@@ -29,5 +29,7 @@ namespace WebApplication2.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<WebApplication1.Models.TemaModel> TemaModels { get; set; }
     }
 }
