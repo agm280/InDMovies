@@ -99,3 +99,4 @@ C:\Users\Alejandro\git\InDMovies\DSMGitGen\InDMoviesWeb\bin\es\Microsoft.Owin.Se
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\InDMoviesWeb\obj\Debug\InDMoviesWeb.csproj.CoreCompileInputs.cache
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\InDMoviesWeb\obj\Debug\InDMoviesWeb.dll
 C:\Users\Alejandro\git\InDMovies\DSMGitGen\InDMoviesWeb\obj\Debug\InDMoviesWeb.pdb
+C:\Users\Alejandro\git\InDMovies\DSMGitGen\InDMoviesWeb\obj\Debug\InDMoviesWeb.csprojResolveAssemblyReference.cache

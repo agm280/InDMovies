@@ -76,4 +76,3 @@ C:\Users\Enrique\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGen
 C:\Users\Enrique\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csproj.CoreCompileInputs.cache
 C:\Users\Enrique\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.dll
 C:\Users\Enrique\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.pdb
-C:\Users\Alejandro\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache
