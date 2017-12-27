@@ -222,6 +222,8 @@
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\RolListAssembler.cs" />
     <Compile Include="Controllers\TemaAssembler.cs" />
     <Compile Include="Controllers\TemaController.cs" />
     <Compile Include="Controllers\UsuarioAssembler.cs" />
@@ -232,7 +234,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CustomRegisterViewModel.cs" />
     <Compile Include="Models\GrupoModel.cs" />
+    <Compile Include="Models\RolModel.cs" />
     <Compile Include="Models\TemaModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -285,7 +289,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -303,6 +306,8 @@
     <Content Include="Views\Grupo\Index.cshtml" />
     <Content Include="Views\Grupo\Details.cshtml" />
     <Content Include="Views\Usuario\List.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Rol\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
