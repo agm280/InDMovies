@@ -220,6 +220,8 @@
     <Compile Include="Controllers\BasicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RespuestaAssembler.cs" />
+    <Compile Include="Controllers\RespuestaController.cs" />
     <Compile Include="Controllers\TemaAssembler.cs" />
     <Compile Include="Controllers\TemaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -229,6 +231,7 @@
     <Compile Include="Models\CustomRegisterViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RespuestaModel.cs" />
     <Compile Include="Models\TemaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -291,6 +294,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Tema\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Respuesta\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
