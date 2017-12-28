@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using InDMoviesWeb.Models;
+using System.Diagnostics;
+using DSMGitGenNHibernate.CEN.DSMGit;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -147,10 +149,21 @@ namespace InDMoviesWeb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(CustomRegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
+                //Hacemos el registro con nuestra base de datos
+                Debug.WriteLine(model.Fecha_Nacimiento);
+                if (model.Nombre == null)
+                    model.Nombre = "";
+                if (model.Apellidos == null)
+                    model.Apellidos = "";
+                if (model.Descripcion == null)
+                    model.Descripcion = "";
+                UsuarioCEN usuarioCEN = new UsuarioCEN();
+                usuarioCEN.New_(p_email: model.Email, p_nombre: model.Nombre, p_apellidos: model.Apellidos, p_nick: model.Nick, p_contrasenya: model.Password, p_fecha_nac: model.Fecha_Nacimiento, p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum)model.Rol, p_imagen: "", p_descripcion: model.Descripcion);
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

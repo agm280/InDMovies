@@ -105,6 +105,9 @@ public void ModifyDefault (VideoEN video)
 
                 videoEN.Fecha_subida = video.Fecha_subida;
 
+
+                videoEN.Miniatura = video.Miniatura;
+
                 session.Update (videoEN);
                 SessionCommit ();
         }
@@ -171,6 +174,9 @@ public void Modify (VideoEN video)
 
 
                 videoEN.Fecha_subida = video.Fecha_subida;
+
+
+                videoEN.Miniatura = video.Miniatura;
 
                 session.Update (videoEN);
                 SessionCommit ();

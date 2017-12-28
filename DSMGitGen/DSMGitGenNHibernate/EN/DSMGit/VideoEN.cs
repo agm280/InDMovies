@@ -61,6 +61,13 @@ private Nullable<DateTime> fecha_subida;
 
 
 
+/**
+ *	Atributo miniatura
+ */
+private string miniatura;
+
+
+
 
 
 
@@ -112,6 +119,12 @@ public virtual Nullable<DateTime> Fecha_subida {
 
 
 
+public virtual string Miniatura {
+        get { return miniatura; } set { miniatura = value;  }
+}
+
+
+
 
 
 public VideoEN()
@@ -122,20 +135,20 @@ public VideoEN()
 
 
 
-public VideoEN(int id, string titulo, string descripcion, System.Collections.Generic.IList<string> etiquetas, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> valoraciones, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> comentarios, Nullable<DateTime> fecha_subida
+public VideoEN(int id, string titulo, string descripcion, System.Collections.Generic.IList<string> etiquetas, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> valoraciones, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> comentarios, Nullable<DateTime> fecha_subida, string miniatura
                )
 {
-        this.init (Id, titulo, descripcion, etiquetas, usuario, valoraciones, comentarios, fecha_subida);
+        this.init (Id, titulo, descripcion, etiquetas, usuario, valoraciones, comentarios, fecha_subida, miniatura);
 }
 
 
 public VideoEN(VideoEN video)
 {
-        this.init (Id, video.Titulo, video.Descripcion, video.Etiquetas, video.Usuario, video.Valoraciones, video.Comentarios, video.Fecha_subida);
+        this.init (Id, video.Titulo, video.Descripcion, video.Etiquetas, video.Usuario, video.Valoraciones, video.Comentarios, video.Fecha_subida, video.Miniatura);
 }
 
 private void init (int id
-                   , string titulo, string descripcion, System.Collections.Generic.IList<string> etiquetas, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> valoraciones, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> comentarios, Nullable<DateTime> fecha_subida)
+                   , string titulo, string descripcion, System.Collections.Generic.IList<string> etiquetas, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> valoraciones, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> comentarios, Nullable<DateTime> fecha_subida, string miniatura)
 {
         this.Id = id;
 
@@ -153,6 +166,8 @@ private void init (int id
         this.Comentarios = comentarios;
 
         this.Fecha_subida = fecha_subida;
+
+        this.Miniatura = miniatura;
 }
 
 public override bool Equals (object obj)

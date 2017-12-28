@@ -514,5 +514,30 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN>
 
         return result;
 }
+public string Registrarse (UsuarioEN usuario)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+
+                session.Save (usuario);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in UsuarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return usuario.Email;
+}
 }
 }

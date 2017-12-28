@@ -52,5 +52,8 @@ System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUs
 
 
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.UsuarioEN> DameUsuarioPorGrupo (string p_nombre);
+
+
+string Registrarse (UsuarioEN usuario);
 }
 }

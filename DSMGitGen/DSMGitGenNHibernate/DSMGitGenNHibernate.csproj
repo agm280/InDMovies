@@ -128,6 +128,8 @@
 			
 			
 			
+			<Compile Include="CEN\DSMGit\UsuarioCEN_Registrarse.cs" />
+			
 	<Compile Include="EN\DSMGit\NotificacionEN.cs" />
 	<Compile Include="CEN\DSMGit\NotificacionCEN.cs" />
 	<Compile Include="CAD\DSMGit\INotificacionCAD.cs" />

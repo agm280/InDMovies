@@ -26,6 +26,9 @@
 					<property name="Fecha_subida" type="date"> 
 						<column name="fecha_subida"  not-null="true"/>
 					</property>
+					<property name="Miniatura" type="string"> 
+						<column name="miniatura"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -60,6 +63,8 @@
 					    </bag>
 					
 			
+			
+					
 					
 					
 					
