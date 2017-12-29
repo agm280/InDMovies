@@ -124,10 +124,7 @@ public static void InitializeData ()
                 int idtema3 = tema.New_ (p_descripcion: "Adios", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo@gmail.com", p_titulo: "Despedida");
 
                 RespuestaCEN respuesta = new RespuestaCEN ();
-                int res1 = respuesta.New_ (p_descripcion: "Buenas tardes", p_tema: idtema, p_usuario: "ejemplo2@gmail.com");
-                System.Console.WriteLine(res1);
-
-
+                respuesta.New_ (p_descripcion: "Buenas tardes", p_tema: idtema, p_usuario: "ejemplo2@gmail.com");
                 respuesta.New_ (p_descripcion: "Es imposible", p_tema: idtema2, p_usuario: "ejemplo@gmail.com");
                 respuesta.New_ (p_descripcion: "rt", p_tema: idtema2, p_usuario: "ejemplo2@gmail.com");
                 respuesta.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");

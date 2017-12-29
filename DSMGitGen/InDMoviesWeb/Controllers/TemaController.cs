@@ -25,7 +25,13 @@ namespace InDMoviesWeb.Controllers
         // GET: Tema/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            SessionInitialize();
+            TemaCAD temaCAD = new TemaCAD(session);
+            TemaEN temaEN = temaCAD.ReadOIDDefault(id);
+            TemaModel tema = TemaAssembler.ConvertENToModelUI(temaEN);
+            SessionClose();
+
+            return View(tema);
         }
 
         // GET: Tema/Create
