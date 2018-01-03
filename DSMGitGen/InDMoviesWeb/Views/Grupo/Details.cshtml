@@ -1,0 +1,64 @@
+﻿
+@model InDMoviesWeb.Models.GrupoModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>Details</h2>
+
+<div>
+    <h4>GrupoModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lider)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lider)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Completo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Completo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AceptaMiembros)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AceptaMiembros)
+        </dd>
+    </dl>
+</div>
+
+@Html.Action("DetailsGrupo","Usuario", new { id = Model.Nombre })
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Nombre }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
