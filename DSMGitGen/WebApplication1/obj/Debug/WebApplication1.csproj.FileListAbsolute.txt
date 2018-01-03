@@ -304,3 +304,7 @@ C:\Users\carlo\git\InDMovies\DSMGitGen\WebApplication1\obj\Debug\WebApplication1
 C:\Users\carlo\git\InDMovies\DSMGitGen\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
 C:\Users\carlo\git\InDMovies\DSMGitGen\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\carlo\git\InDMovies\DSMGitGen\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Users\Carlos\git\InDMovies\DSMGitGen\WebApplication1\obj\Debug\WebApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Carlos\git\InDMovies\DSMGitGen\WebApplication1\obj\Debug\WebApplication1.csproj.CoreCompileInputs.cache
+C:\Users\Carlos\git\InDMovies\DSMGitGen\WebApplication1\obj\Debug\WebApplication1.dll
+C:\Users\Carlos\git\InDMovies\DSMGitGen\WebApplication1\obj\Debug\WebApplication1.pdb

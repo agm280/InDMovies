@@ -222,6 +222,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RespuestaAssembler.cs" />
     <Compile Include="Controllers\RespuestaController.cs" />
+    <Compile Include="Controllers\SugerenciaAssembler.cs" />
+    <Compile Include="Controllers\SugerenciaController.cs" />
     <Compile Include="Controllers\TemaAssembler.cs" />
     <Compile Include="Controllers\TemaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -232,6 +234,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RespuestaModel.cs" />
+    <Compile Include="Models\SugerenciaModel.cs" />
     <Compile Include="Models\TemaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -296,6 +299,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Respuesta\Index.cshtml" />
     <Content Include="Views\Respuesta\Details.cshtml" />
+    <Content Include="Views\Sugerencia\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
