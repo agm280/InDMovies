@@ -14,13 +14,23 @@ namespace InDMoviesWeb.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-            return View();
+            SessionInitialize();
+            UsuarioCAD usuCAD = new UsuarioCAD(session);
+            IList<UsuarioEN> usuEN = usuCAD.ReadAllDefault(0, -1);
+            IList<UsuarioModel> usuM = UsuarioAssembler.crearListaUsus(usuEN);
+            SessionClose();
+            return View(usuM);
         }
 
         // GET: Usuario/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            SessionInitialize();
+            UsuarioCAD usuCAD = new UsuarioCAD(session);
+            UsuarioEN usuEN = usuCAD.ReadOIDDefault(id);
+            UsuarioModel usuM = UsuarioAssembler.crearUsu(usuEN);
+            SessionClose();
+            return View(usuM);
         }
         // GET: Usuario/Details/5
         public ActionResult DetailsGrupo(string id)
