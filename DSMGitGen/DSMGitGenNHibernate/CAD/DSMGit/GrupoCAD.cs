@@ -597,5 +597,43 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> D
 
         return result;
 }
+public string CrearGrupo (GrupoEN grupo)
+{
+        try
+        {
+                SessionInitializeTransaction ();
+                if (grupo.Miembros != null) {
+                        for (int i = 0; i < grupo.Miembros.Count; i++) {
+                                grupo.Miembros [i] = (DSMGitGenNHibernate.EN.DSMGit.UsuarioEN)session.Load (typeof(DSMGitGenNHibernate.EN.DSMGit.UsuarioEN), grupo.Miembros [i].Email);
+                                grupo.Miembros [i].Grupos.Add (grupo);
+                        }
+                }
+                if (grupo.Lider != null) {
+                        // Argumento OID y no colección.
+                        grupo.Lider = (DSMGitGenNHibernate.EN.DSMGit.UsuarioEN)session.Load (typeof(DSMGitGenNHibernate.EN.DSMGit.UsuarioEN), grupo.Lider.Email);
+
+                        grupo.Lider.Grupos_lidera
+                        .Add (grupo);
+                }
+
+                session.Save (grupo);
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in GrupoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return grupo.Nombre;
+}
 }
 }

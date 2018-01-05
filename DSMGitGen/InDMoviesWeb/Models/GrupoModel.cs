@@ -24,12 +24,11 @@ namespace InDMoviesWeb.Models
         }
 
 
-
+  
         public virtual string Descripcion
         {
             get; set;
         }
-
 
 
         public virtual string Lider
@@ -37,15 +36,14 @@ namespace InDMoviesWeb.Models
             get; set;
         }
 
-
-
+        [Required]
         public virtual bool Completo
         {
             get; set;
         }
 
-
-
+        [Required]
+        [Display(Name = "Acepta Miembros")]
         public virtual bool AceptaMiembros
         {
             get; set;

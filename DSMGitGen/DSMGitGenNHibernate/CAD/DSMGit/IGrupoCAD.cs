@@ -56,5 +56,9 @@ System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGrup
 
 
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposQueRechacenNuevos ();
+
+
+
+string CrearGrupo (GrupoEN grupo);
 }
 }

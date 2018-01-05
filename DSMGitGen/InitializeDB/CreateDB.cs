@@ -92,7 +92,7 @@ public static void InitializeData ()
                 usuario.New_ (p_email: "ejemplo@gmail.com", p_nombre: "Pepito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPeter", p_contrasenya: "1234", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 1, p_imagen: "imagen1.png", p_descripcion: "hola");
 
                 VideoCEN video = new VideoCEN ();
-                int idVideo1 = video.New_ (p_titulo: "Haz tu vida mas facil con GitHub", p_descripcion: "Amazing life Hacks", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2015, 1, 3),p_miniatura: "");
+                int idVideo1 = video.New_ (p_titulo: "Haz tu vida mas facil con GitHub", p_descripcion: "Amazing life Hacks", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2015, 1, 3), p_miniatura: "");
                 int idVideo2 = video.New_ (p_titulo: "Investigacion de MAC", p_descripcion: "Mi proyecto de MAC", p_usuario: "ejemplo@gmail.com", p_fecha_subida: new DateTime (2015, 1, 3), p_miniatura: "");
                 int idVideo3 = video.New_ (p_titulo: "Video de Investigacion", p_descripcion: "Me at the zoo", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2017, 1, 3), p_miniatura: "");
                 int idVideo4 = video.New_ (p_titulo: "Video Terror Halloween", p_descripcion: "you WONT BELIEVE this. MUST WATCH. Best thing in ur life", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2017, 2, 3), p_miniatura: "");
