@@ -14,14 +14,14 @@ namespace InDMoviesWeb.Models
         {
             get;set;
         }
-
+        [Required]
         public virtual string Titulo
         {
             get; set;
         }
 
 
-
+        [Required]
         public virtual string Descripcion
         {
             get; set;

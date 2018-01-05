@@ -2,6 +2,7 @@
 using DSMGitGenNHibernate.CEN.DSMGit;
 using DSMGitGenNHibernate.EN.DSMGit;
 using InDMoviesWeb.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace InDMoviesWeb.Controllers
             VideoCAD videoCAD = new VideoCAD(session);
             VideoEN videoEN = videoCAD.ReadOIDDefault(id);
             VideoModel videoModel = VideoAssembler.convertENToModelUI(videoEN);
+            SessionClose();
             return View(videoModel);
         }
 
@@ -48,7 +50,7 @@ namespace InDMoviesWeb.Controllers
             {
                 // TODO: Add insert logic here
                 VideoCEN video = new VideoCEN();
-                video.New_(p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_usuario: collection["Usuario"], p_fecha_subida: new DateTime(1992, 2, 4), p_miniatura: "");
+                video.New_(p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_usuario: User.Identity.GetUserName(), p_fecha_subida: new DateTime(1992, 2, 4), p_miniatura: "");
 
                 return RedirectToAction("Index");
             }
@@ -72,6 +74,8 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add update logic here
+                VideoCEN videoCEN = new VideoCEN();
+                videoCEN.Modify(id, collection["Titulo"], collection["Descripcion"], null, collection["Miniatura"]);
 
                 return RedirectToAction("Index");
             }
