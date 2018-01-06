@@ -59,7 +59,7 @@ namespace InDMoviesWeb.Controllers
             {
                 // TODO: Add insert logic here
                 VideoCEN video = new VideoCEN();
-                video.New_(p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_usuario: User.Identity.GetUserName(), p_fecha_subida: new DateTime(1992, 2, 4), p_miniatura: "");
+                video.New_(p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_usuario: User.Identity.GetUserName(), p_fecha_subida: DateTime.Today, p_miniatura: "");
 
                 return RedirectToAction("Index");
             }
@@ -72,6 +72,11 @@ namespace InDMoviesWeb.Controllers
         // GET: Video/Edit/5
         public ActionResult Edit(int id)
         {
+            VideoModel vid = null;
+            SessionInitialize();
+            VideoEN videoEN = new VideoCAD(session).ReadOIDDefault(id);
+            vid = VideoAssembler.convertENToModelUI(videoEN);
+            SessionClose();
 
             return View();
         }
@@ -82,10 +87,32 @@ namespace InDMoviesWeb.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-                VideoCEN videoCEN = new VideoCEN();
-                videoCEN.Modify(id, collection["Titulo"], collection["Descripcion"], null, collection["Miniatura"]);
+                
+                SessionInitialize();
+                VideoModel vid = null;
+                UsuarioModel usu = null;
+                VideoEN videoEN = new VideoCAD(session).ReadOIDDefault(id);
+                UsuarioEN usuarioEN = new UsuarioCAD(session).ReadOIDDefault(User.Identity.GetUserName());
+                vid = VideoAssembler.convertENToModelUI(videoEN);
+                usu = UsuarioAssembler.crearUsu(usuarioEN);
+                SessionClose();
 
+                VideoCEN videoCEN = new VideoCEN();
+
+                string tit = collection["Titulo"];
+                string desc = collection["Descripcion"];
+                string miniature = collection["Miniatura"];
+
+                if (tit == null) tit = vid.Titulo;
+                if (desc == null) desc = vid.Descripcion;
+                if (miniature == null) miniature = vid.Miniatura;
+
+                
+
+                if (vid.Usuario == usu.Nick)
+                {
+                    videoCEN.Modify(p_Video_OID: id, p_titulo: tit, p_descripcion: desc, p_fecha_subida: DateTime.Today, p_miniatura: "");
+                }
                 return RedirectToAction("Index");
             }
             catch
@@ -97,7 +124,25 @@ namespace InDMoviesWeb.Controllers
         // GET: Video/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                // TODO: Add delete logic here
+
+                SessionInitialize();
+                VideoCAD videoCAD = new VideoCAD(session);
+                VideoCEN videoCEN = new VideoCEN(videoCAD);
+                VideoEN videoEN = videoCEN.ReadOID(id);
+                VideoModel video = VideoAssembler.convertENToModelUI(videoEN);
+                SessionClose();
+
+                new VideoCEN().Destroy(id);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Video/Delete/5

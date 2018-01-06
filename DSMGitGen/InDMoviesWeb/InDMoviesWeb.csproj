@@ -218,6 +218,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasicController.cs" />
+    <Compile Include="Controllers\ComentarioAssembler.cs" />
+    <Compile Include="Controllers\ComentarioController.cs" />
     <Compile Include="Controllers\GrupoAssembler.cs" />
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -236,6 +238,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ComentarioModel.cs" />
     <Compile Include="Models\CustomRegisterViewModel.cs" />
     <Compile Include="Models\GrupoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -330,6 +333,8 @@
     <Content Include="Views\Respuesta\DetailsTema.cshtml" />
     <Content Include="Views\Respuesta\Create.cshtml" />
     <Content Include="Views\Respuesta\Edit.cshtml" />
+    <Content Include="Views\Comentario\Index.cshtml" />
+    <Content Include="Views\Comentario\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
