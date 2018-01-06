@@ -36,5 +36,8 @@ System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> Dame
 
 
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorNick (string p_nick);
+
+
+System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTemaTitulo (string p_titulo);
 }
 }

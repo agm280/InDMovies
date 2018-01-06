@@ -38,7 +38,7 @@ public IRespuestaCAD get_IRespuestaCAD ()
         return this._IRespuestaCAD;
 }
 
-public int New_ (string p_descripcion, int p_tema, string p_usuario)
+public int New_ (string p_descripcion, int p_tema, string p_usuario, Nullable<DateTime> p_fecha)
 {
         RespuestaEN respuestaEN = null;
         int oid;
@@ -63,13 +63,15 @@ public int New_ (string p_descripcion, int p_tema, string p_usuario)
                 respuestaEN.Usuario.Email = p_usuario;
         }
 
+        respuestaEN.Fecha = p_fecha;
+
         //Call to RespuestaCAD
 
         oid = _IRespuestaCAD.New_ (respuestaEN);
         return oid;
 }
 
-public void Modify (int p_Respuesta_OID, string p_descripcion)
+public void Modify (int p_Respuesta_OID, string p_descripcion, Nullable<DateTime> p_fecha)
 {
         RespuestaEN respuestaEN = null;
 
@@ -77,6 +79,7 @@ public void Modify (int p_Respuesta_OID, string p_descripcion)
         respuestaEN = new RespuestaEN ();
         respuestaEN.Id = p_Respuesta_OID;
         respuestaEN.Descripcion = p_descripcion;
+        respuestaEN.Fecha = p_fecha;
         //Call to RespuestaCAD
 
         _IRespuestaCAD.Modify (respuestaEN);
@@ -115,6 +118,10 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaE
 public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorNick (string p_nick)
 {
         return _IRespuestaCAD.DameRespuestaPorNick (p_nick);
+}
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTemaTitulo (string p_titulo)
+{
+        return _IRespuestaCAD.DameRespuestaPorTemaTitulo (p_titulo);
 }
 }
 }

@@ -87,6 +87,9 @@ public static void InitializeData ()
 
 
                 //CREACION DE OBJETOS CEN Y VARIOS OBJETOS DE LAS CLASES
+
+
+
                 UsuarioCEN usuario = new UsuarioCEN ();
                 usuario.New_ (p_email: "ejemplo2@gmail.com", p_nombre: "Juanito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPV", p_contrasenya: "4321", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 3, p_imagen: "imagen2.png", p_descripcion: "hola");
                 usuario.New_ (p_email: "ejemplo@gmail.com", p_nombre: "Pepito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPeter", p_contrasenya: "1234", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 1, p_imagen: "imagen1.png", p_descripcion: "hola");
@@ -119,15 +122,17 @@ public static void InitializeData ()
                 invitacion.New_ (p_descripcion: "Invitacion 3", p_grupo: "Grupo2", p_invitador: "ejemplo2@gmail.com");
 
                 TemaCEN tema = new TemaCEN ();
-                int idtema = tema.New_ (p_descripcion: "Hola, buenas tardes", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo2@gmail.com", p_titulo: "Pregunta personal");
-                int idtema2 = tema.New_ (p_descripcion: "Como sacar un 10?", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_usuario: "ejemplo2@gmail.com", p_titulo: "Desesperacion");
-                int idtema3 = tema.New_ (p_descripcion: "Adios", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo@gmail.com", p_titulo: "Despedida");
+                int idtema = tema.New_ (p_descripcion: "Hola, buenas tardes", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo2@gmail.com", p_titulo: "Pregunta personal", p_fecha: new DateTime(2015, 1, 3));
+                int idtema2 = tema.New_ (p_descripcion: "Como sacar un 10?", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_usuario: "ejemplo2@gmail.com", p_titulo: "Desesperacion", p_fecha: new DateTime(2017, 5, 1));
+                int idtema3 = tema.New_ (p_descripcion: "Adios", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo@gmail.com", p_titulo: "Despedida", p_fecha: new DateTime(2017, 12, 3));
+
+
 
                 RespuestaCEN respuesta = new RespuestaCEN ();
-                respuesta.New_ (p_descripcion: "Buenas tardes", p_tema: idtema, p_usuario: "ejemplo2@gmail.com");
-                respuesta.New_ (p_descripcion: "Es imposible", p_tema: idtema2, p_usuario: "ejemplo@gmail.com");
-                respuesta.New_ (p_descripcion: "rt", p_tema: idtema2, p_usuario: "ejemplo2@gmail.com");
-                respuesta.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com");
+                respuesta.New_ (p_descripcion: "Buenas tardes", p_tema: idtema, p_usuario: "ejemplo2@gmail.com",p_fecha: new DateTime(2017, 9, 9));
+                respuesta.New_ (p_descripcion: "Es imposible", p_tema: idtema2, p_usuario: "ejemplo@gmail.com", p_fecha: new DateTime(2017, 9, 9));
+                respuesta.New_ (p_descripcion: "rt", p_tema: idtema2, p_usuario: "ejemplo2@gmail.com", p_fecha: new DateTime(2017, 9, 9));
+                respuesta.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com", p_fecha: new DateTime(2017, 9, 9));
 
                 NotificacionCEN notificacion = new NotificacionCEN ();
                 notificacion.New_ (p_id: "1234", p_descripcion: "Tienes una nueva invitacion de grupo", p_usuario: "ejemplo@gmail.com");
@@ -314,6 +319,8 @@ public static void InitializeData ()
                 System.Console.WriteLine ("DAME TEMA POR TITULO - per");
                 foreach (TemaEN tem4 in temas4) {
                         System.Console.WriteLine (tem4.Titulo);
+                        System.Console.WriteLine(tem4.Fecha.ToString());
+
                 }
 
 

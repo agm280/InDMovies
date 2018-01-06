@@ -54,6 +54,13 @@ private System.Collections.Generic.IList<string> etiquetas;
 
 
 
+/**
+ *	Atributo fecha
+ */
+private Nullable<DateTime> fecha;
+
+
+
 
 
 
@@ -99,6 +106,12 @@ public virtual System.Collections.Generic.IList<string> Etiquetas {
 
 
 
+public virtual Nullable<DateTime> Fecha {
+        get { return fecha; } set { fecha = value;  }
+}
+
+
+
 
 
 public TemaEN()
@@ -108,20 +121,20 @@ public TemaEN()
 
 
 
-public TemaEN(int id, string descripcion, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> respuestas, DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum estado, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, string titulo, System.Collections.Generic.IList<string> etiquetas
+public TemaEN(int id, string descripcion, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> respuestas, DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum estado, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, string titulo, System.Collections.Generic.IList<string> etiquetas, Nullable<DateTime> fecha
               )
 {
-        this.init (Id, descripcion, respuestas, estado, usuario, titulo, etiquetas);
+        this.init (Id, descripcion, respuestas, estado, usuario, titulo, etiquetas, fecha);
 }
 
 
 public TemaEN(TemaEN tema)
 {
-        this.init (Id, tema.Descripcion, tema.Respuestas, tema.Estado, tema.Usuario, tema.Titulo, tema.Etiquetas);
+        this.init (Id, tema.Descripcion, tema.Respuestas, tema.Estado, tema.Usuario, tema.Titulo, tema.Etiquetas, tema.Fecha);
 }
 
 private void init (int id
-                   , string descripcion, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> respuestas, DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum estado, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, string titulo, System.Collections.Generic.IList<string> etiquetas)
+                   , string descripcion, System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> respuestas, DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum estado, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, string titulo, System.Collections.Generic.IList<string> etiquetas, Nullable<DateTime> fecha)
 {
         this.Id = id;
 
@@ -137,6 +150,8 @@ private void init (int id
         this.Titulo = titulo;
 
         this.Etiquetas = etiquetas;
+
+        this.Fecha = fecha;
 }
 
 public override bool Equals (object obj)

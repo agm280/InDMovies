@@ -19,13 +19,16 @@
 						<column name="estado"  not-null="true"/>
 					</property>
 					<property name="Titulo" type="string"> 
-						<column name="titulo"  not-null="true"/>
+						<column name="titulo"  unique="true" not-null="true"/>
 					</property>
 					<bag name="Etiquetas" table="etiquetas"> 
 						<key>
 						</key>
 						<element column="Etiquetas" type="string"/> 
     				</bag>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -49,6 +52,8 @@
 											 					
 			
 			
+			
+					
 					
 					
 					

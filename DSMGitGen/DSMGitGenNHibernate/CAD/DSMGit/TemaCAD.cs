@@ -104,6 +104,9 @@ public void ModifyDefault (TemaEN tema)
 
                 temaEN.Etiquetas = tema.Etiquetas;
 
+
+                temaEN.Fecha = tema.Fecha;
+
                 session.Update (temaEN);
                 SessionCommit ();
         }
@@ -170,6 +173,9 @@ public void Modify (TemaEN tema)
 
 
                 temaEN.Titulo = tema.Titulo;
+
+
+                temaEN.Fecha = tema.Fecha;
 
                 session.Update (temaEN);
                 SessionCommit ();

@@ -33,6 +33,13 @@ private DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario;
 
 
 
+/**
+ *	Atributo fecha
+ */
+private Nullable<DateTime> fecha;
+
+
+
 
 
 
@@ -60,6 +67,12 @@ public virtual DSMGitGenNHibernate.EN.DSMGit.UsuarioEN Usuario {
 
 
 
+public virtual Nullable<DateTime> Fecha {
+        get { return fecha; } set { fecha = value;  }
+}
+
+
+
 
 
 public RespuestaEN()
@@ -68,20 +81,20 @@ public RespuestaEN()
 
 
 
-public RespuestaEN(int id, string descripcion, DSMGitGenNHibernate.EN.DSMGit.TemaEN tema, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario
+public RespuestaEN(int id, string descripcion, DSMGitGenNHibernate.EN.DSMGit.TemaEN tema, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, Nullable<DateTime> fecha
                    )
 {
-        this.init (Id, descripcion, tema, usuario);
+        this.init (Id, descripcion, tema, usuario, fecha);
 }
 
 
 public RespuestaEN(RespuestaEN respuesta)
 {
-        this.init (Id, respuesta.Descripcion, respuesta.Tema, respuesta.Usuario);
+        this.init (Id, respuesta.Descripcion, respuesta.Tema, respuesta.Usuario, respuesta.Fecha);
 }
 
 private void init (int id
-                   , string descripcion, DSMGitGenNHibernate.EN.DSMGit.TemaEN tema, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario)
+                   , string descripcion, DSMGitGenNHibernate.EN.DSMGit.TemaEN tema, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario, Nullable<DateTime> fecha)
 {
         this.Id = id;
 
@@ -91,6 +104,8 @@ private void init (int id
         this.Tema = tema;
 
         this.Usuario = usuario;
+
+        this.Fecha = fecha;
 }
 
 public override bool Equals (object obj)

@@ -95,6 +95,9 @@ public void ModifyDefault (RespuestaEN respuesta)
 
 
 
+
+                respuestaEN.Fecha = respuesta.Fecha;
+
                 session.Update (respuestaEN);
                 SessionCommit ();
         }
@@ -162,6 +165,9 @@ public void Modify (RespuestaEN respuesta)
                 RespuestaEN respuestaEN = (RespuestaEN)session.Load (typeof(RespuestaEN), respuesta.Id);
 
                 respuestaEN.Descripcion = respuesta.Descripcion;
+
+
+                respuestaEN.Fecha = respuesta.Fecha;
 
                 session.Update (respuestaEN);
                 SessionCommit ();
@@ -335,6 +341,36 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaE
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("RespuestaENdameRespuestaPorNickHQL");
                 query.SetParameter ("p_nick", p_nick);
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in RespuestaCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> DameRespuestaPorTemaTitulo (string p_titulo)
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM RespuestaEN self where FROM RespuestaEN as res WHERE res.Tema.Titulo=:p_titulo";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("RespuestaENdameRespuestaPorTemaTituloHQL");
+                query.SetParameter ("p_titulo", p_titulo);
 
                 result = query.List<DSMGitGenNHibernate.EN.DSMGit.RespuestaEN>();
                 SessionCommit ();

@@ -53,7 +53,9 @@ namespace InDMoviesWeb.Controllers
             {
                 // TODO: Add insert logic here
                 TemaCEN tema = new TemaCEN();
-                tema.New_(p_usuario: User.Identity.GetUserName(),p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"],p_estado:DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto);
+                DateTime fech = new DateTime();
+                fech = System.DateTime.Today;
+                tema.New_(p_usuario: User.Identity.GetUserName(),p_titulo: System.DateTime.Today.ToString(), p_descripcion: collection["Descripcion"],p_estado:DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
 
                 return RedirectToAction("Index");
             }
@@ -101,7 +103,7 @@ namespace InDMoviesWeb.Controllers
                 }
 
 
-                cen.Modify(p_Tema_OID: id,p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"],p_estado: estado);
+                cen.Modify(p_Tema_OID: id,p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"],p_estado: estado, p_fecha: System.DateTime.Today);
                 return RedirectToAction("Index");
             }
             catch

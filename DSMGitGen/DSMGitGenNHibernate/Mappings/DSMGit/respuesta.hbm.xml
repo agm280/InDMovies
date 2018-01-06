@@ -15,6 +15,9 @@
 					<property name="Descripcion" type="string"> 
 						<column name="descripcion"  not-null="true"/>
 					</property>
+					<property name="Fecha" type="date"> 
+						<column name="fecha"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -30,6 +33,8 @@
 								<column name="FK_email_idUsuario"/> 
 						</many-to-one>
 											 					
+			
+					
 					
 					
 					
@@ -41,5 +46,6 @@
 		  <query name="RespuestaENdameRespuestaPorTemaHQL"><![CDATA[FROM RespuestaEN as res WHERE res.Tema.Id=:p_id]]></query>
 		  <query name="RespuestaENdameRespuestaPorEmailHQL"><![CDATA[FROM RespuestaEN as res WHERE res.Usuario.Email=:p_email]]></query>
 		  <query name="RespuestaENdameRespuestaPorNickHQL"><![CDATA[FROM RespuestaEN as res WHERE res.Usuario.Nick LIKE ('%'+:p_nick+'%')]]></query>
+		  <query name="RespuestaENdameRespuestaPorTemaTituloHQL"><![CDATA[FROM RespuestaEN as res WHERE res.Tema.Titulo=:p_titulo]]></query>
 		</hibernate-mapping>
 	

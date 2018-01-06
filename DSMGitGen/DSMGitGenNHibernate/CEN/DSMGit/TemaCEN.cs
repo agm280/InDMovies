@@ -38,7 +38,7 @@ public ITemaCAD get_ITemaCAD ()
         return this._ITemaCAD;
 }
 
-public int New_ (string p_descripcion, DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum p_estado, string p_usuario, string p_titulo)
+public int New_ (string p_descripcion, DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum p_estado, string p_usuario, string p_titulo, Nullable<DateTime> p_fecha)
 {
         TemaEN temaEN = null;
         int oid;
@@ -59,13 +59,15 @@ public int New_ (string p_descripcion, DSMGitGenNHibernate.Enumerated.DSMGit.Est
 
         temaEN.Titulo = p_titulo;
 
+        temaEN.Fecha = p_fecha;
+
         //Call to TemaCAD
 
         oid = _ITemaCAD.New_ (temaEN);
         return oid;
 }
 
-public void Modify (int p_Tema_OID, string p_descripcion, DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum p_estado, string p_titulo)
+public void Modify (int p_Tema_OID, string p_descripcion, DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum p_estado, string p_titulo, Nullable<DateTime> p_fecha)
 {
         TemaEN temaEN = null;
 
@@ -75,6 +77,7 @@ public void Modify (int p_Tema_OID, string p_descripcion, DSMGitGenNHibernate.En
         temaEN.Descripcion = p_descripcion;
         temaEN.Estado = p_estado;
         temaEN.Titulo = p_titulo;
+        temaEN.Fecha = p_fecha;
         //Call to TemaCAD
 
         _ITemaCAD.Modify (temaEN);

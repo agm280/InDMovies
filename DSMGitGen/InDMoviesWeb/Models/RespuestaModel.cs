@@ -34,5 +34,10 @@ namespace InDMoviesWeb.Models
         {
             get; set;
         }
+
+        public virtual DateTime fecha
+        {
+            get; set;
+        }
     }
 }
