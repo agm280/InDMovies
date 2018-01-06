@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using InDMoviesWeb.Models;
+using DSMGitGenNHibernate.CEN.DSMGit;
+using Microsoft.AspNet.Identity;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -34,8 +36,17 @@ namespace InDMoviesWeb.Controllers
             return View(respuestaModel);
         }
 
+        public ActionResult DetailsTema(int id)
+        {
+            SessionInitialize();
+            RespuestaCAD resCAD = new RespuestaCAD(session);
+            IList<RespuestaEN> resEN = resCAD.DameRespuestaPorTema(id);
+            IEnumerable<RespuestaModel> respuestas = RespuestaAssembler.ConvertListENToModel(resEN).ToList();
+            return PartialView(respuestas);
+        }
+
         // GET: Respuesta/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
 
             return View();
@@ -43,11 +54,17 @@ namespace InDMoviesWeb.Controllers
 
         // POST: Respuesta/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, int id)
         {
             try
             {
                 // TODO: Add insert logic here
+                RespuestaCEN res = new RespuestaCEN();
+                DateTime fech = new DateTime();
+                fech = System.DateTime.Now;
+
+                res.New_(p_tema: id ,p_usuario: User.Identity.GetUserName(), p_descripcion: collection["Descripcion"],p_fecha: fech);
+
 
                 return RedirectToAction("Index");
             }

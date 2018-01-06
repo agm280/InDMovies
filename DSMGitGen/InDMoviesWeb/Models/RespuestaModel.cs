@@ -35,7 +35,7 @@ namespace InDMoviesWeb.Models
             get; set;
         }
 
-        public virtual DateTime fecha
+        public virtual DateTime Fecha
         {
             get; set;
         }

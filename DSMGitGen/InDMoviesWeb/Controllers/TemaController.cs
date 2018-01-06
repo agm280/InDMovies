@@ -27,7 +27,12 @@ namespace InDMoviesWeb.Controllers
         // GET: Tema/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            SessionInitialize();
+            TemaCAD temaCAD = new TemaCAD(session);
+            TemaEN temaEN = temaCAD.ReadOIDDefault(id);
+            TemaModel temaModel = TemaAssembler.ConvertENToModelUI(temaEN);
+            SessionClose();
+            return View(temaModel);
         }
 
         public ActionResult DetailsUsuario(string id)
@@ -54,8 +59,8 @@ namespace InDMoviesWeb.Controllers
                 // TODO: Add insert logic here
                 TemaCEN tema = new TemaCEN();
                 DateTime fech = new DateTime();
-                fech = System.DateTime.Today;
-                tema.New_(p_usuario: User.Identity.GetUserName(),p_titulo: System.DateTime.Today.ToString(), p_descripcion: collection["Descripcion"],p_estado:DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
+                fech = System.DateTime.Now;
+                tema.New_(p_usuario: User.Identity.GetUserName(), p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
 
                 return RedirectToAction("Index");
             }
@@ -75,7 +80,7 @@ namespace InDMoviesWeb.Controllers
             SessionClose();
 
 
-            return View();
+            return View(tem);
         }
 
         // POST: Tema/Edit/5
