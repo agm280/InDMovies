@@ -15,7 +15,7 @@ namespace InDMoviesWeb.Models
         }
 
 
-
+        [Required]
         public virtual string Descripcion
         {
             get; set;
@@ -23,14 +23,14 @@ namespace InDMoviesWeb.Models
 
 
 
-        public virtual String Tema
+        public virtual string Tema
         {
             get; set;
         }
 
 
 
-        public virtual String Usuario
+        public virtual string Usuario
         {
             get; set;
         }

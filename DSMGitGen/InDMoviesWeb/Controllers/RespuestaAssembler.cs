@@ -20,6 +20,7 @@ namespace InDMoviesWeb.Controllers
             r.Descripcion = respuestaEN.Descripcion;
             r.Tema = respuestaEN.Tema.Titulo;
             r.Usuario = respuestaEN.Usuario.Nick;
+            r.Fecha = respuestaEN.Fecha.Value;
 
             return r;
         }

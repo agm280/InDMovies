@@ -18,6 +18,7 @@ namespace InDMoviesWeb.Controllers
             tema.Descripcion = en.Descripcion;
             tema.Estado = en.Estado.ToString();
             tema.Usuario = en.Usuario.Nick;
+            tema.Fecha = en.Fecha.Value;
 
             return tema;
         }

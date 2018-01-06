@@ -329,6 +329,7 @@
     <Content Include="Views\Tema\Details.cshtml" />
     <Content Include="Views\Respuesta\DetailsTema.cshtml" />
     <Content Include="Views\Respuesta\Create.cshtml" />
+    <Content Include="Views\Respuesta\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

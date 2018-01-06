@@ -65,7 +65,12 @@ namespace InDMoviesWeb.Controllers
 
                 res.New_(p_tema: id ,p_usuario: User.Identity.GetUserName(), p_descripcion: collection["Descripcion"],p_fecha: fech);
 
-
+                return RedirectToRoute(new
+                {
+                    controller = "Tema",
+                    action = "Details",
+                    id = id,
+                });
                 return RedirectToAction("Index");
             }
             catch
@@ -77,7 +82,14 @@ namespace InDMoviesWeb.Controllers
         // GET: Respuesta/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            RespuestaModel res = null;
+            SessionInitialize();
+            RespuestaEN respuestaEN = new RespuestaCAD(session).ReadOIDDefault(id);
+            res = RespuestaAssembler.ConvertENToModelUI(respuestaEN);
+            SessionClose();
+
+
+            return View(res);
         }
 
         // POST: Respuesta/Edit/5
@@ -87,8 +99,30 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add update logic here
+                RespuestaCEN cen = new RespuestaCEN();
 
+                SessionInitialize();
+                RespuestaModel res = null;
+                RespuestaEN resEN = new RespuestaCAD(session).ReadOIDDefault(id);
+                res = RespuestaAssembler.ConvertENToModelUI(resEN);
+
+
+                TemaModel tem = new TemaModel();
+                TemaEN temEN = new TemaCAD(session).ReadOIDDefault(Int32.Parse(res.Tema));
+                tem = TemaAssembler.ConvertENToModelUI(temEN);
+
+                SessionClose();
+
+
+                cen.Modify(p_Respuesta_OID: res.Id,p_descripcion: collection["Descripcion"],p_fecha: res.Fecha);
                 return RedirectToAction("Index");
+
+                return RedirectToRoute(new
+                {
+                    controller = "Tema",
+                    action = "Details",
+                    id = tem.Id,
+                });
             }
             catch
             {
@@ -99,7 +133,27 @@ namespace InDMoviesWeb.Controllers
         // GET: Respuesta/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                // TODO: Add delete logic here
+
+                SessionInitialize();
+                RespuestaCAD respuestaCAD = new RespuestaCAD(session);
+                RespuestaCEN respuestaCEN = new RespuestaCEN(respuestaCAD);
+                RespuestaEN respuestaEN = respuestaCEN.ReadOID(id);
+                RespuestaModel respuesta = RespuestaAssembler.ConvertENToModelUI(respuestaEN);
+                SessionClose();
+
+                new RespuestaCEN().Destroy(id);
+
+            
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Respuesta/Delete/5
