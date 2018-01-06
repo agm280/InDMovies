@@ -109,4 +109,17 @@ namespace InDMoviesWeb.Models
         [Display(Name = "Correo electrónico")]
         public string Email { get; set; }
     }
+
+    public class Prueba
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Correo electrónico")]
+        public string Email { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
+        public string Password { get; set; }
+    }
 }

@@ -35,6 +35,15 @@ namespace InDMoviesWeb.Controllers
             return View(videoModel);
         }
 
+        public ActionResult DetailsUsuario(string id)
+        {
+            SessionInitialize();
+            VideoCAD videoCAD = new VideoCAD(session);
+            IList<VideoEN> videoEN = videoCAD.DameVideoPorEmail(id);
+            IEnumerable<VideoModel> videos = VideoAssembler.convertListENToModel(videoEN).ToList();
+            return PartialView(videos);
+        }
+
         // GET: Video/Create
         public ActionResult Create()
         {

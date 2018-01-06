@@ -19,40 +19,11 @@ namespace InDMoviesWeb.Controllers
             usu.Email = usuEN.Email;
             usu.Nombre = usuEN.Nombre;
             usu.Apellidos = usuEN.Apellidos;
-            try
-            {
-                string parsedDate = usuEN.Fecha_nac.ToString();
-                string[] fecha = parsedDate.Split(' ');
-                usu.Fecha_nac = fecha[0];
-
-            }
-            catch
-            {
-                usu.Fecha_nac = "NO hay fecha";
-            }
+            usu.Fecha_Nacimiento = usuEN.Fecha_nac??DateTime.Today;
             usu.Descripcion = usuEN.Descripcion;
             usu.Imagen = usuEN.Imagen;
-            switch (usuEN.Rol)
-            {
-                case (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum)1:
-                    usu.Rol = "Director";
-                    break;
-                case (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum)2:
-                    usu.Rol = "Camara";
-                    break;
-                case (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum)3:
-                    usu.Rol = "Guionista";
-                    break;
-                case (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum)4:
-                    usu.Rol = "Actor";
-                    break;
-                case (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum)5:
-                    usu.Rol = "Editor";
-                    break;
-                default:
-                    usu.Rol = "Ninguno";
-                    break;
-            }
+            usu.Rol = usuEN.Rol;
+            usu.Contrasenya = usuEN.Contrasenya;
             return usu;
         }
 

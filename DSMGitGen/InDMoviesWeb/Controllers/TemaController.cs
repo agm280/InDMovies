@@ -30,6 +30,15 @@ namespace InDMoviesWeb.Controllers
             return View();
         }
 
+        public ActionResult DetailsUsuario(string id)
+        {
+            SessionInitialize();
+            TemaCAD temCAD = new TemaCAD(session);
+            IList<TemaEN> temasEN = temCAD.DameTemaPorEmail(id);
+            IEnumerable<TemaModel> temas = new TemaAssembler().ConvertListENToModel(temasEN).ToList();
+            return PartialView(temas);
+        }
+
         // GET: Tema/Create
         public ActionResult Create()
         {

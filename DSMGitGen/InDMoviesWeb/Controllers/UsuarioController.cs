@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using InDMoviesWeb.Models;
+using DSMGitGenNHibernate.CEN.DSMGit;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -65,19 +66,32 @@ namespace InDMoviesWeb.Controllers
         }
 
         // GET: Usuario/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            UsuarioModel usu = null;
+            SessionInitialize();
+            UsuarioEN usuEN = new UsuarioCAD(session).ReadOIDDefault(id);
+            usu = UsuarioAssembler.crearUsu(usuEN);
+            SessionClose();
+            return View(usu);
         }
 
         // POST: Usuario/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, UsuarioModel usu)
         {
             try
             {
                 // TODO: Add update logic here
-
+                UsuarioCEN cen = new UsuarioCEN();
+                SessionInitialize();
+                UsuarioModel usuM = null;
+                UsuarioEN usuEN = new UsuarioCAD(session).ReadOIDDefault(id);
+                usuM = UsuarioAssembler.crearUsu(usuEN);
+                string contraseña = usuEN.Contrasenya;
+                SessionClose();
+                
+                cen.Modify(p_Usuario_OID:id,p_nombre:usu.Nombre,p_apellidos:usu.Apellidos,p_nick:usu.Nick,p_contrasenya:contraseña,p_fecha_nac:usu.Fecha_Nacimiento, p_rol: usu.Rol,p_imagen:usu.Imagen,p_descripcion:usu.Descripcion);
                 return RedirectToAction("Index");
             }
             catch
@@ -87,9 +101,27 @@ namespace InDMoviesWeb.Controllers
         }
 
         // GET: Usuario/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            try
+            {
+                // TODO: Add delete logic here
+
+                SessionInitialize();
+                UsuarioCAD usuCAD = new UsuarioCAD(session);
+                UsuarioCEN usuCEN = new UsuarioCEN(usuCAD);
+                UsuarioEN usuEN = usuCEN.ReadOID(id);
+                UsuarioModel tema = UsuarioAssembler.crearUsu(usuEN);
+                SessionClose();
+
+                new UsuarioCEN().Destroy(id);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Usuario/Delete/5

@@ -36,11 +36,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Fecha_nac)
+            @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Fecha_nac)
+            @Html.DisplayFor(model => model.Fecha_Nacimiento)
         </dd>
 
         <dt>
@@ -69,6 +69,14 @@
 
     </dl>
 </div>
+<h4>Temas</h4>
+@Html.Action("DetailsUsuario", "Tema", new { id = Model.Email })
+
+<h4>Grupos</h4>
+@Html.Action("DetailsUsuario", "Grupo", new { id = Model.Email })
+
+<h4>Videos</h4>
+@Html.Action("DetailsUsuario", "Video", new { id = Model.Email })
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Email+'/' }) |
     @Html.ActionLink("Back to List", "Index")

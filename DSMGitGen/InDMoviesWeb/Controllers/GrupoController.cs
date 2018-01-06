@@ -33,6 +33,15 @@ namespace InDMoviesWeb.Controllers
             return View(g);
         }
 
+        public ActionResult DetailsUsuario(string id)
+        {
+            SessionInitialize();
+            GrupoCAD grupoCAD = new GrupoCAD(session);
+            IList<GrupoEN> grupo = grupoCAD.DameGruposLideradosPorEmail(id);
+            IEnumerable<GrupoModel> grupos = GrupoAssembler.convertListToModelUI(grupo).ToList();
+            return PartialView(grupos);
+        }
+
         // GET: Grupo/Create
         public ActionResult Create()
         {
