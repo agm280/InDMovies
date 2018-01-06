@@ -60,8 +60,13 @@ namespace InDMoviesWeb.Controllers
                 TemaCEN tema = new TemaCEN();
                 DateTime fech = new DateTime();
                 fech = System.DateTime.Now;
-                tema.New_(p_usuario: User.Identity.GetUserName(), p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
-
+                int idtem = tema.New_(p_usuario: User.Identity.GetUserName(), p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
+                return RedirectToRoute(new
+                {
+                    controller = "Tema",
+                    action = "Details",
+                    id = idtem,
+                });
                 return RedirectToAction("Index");
             }
             catch
@@ -109,6 +114,14 @@ namespace InDMoviesWeb.Controllers
 
 
                 cen.Modify(p_Tema_OID: id,p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"],p_estado: estado, p_fecha: System.DateTime.Today);
+
+                return RedirectToRoute(new
+                {
+                    controller = "Tema",
+                    action = "Details",
+                    id = id,
+                });
+
                 return RedirectToAction("Index");
             }
             catch

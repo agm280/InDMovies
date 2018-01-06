@@ -108,14 +108,13 @@ namespace InDMoviesWeb.Controllers
 
 
                 TemaModel tem = new TemaModel();
-                TemaEN temEN = new TemaCAD(session).ReadOIDDefault(Int32.Parse(res.Tema));
+                TemaEN temEN = new TemaCAD(session).ReadOIDDefault(resEN.Tema.Id);
                 tem = TemaAssembler.ConvertENToModelUI(temEN);
 
                 SessionClose();
 
 
                 cen.Modify(p_Respuesta_OID: res.Id,p_descripcion: collection["Descripcion"],p_fecha: res.Fecha);
-                return RedirectToAction("Index");
 
                 return RedirectToRoute(new
                 {
@@ -123,6 +122,8 @@ namespace InDMoviesWeb.Controllers
                     action = "Details",
                     id = tem.Id,
                 });
+                return RedirectToAction("Index");
+
             }
             catch
             {
@@ -142,13 +143,23 @@ namespace InDMoviesWeb.Controllers
                 RespuestaCEN respuestaCEN = new RespuestaCEN(respuestaCAD);
                 RespuestaEN respuestaEN = respuestaCEN.ReadOID(id);
                 RespuestaModel respuesta = RespuestaAssembler.ConvertENToModelUI(respuestaEN);
+
+                TemaModel tem = new TemaModel();
+                TemaEN temEN = new TemaCAD(session).ReadOIDDefault(respuestaEN.Tema.Id);
+                tem = TemaAssembler.ConvertENToModelUI(temEN);
+                
                 SessionClose();
 
                 new RespuestaCEN().Destroy(id);
 
-            
 
-                return RedirectToAction("Index");
+
+                return RedirectToRoute(new
+                {
+                    controller = "Tema",
+                    action = "Details",
+                    id = tem.Id,
+                });
             }
             catch
             {
@@ -163,7 +174,24 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add delete logic here
+                SessionInitialize();
+                RespuestaModel res = null;
+                RespuestaEN resEN = new RespuestaCAD(session).ReadOIDDefault(id);
+                res = RespuestaAssembler.ConvertENToModelUI(resEN);
 
+
+                TemaModel tem = new TemaModel();
+                TemaEN temEN = new TemaCAD(session).ReadOIDDefault(resEN.Tema.Id);
+                tem = TemaAssembler.ConvertENToModelUI(temEN);
+
+                SessionClose();
+
+                return RedirectToRoute(new
+                {
+                    controller = "Tema",
+                    action = "Details",
+                    id = tem.Id,
+                });
                 return RedirectToAction("Index");
             }
             catch
