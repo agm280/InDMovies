@@ -29,5 +29,7 @@ namespace InDMoviesWeb.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<InDMoviesWeb.Models.NotificacionModel> NotificacionModels { get; set; }
     }
 }
