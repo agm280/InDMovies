@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.Fecha_subida)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Miniatura)
+            <img height="100" width="100" src="@Html.DisplayFor(modelItem => item.Miniatura)" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

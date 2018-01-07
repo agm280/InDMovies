@@ -29,6 +29,9 @@
 					<property name="Miniatura" type="string"> 
 						<column name="miniatura"  not-null="true"/>
 					</property>
+					<property name="Url" type="string"> 
+						<column name="url"  not-null="true"/>
+					</property>
 			
 			
 			
@@ -64,6 +67,8 @@
 					
 			
 			
+			
+					
 					
 					
 					

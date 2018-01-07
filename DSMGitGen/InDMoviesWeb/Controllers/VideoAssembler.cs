@@ -16,8 +16,9 @@ namespace InDMoviesWeb.Controllers
             v.Titulo = videoEN.Titulo;
             v.Id = videoEN.Id;
             v.Descripcion = videoEN.Descripcion;
-            v.Etiquetas = videoEN.Etiquetas;
+            //v.Etiquetas = videoEN.Etiquetas;
             v.Usuario = videoEN.Usuario.Nick;
+            
 
             try
             {
@@ -28,6 +29,9 @@ namespace InDMoviesWeb.Controllers
             catch {
                 v.Fecha_subida = "No hay fecha";
             }
+
+            v.Miniatura = videoEN.Miniatura;
+            v.Url = videoEN.Url;
 
             return v;
 

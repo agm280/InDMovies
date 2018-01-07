@@ -30,6 +30,15 @@ namespace InDMoviesWeb.Controllers
             return View();
         }
 
+        public ActionResult DetailsVideo(int id)
+        {
+            SessionInitialize();
+            ComentarioCAD comentCAD = new ComentarioCAD(session);
+            IList<ComentarioEN> comentEN = comentCAD.DameComentarioPorVideoID(id);
+            IEnumerable<ComentarioModel> comentarios = ComentarioAssembler.convertListENToModel(comentEN).ToList();
+            return PartialView(comentarios);
+        }
+
         // GET: Comentario/Create
         public ActionResult Create()
         {
@@ -38,14 +47,22 @@ namespace InDMoviesWeb.Controllers
 
         // POST: Comentario/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, int id)
         {
             try
             {
                 // TODO: Add insert logic here
                 ComentarioCEN comentarioCEN = new ComentarioCEN();
-                comentarioCEN.New_(p_texto: collection["Texto"], p_usuario: User.Identity.GetUserName(), p_video: 0);
+                comentarioCEN.New_(p_texto: collection["Texto"], p_usuario: User.Identity.GetUserName(), p_video: id);
 
+
+                return RedirectToRoute(new
+                {
+                    controller = "Video",
+                    action = "Details",
+                    id = id,
+                });
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -57,6 +74,11 @@ namespace InDMoviesWeb.Controllers
         // GET: Comentario/Edit/5
         public ActionResult Edit(int id)
         {
+            ComentarioModel coment = null;
+            SessionInitialize();
+            ComentarioEN comentarioEN = new ComentarioCAD(session).ReadOIDDefault(id);
+            coment = ComentarioAssembler.convertENToModelUI(comentarioEN);
+            SessionClose();
             return View();
         }
 
@@ -67,8 +89,33 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add update logic here
+                ComentarioCEN cen = new ComentarioCEN();
 
-                return RedirectToAction("Index");
+                SessionInitialize();
+                ComentarioModel com = null;
+                ComentarioEN comEN = new ComentarioCAD(session).ReadOIDDefault(id);
+                com = ComentarioAssembler.convertENToModelUI(comEN);
+
+
+                VideoModel vid = new VideoModel();
+                VideoEN vidEN = new VideoCAD(session).ReadOIDDefault(comEN.Video.Id);
+                vid = VideoAssembler.convertENToModelUI(vidEN);
+
+                SessionClose();
+
+
+                cen.Modify(p_Comentario_OID: com.Id, p_texto: collection["Texto"]);
+
+                if (true) {
+                    return RedirectToRoute(new
+                    {
+                        controller = "Video",
+                        action = "Details",
+                        id = vid.Id,
+                    });
+                    
+                }else
+                    return View();
             }
             catch
             {
@@ -79,7 +126,38 @@ namespace InDMoviesWeb.Controllers
         // GET: Comentario/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                // TODO: Add delete logic here
+
+                SessionInitialize();
+                ComentarioCAD comentarioCAD = new ComentarioCAD(session);
+                ComentarioCEN comentarioCEN = new ComentarioCEN(comentarioCAD);
+                ComentarioEN comentarioEN = comentarioCEN.ReadOID(id);
+                ComentarioModel comentario = ComentarioAssembler.convertENToModelUI(comentarioEN);
+
+                VideoModel vid = new VideoModel();
+                VideoEN vidEN = new VideoCAD(session).ReadOIDDefault(comentarioEN.Video.Id);
+                vid = VideoAssembler.convertENToModelUI(vidEN);
+
+                SessionClose();
+
+                new ComentarioCEN().Destroy(id);
+
+
+
+                return RedirectToRoute(new
+                {
+                    controller = "Video",
+                    action = "Details",
+                    id = vid.Id,
+                });
+            }
+            catch
+            {
+                return View();
+            }
+
         }
 
         // POST: Comentario/Delete/5
@@ -90,7 +168,28 @@ namespace InDMoviesWeb.Controllers
             {
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                SessionInitialize();
+                ComentarioCAD comentarioCAD = new ComentarioCAD(session);
+                ComentarioCEN comentarioCEN = new ComentarioCEN(comentarioCAD);
+                ComentarioEN comentarioEN = comentarioCEN.ReadOID(id);
+                ComentarioModel comentario = ComentarioAssembler.convertENToModelUI(comentarioEN);
+
+                VideoModel vid = new VideoModel();
+                VideoEN vidEN = new VideoCAD(session).ReadOIDDefault(comentarioEN.Video.Id);
+                vid = VideoAssembler.convertENToModelUI(vidEN);
+
+                SessionClose();
+
+                new ComentarioCEN().Destroy(id);
+
+
+
+                return RedirectToRoute(new
+                {
+                    controller = "Video",
+                    action = "Details",
+                    id = vid.Id,
+                });
             }
             catch
             {

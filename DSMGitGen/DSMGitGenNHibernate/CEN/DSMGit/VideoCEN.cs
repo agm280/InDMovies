@@ -38,7 +38,7 @@ public IVideoCAD get_IVideoCAD ()
         return this._IVideoCAD;
 }
 
-public int New_ (string p_titulo, string p_descripcion, string p_usuario, Nullable<DateTime> p_fecha_subida, string p_miniatura)
+public int New_ (string p_titulo, string p_descripcion, string p_usuario, Nullable<DateTime> p_fecha_subida, string p_miniatura, string p_url)
 {
         VideoEN videoEN = null;
         int oid;
@@ -61,13 +61,15 @@ public int New_ (string p_titulo, string p_descripcion, string p_usuario, Nullab
 
         videoEN.Miniatura = p_miniatura;
 
+        videoEN.Url = p_url;
+
         //Call to VideoCAD
 
         oid = _IVideoCAD.New_ (videoEN);
         return oid;
 }
 
-public void Modify (int p_Video_OID, string p_titulo, string p_descripcion, Nullable<DateTime> p_fecha_subida, string p_miniatura)
+public void Modify (int p_Video_OID, string p_titulo, string p_descripcion, Nullable<DateTime> p_fecha_subida, string p_miniatura, string p_url)
 {
         VideoEN videoEN = null;
 
@@ -78,6 +80,7 @@ public void Modify (int p_Video_OID, string p_titulo, string p_descripcion, Null
         videoEN.Descripcion = p_descripcion;
         videoEN.Fecha_subida = p_fecha_subida;
         videoEN.Miniatura = p_miniatura;
+        videoEN.Url = p_url;
         //Call to VideoCAD
 
         _IVideoCAD.Modify (videoEN);

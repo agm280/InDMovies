@@ -95,10 +95,10 @@ public static void InitializeData ()
                 usuario.New_ (p_email: "ejemplo@gmail.com", p_nombre: "Pepito", p_apellidos: "Palotes Vidal", p_nick: "JuanitoPeter", p_contrasenya: "1234", p_fecha_nac: new DateTime (1992, 2, 4), p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum) 1, p_imagen: "/Images/Uploads/defaultUser.png", p_descripcion: "hola");
 
                 VideoCEN video = new VideoCEN ();
-                int idVideo1 = video.New_ (p_titulo: "Haz tu vida mas facil con GitHub", p_descripcion: "Amazing life Hacks", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2015, 1, 3), p_miniatura: "");
-                int idVideo2 = video.New_ (p_titulo: "Investigacion de MAC", p_descripcion: "Mi proyecto de MAC", p_usuario: "ejemplo@gmail.com", p_fecha_subida: new DateTime (2015, 1, 3), p_miniatura: "");
-                int idVideo3 = video.New_ (p_titulo: "Video de Investigacion", p_descripcion: "Me at the zoo", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2017, 1, 3), p_miniatura: "");
-                int idVideo4 = video.New_ (p_titulo: "Video Terror Halloween", p_descripcion: "you WONT BELIEVE this. MUST WATCH. Best thing in ur life", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2017, 2, 3), p_miniatura: "");
+                int idVideo1 = video.New_ (p_titulo: "Haz tu vida mas facil con GitHub", p_descripcion: "Amazing life Hacks", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2015, 1, 3), p_miniatura: "/Images/Uploads/Miniaturas/defaultUser.png", p_url: "https://www.youtube.com/watch?v=aJ7Tv6ukASw");
+                int idVideo2 = video.New_ (p_titulo: "Investigacion de MAC", p_descripcion: "Mi proyecto de MAC", p_usuario: "ejemplo@gmail.com", p_fecha_subida: new DateTime (2015, 1, 3), p_miniatura: "/Images/Uploads/Miniaturas/defaultUser.png", p_url: "https://www.youtube.com/watch?v=aJ7Tv6ukASw");
+                int idVideo3 = video.New_ (p_titulo: "Video de Investigacion", p_descripcion: "Me at the zoo", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2017, 1, 3), p_miniatura: "/Images/Uploads/Miniaturas/defaultUser.png", p_url: "https://www.youtube.com/watch?v=aJ7Tv6ukASw");
+                int idVideo4 = video.New_ (p_titulo: "Video Terror Halloween", p_descripcion: "you WONT BELIEVE this. MUST WATCH. Best thing in ur life", p_usuario: "ejemplo2@gmail.com", p_fecha_subida: new DateTime (2017, 2, 3), p_miniatura: "/Images/Uploads/Miniaturas/defaultUser.png", p_url: "https://www.youtube.com/watch?v=aJ7Tv6ukASw");
                 //Date time: year month day
 
                 ValoracionCEN valoracion = new ValoracionCEN ();
@@ -122,17 +122,17 @@ public static void InitializeData ()
                 invitacion.New_ (p_descripcion: "Invitacion 3", p_grupo: "Grupo2", p_invitador: "ejemplo2@gmail.com");
 
                 TemaCEN tema = new TemaCEN ();
-                int idtema = tema.New_ (p_descripcion: "Hola, buenas tardes", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo2@gmail.com", p_titulo: "Pregunta personal", p_fecha: new DateTime(2015, 1, 3));
-                int idtema2 = tema.New_ (p_descripcion: "Como sacar un 10?", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_usuario: "ejemplo2@gmail.com", p_titulo: "Desesperacion", p_fecha: new DateTime(2017, 5, 1));
-                int idtema3 = tema.New_ (p_descripcion: "Adios", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo@gmail.com", p_titulo: "Despedida", p_fecha: new DateTime(2017, 12, 3));
+                int idtema = tema.New_ (p_descripcion: "Hola, buenas tardes", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo2@gmail.com", p_titulo: "Pregunta personal", p_fecha: new DateTime (2015, 1, 3));
+                int idtema2 = tema.New_ (p_descripcion: "Como sacar un 10?", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_usuario: "ejemplo2@gmail.com", p_titulo: "Desesperacion", p_fecha: new DateTime (2017, 5, 1));
+                int idtema3 = tema.New_ (p_descripcion: "Adios", p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado, p_usuario: "ejemplo@gmail.com", p_titulo: "Despedida", p_fecha: new DateTime (2017, 12, 3));
 
 
 
                 RespuestaCEN respuesta = new RespuestaCEN ();
-                respuesta.New_ (p_descripcion: "Buenas tardes", p_tema: idtema, p_usuario: "ejemplo2@gmail.com",p_fecha: new DateTime(2017, 9, 9));
-                respuesta.New_ (p_descripcion: "Es imposible", p_tema: idtema2, p_usuario: "ejemplo@gmail.com", p_fecha: new DateTime(2017, 9, 9));
-                respuesta.New_ (p_descripcion: "rt", p_tema: idtema2, p_usuario: "ejemplo2@gmail.com", p_fecha: new DateTime(2017, 9, 9));
-                respuesta.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com", p_fecha: new DateTime(2017, 9, 9));
+                respuesta.New_ (p_descripcion: "Buenas tardes", p_tema: idtema, p_usuario: "ejemplo2@gmail.com", p_fecha: new DateTime (2017, 9, 9));
+                respuesta.New_ (p_descripcion: "Es imposible", p_tema: idtema2, p_usuario: "ejemplo@gmail.com", p_fecha: new DateTime (2017, 9, 9));
+                respuesta.New_ (p_descripcion: "rt", p_tema: idtema2, p_usuario: "ejemplo2@gmail.com", p_fecha: new DateTime (2017, 9, 9));
+                respuesta.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com", p_fecha: new DateTime (2017, 9, 9));
 
                 NotificacionCEN notificacion = new NotificacionCEN ();
                 notificacion.New_ (p_id: "1234", p_descripcion: "Tienes una nueva invitacion de grupo", p_usuario: "ejemplo@gmail.com");
@@ -319,8 +319,7 @@ public static void InitializeData ()
                 System.Console.WriteLine ("DAME TEMA POR TITULO - per");
                 foreach (TemaEN tem4 in temas4) {
                         System.Console.WriteLine (tem4.Titulo);
-                        System.Console.WriteLine(tem4.Fecha.ToString());
-
+                        System.Console.WriteLine (tem4.Fecha.ToString ());
                 }
 
 

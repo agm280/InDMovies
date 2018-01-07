@@ -5,6 +5,7 @@ using InDMoviesWeb.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -53,18 +54,33 @@ namespace InDMoviesWeb.Controllers
 
         // POST: Video/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(VideoModel vid, HttpPostedFileBase file)
         {
+            string fileName = "", path = "";
+
+            if (file != null && file.ContentLength > 0)
+            {
+
+                fileName = Path.GetFileName(file.FileName);
+
+                path = Path.Combine(Server.MapPath("~/Images/Uploads/Miniaturas"), fileName);
+
+                file.SaveAs(path);
+            }
+            else {
+                fileName = "defaultUser.png";
+            }
+
             try
             {
-                // TODO: Add insert logic here
-                VideoCEN video = new VideoCEN();
-                video.New_(p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_usuario: User.Identity.GetUserName(), p_fecha_subida: DateTime.Today, p_miniatura: "");
+                fileName = "/Images/Uploads/Miniaturas/" + fileName;
+                VideoCEN videoCEN = new VideoCEN();
+                videoCEN.New_(p_titulo: vid.Titulo, p_descripcion: vid.Descripcion, p_usuario: User.Identity.GetUserName(), p_fecha_subida: DateTime.Today, p_miniatura: fileName, p_url: vid.Url);
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
+            catch {
+
                 return View();
             }
         }
@@ -83,35 +99,51 @@ namespace InDMoviesWeb.Controllers
 
         // POST: Video/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, VideoModel vid, HttpPostedFileBase file)
         {
             try
             {
                 
                 SessionInitialize();
-                VideoModel vid = null;
+                VideoModel vidM = null;
                 UsuarioModel usu = null;
                 VideoEN videoEN = new VideoCAD(session).ReadOIDDefault(id);
                 UsuarioEN usuarioEN = new UsuarioCAD(session).ReadOIDDefault(User.Identity.GetUserName());
-                vid = VideoAssembler.convertENToModelUI(videoEN);
+                vidM = VideoAssembler.convertENToModelUI(videoEN);
                 usu = UsuarioAssembler.crearUsu(usuarioEN);
                 SessionClose();
 
                 VideoCEN videoCEN = new VideoCEN();
 
-                string tit = collection["Titulo"];
-                string desc = collection["Descripcion"];
-                string miniature = collection["Miniatura"];
+                string fileName = "", path = "";
 
-                if (tit == null) tit = vid.Titulo;
-                if (desc == null) desc = vid.Descripcion;
-                if (miniature == null) miniature = vid.Miniatura;
-
-                
-
-                if (vid.Usuario == usu.Nick)
+                if (file != null && file.ContentLength > 0)
                 {
-                    videoCEN.Modify(p_Video_OID: id, p_titulo: tit, p_descripcion: desc, p_fecha_subida: DateTime.Today, p_miniatura: "");
+
+                    fileName = Path.GetFileName(file.FileName);
+
+                    path = Path.Combine(Server.MapPath("~/Images/Uploads/Miniaturas"), fileName);
+
+                    file.SaveAs(path);
+                }
+                else
+                {
+                    fileName = "defaultUser.png";
+                }
+
+                string tit = vid.Titulo;
+                string desc = vid.Descripcion;
+                string enlace = vid.Url;
+
+                if (tit == null) tit = vidM.Titulo;
+                if (desc == null) desc = vidM.Descripcion;
+                if (desc == null) desc = vidM.Url;
+
+
+                if (vidM.Usuario == usu.Nick)
+                {
+                    fileName = "/Images/Uploads/Miniaturas/" + fileName;
+                    videoCEN.Modify(p_Video_OID: id, p_titulo: tit, p_descripcion: desc, p_fecha_subida: DateTime.Today, p_miniatura: fileName, p_url: enlace);
                 }
                 return RedirectToAction("Index");
             }

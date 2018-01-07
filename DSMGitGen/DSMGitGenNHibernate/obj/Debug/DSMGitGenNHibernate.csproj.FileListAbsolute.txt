@@ -107,7 +107,6 @@ C:\Users\carlo\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\bin\Debug\log4net.dll
 C:\Users\carlo\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csproj.CoreCompileInputs.cache
 C:\Users\carlo\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.dll
 C:\Users\carlo\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.pdb
-C:\Users\N3wman-G\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache
 C:\Users\Carlos\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache
 C:\Users\alvar\Desktop\InDMovies-master\DSMGitGen\DSMGitGenNHibernate\bin\Debug\hibernate.cfg.xml
 C:\Users\alvar\Desktop\InDMovies-master\DSMGitGen\DSMGitGenNHibernate\bin\Debug\DSMGitGenNHibernate.dll.config

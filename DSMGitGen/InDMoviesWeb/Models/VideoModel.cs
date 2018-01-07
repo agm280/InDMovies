@@ -31,13 +31,13 @@ namespace InDMoviesWeb.Models
 
 
 
-        public virtual System.Collections.Generic.IList<string> Etiquetas
+        public virtual string Etiquetas
         {
             get; set;
         }
 
 
-
+        [Required]
         public virtual string Usuario
         {
             get; set;
@@ -50,9 +50,8 @@ namespace InDMoviesWeb.Models
             get; set;
         }
 
-
-
-        public virtual string Fecha_subida
+        [Required]
+        public virtual String Fecha_subida
         {
             get; set;
         }
@@ -64,7 +63,11 @@ namespace InDMoviesWeb.Models
             get; set;
         }
 
-
+        [Required]
+        public virtual string Url
+        {
+            get; set;
+        }
 
     }
 }

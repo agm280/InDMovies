@@ -108,6 +108,9 @@ public void ModifyDefault (VideoEN video)
 
                 videoEN.Miniatura = video.Miniatura;
 
+
+                videoEN.Url = video.Url;
+
                 session.Update (videoEN);
                 SessionCommit ();
         }
@@ -177,6 +180,9 @@ public void Modify (VideoEN video)
 
 
                 videoEN.Miniatura = video.Miniatura;
+
+
+                videoEN.Url = video.Url;
 
                 session.Update (videoEN);
                 SessionCommit ();
