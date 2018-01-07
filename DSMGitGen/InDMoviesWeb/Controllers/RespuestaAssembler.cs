@@ -20,8 +20,18 @@ namespace InDMoviesWeb.Controllers
             r.Descripcion = respuestaEN.Descripcion;
             r.Tema = respuestaEN.Tema.Titulo;
             r.Usuario = respuestaEN.Usuario.Nick;
-            r.Fecha = respuestaEN.Fecha.Value;
+            r.Email = respuestaEN.Usuario.Email;
 
+            try
+            {
+                string parseDate = respuestaEN.Fecha.ToString();
+                string[] fecha = parseDate.Split(' ');
+                r.Fecha = fecha[0];
+            }
+            catch
+            {
+                r.Fecha = "Fecha desconocida";
+            }
             return r;
         }
 

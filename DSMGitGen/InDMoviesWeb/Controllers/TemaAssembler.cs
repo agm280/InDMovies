@@ -18,7 +18,18 @@ namespace InDMoviesWeb.Controllers
             tema.Descripcion = en.Descripcion;
             tema.Estado = en.Estado.ToString();
             tema.Usuario = en.Usuario.Nick;
-            tema.Fecha = en.Fecha.Value;
+            tema.Email = en.Usuario.Email;
+
+            try
+            {
+                string parseDate = en.Fecha.ToString();
+                string[] fecha = parseDate.Split(' ');
+                tema.Fecha = fecha[0];
+            }
+            catch
+            {
+                tema.Fecha = "Fecha desconocida";
+            }
 
             return tema;
         }

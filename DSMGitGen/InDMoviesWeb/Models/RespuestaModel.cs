@@ -35,9 +35,14 @@ namespace InDMoviesWeb.Models
             get; set;
         }
 
-        public virtual DateTime Fecha
+        public virtual string Fecha
         {
             get; set;
         }
+        public virtual string Email
+        {
+            get; set;
+        }
+
     }
 }

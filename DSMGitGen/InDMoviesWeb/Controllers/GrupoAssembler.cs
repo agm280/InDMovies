@@ -19,6 +19,7 @@ namespace InDMoviesWeb.Controllers
             g.Descripcion = grupoEN.Descripcion;
             g.Lider = grupoEN.Lider.Nick;
             g.AceptaMiembros = grupoEN.AceptaMiembros;
+            g.Completo = grupoEN.Completo;
 
             return g;
         }

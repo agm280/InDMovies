@@ -114,7 +114,7 @@ namespace InDMoviesWeb.Controllers
                 SessionClose();
 
 
-                cen.Modify(p_Respuesta_OID: res.Id,p_descripcion: collection["Descripcion"],p_fecha: res.Fecha);
+                cen.Modify(p_Respuesta_OID: res.Id,p_descripcion: collection["Descripcion"],p_fecha: resEN.Fecha);
 
                 return RedirectToRoute(new
                 {

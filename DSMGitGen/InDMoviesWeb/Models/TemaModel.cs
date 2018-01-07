@@ -40,11 +40,13 @@ namespace InDMoviesWeb.Models
             get; set;
         }
 
-        [Timestamp]
-        public virtual DateTime Fecha
+        public virtual string Fecha
         {
             get; set;
         }
-
+        public virtual string Email
+        {
+            get; set;
+        }
     }
 }

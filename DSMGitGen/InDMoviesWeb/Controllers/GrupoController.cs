@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using InDMoviesWeb.Models;
+using DSMGitGenNHibernate.CEN.DSMGit;
+using Microsoft.AspNet.Identity;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -55,7 +57,16 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add insert logic here
+                GrupoCEN gru = new GrupoCEN();
+                IList<string> miembros = new List<string>() { User.Identity.GetUserName() };
+                String idgru = gru.New_(p_lider: User.Identity.GetUserName(), p_nombre: collection["Nombre"], p_descripcion: collection["Descripcion"], p_imagen: collection["Imagen"], p_aceptaMiembros: false, p_completo: false, p_miembros: miembros);
 
+                return RedirectToRoute(new
+                {
+                    controller = "Grupo",
+                    action = "Details",
+                    id = idgru,
+                });
                 return RedirectToAction("Index");
             }
             catch

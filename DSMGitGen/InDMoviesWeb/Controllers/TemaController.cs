@@ -59,7 +59,9 @@ namespace InDMoviesWeb.Controllers
                 // TODO: Add insert logic here
                 TemaCEN tema = new TemaCEN();
                 DateTime fech = new DateTime();
-                fech = System.DateTime.Now;
+                fech = System.DateTime.Today;
+
+
                 int idtem = tema.New_(p_usuario: User.Identity.GetUserName(), p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
                 return RedirectToRoute(new
                 {
@@ -110,6 +112,16 @@ namespace InDMoviesWeb.Controllers
                 }
                 else{
                     estado = DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado;
+                }
+                string check;
+                check = collection["Estado"].ToString();
+
+                if (check == "cerrado"){
+                    estado = DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado;
+                }
+                else
+                {
+                    estado = DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto;
                 }
 
 
