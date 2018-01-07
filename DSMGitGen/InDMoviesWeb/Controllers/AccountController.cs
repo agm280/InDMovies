@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using InDMoviesWeb.Models;
 using System.Diagnostics;
 using DSMGitGenNHibernate.CEN.DSMGit;
+using System.IO;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -149,7 +150,7 @@ namespace InDMoviesWeb.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(CustomRegisterViewModel model)
+        public async Task<ActionResult> Register(CustomRegisterViewModel model, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
@@ -161,23 +162,39 @@ namespace InDMoviesWeb.Controllers
                     model.Apellidos = "";
                 if (model.Descripcion == null)
                     model.Descripcion = "";
-                UsuarioCEN usuarioCEN = new UsuarioCEN();
-                usuarioCEN.New_(p_email: model.Email, p_nombre: model.Nombre, p_apellidos: model.Apellidos, p_nick: model.Nick, p_contrasenya: model.Password, p_fecha_nac: model.Fecha_Nacimiento, p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum)model.Rol, p_imagen: "", p_descripcion: model.Descripcion);
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                string fileName = "", path = "";
+                // Verify that the user selected a file
+                if (file != null && file.ContentLength > 0)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Enviar correo electrónico con este vínculo
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    // extract only the fielname
+                    fileName =model.Email+Path.GetFileName(file.FileName);
+                    // store the file inside ~/App_Data/uploads folder
+                    path = Path.Combine(Server.MapPath("~/Images/Uploads"), fileName);
+                    //string pathDef = path.Replace(@"\\", @"\");
+                    file.SaveAs(path);
                 }
+                else {
+                    fileName = "defaultUser.png"; }
+                    fileName = "/Images/Uploads/" + fileName;
+                    UsuarioCEN usuarioCEN = new UsuarioCEN();
+                    usuarioCEN.New_(p_email: model.Email, p_nombre: model.Nombre, p_apellidos: model.Apellidos, p_nick: model.Nick, p_contrasenya: model.Password, p_fecha_nac: model.Fecha_Nacimiento, p_rol: (DSMGitGenNHibernate.Enumerated.DSMGit.RolEnum)model.Rol, p_imagen: fileName, p_descripcion: model.Descripcion);
+
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
+                        // Enviar correo electrónico con este vínculo
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                
                 AddErrors(result);
             }
 

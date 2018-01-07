@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using InDMoviesWeb.Models;
 using DSMGitGenNHibernate.CEN.DSMGit;
+using System.IO;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -72,13 +73,14 @@ namespace InDMoviesWeb.Controllers
             SessionInitialize();
             UsuarioEN usuEN = new UsuarioCAD(session).ReadOIDDefault(id);
             usu = UsuarioAssembler.crearUsu(usuEN);
+            ViewBag.Usu=id;
             SessionClose();
             return View(usu);
         }
 
         // POST: Usuario/Edit/5
         [HttpPost]
-        public ActionResult Edit(string id, UsuarioModel usu)
+        public ActionResult Edit(string id, UsuarioModel usu, HttpPostedFileBase file)
         {
             try
             {
@@ -89,9 +91,22 @@ namespace InDMoviesWeb.Controllers
                 UsuarioEN usuEN = new UsuarioCAD(session).ReadOIDDefault(id);
                 usuM = UsuarioAssembler.crearUsu(usuEN);
                 string contraseña = usuEN.Contrasenya;
+                string fileName = usuEN.Imagen;
                 SessionClose();
+
+                if (file != null && file.ContentLength > 0)
+                {   string path = "";
+                    // extract only the fielname
+                    fileName =usu.Email+Path.GetFileName(file.FileName);
+                    // store the file inside ~/App_Data/uploads folder
+                    path = Path.Combine(Server.MapPath("~/Images/Uploads"), fileName);
+                    //string pathDef = path.Replace(@"\\", @"\");
+                    file.SaveAs(path);
+                    fileName = "/Images/Uploads/" + fileName;
+                }
                 
-                cen.Modify(p_Usuario_OID:id,p_nombre:usu.Nombre,p_apellidos:usu.Apellidos,p_nick:usu.Nick,p_contrasenya:contraseña,p_fecha_nac:usu.Fecha_Nacimiento, p_rol: usu.Rol,p_imagen:usu.Imagen,p_descripcion:usu.Descripcion);
+
+                cen.Modify(p_Usuario_OID:id,p_nombre:usu.Nombre,p_apellidos:usu.Apellidos,p_nick:usu.Nick,p_contrasenya:contraseña,p_fecha_nac:usu.Fecha_Nacimiento, p_rol: usu.Rol,p_imagen:fileName,p_descripcion:usu.Descripcion);
                 return RedirectToAction("Index");
             }
             catch
