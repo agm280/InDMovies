@@ -8,7 +8,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "GrupoController", FormMethod.Post, new { enctype = "multipart/form-data", @action = "/Grupo/Create" }))
 {
     @Html.AntiForgeryToken()
     
@@ -28,24 +28,15 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
+            <input type="file" name="file" />
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Lider, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Lider, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Lider, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -68,12 +59,39 @@
             </div>
         </div>
     </div>
-
+    <h3>Añade a tus compañeros</h3>
+    <p>Debes incluirlos separados por un INTRO, de esta forma: </p>
+    <pre>
+        ejemplo1@gmail.com;ejemplo2@gmail.com;ejemplo3@gmail.com
+        </pre>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        @Html.LabelFor(model => model.Miembros, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Miembros, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Miembros, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    @{
+        string Disabled = "disabled";
+        string Visibility = "visible";
+        if (Request.IsAuthenticated)
+        {
+            Disabled = "";
+            Visibility = "hidden";
+        }
+    }
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" @Disabled />
+        </div>
+    </div>
+    <div class="form-group" style="visibility:@Visibility;color:red">
+        <div class="col-md-offset-2 col-md-10">
+            <p>Debes estar Logueado para poder crear un Grupo</p>
+        </div>
+    </div>>
+    
 </div>
 }
 

@@ -12,6 +12,9 @@
 </p>
 <table class="table">
     <tr>
+	  <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Imagen)
         </th>
@@ -32,8 +35,11 @@
 
 @foreach (var item in Model) {
     <tr>
+	<td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Imagen)
+            <img height="100" width="100" src="@Html.DisplayFor(modelItem => item.Imagen)" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)

@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using InDMoviesWeb.Models;
 using DSMGitGenNHibernate.CEN.DSMGit;
 using Microsoft.AspNet.Identity;
+using System.IO;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -52,14 +53,62 @@ namespace InDMoviesWeb.Controllers
 
         // POST: Grupo/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FormCollection collection, HttpPostedFileBase file)
         {
             try
             {
                 // TODO: Add insert logic here
                 GrupoCEN gru = new GrupoCEN();
+
+                string fileName = "/Images/Uploads/defaultUser.png";
+
+                if (file != null && file.ContentLength > 0)
+                {
+                    fileName = file.FileName;
+                    string path = "";
+                    // extract only the fielname
+                    fileName = User.Identity.GetUserName() + Path.GetFileName(file.FileName);
+                    // store the file inside ~/App_Data/uploads folder
+                    path = Path.Combine(Server.MapPath("~/Images/Uploads"), fileName);
+                    //string pathDef = path.Replace(@"\\", @"\");
+                    file.SaveAs(path);
+                    fileName = "/Images/Uploads/" + fileName;
+                }
+
+                bool completo = false;
+                if (!string.IsNullOrEmpty(collection["Completo"]))
+                {
+                    string[] check = collection["Completo"].Split(',');
+                    bool checkB = Convert.ToBoolean(check[0]);
+                    completo = checkB;
+                }
+
+                bool acepta = false;
+                if (!string.IsNullOrEmpty(collection["AceptaMiembros"]))
+                {
+                    string[] check = collection["AceptaMiembros"].Split(',');
+                    bool checkB = Convert.ToBoolean(check[0]);
+                    acepta = checkB;
+                }
+
+                string descripcion = "";
+                if (!string.IsNullOrEmpty(collection["Descripcion"]))
+                {
+                    descripcion = collection["Descripcion"];
+                }
+
+
                 IList<string> miembros = new List<string>() { User.Identity.GetUserName() };
-                String idgru = gru.New_(p_lider: User.Identity.GetUserName(), p_nombre: collection["Nombre"], p_descripcion: collection["Descripcion"], p_imagen: collection["Imagen"], p_aceptaMiembros: false, p_completo: false, p_miembros: miembros);
+
+                if ((!string.IsNullOrEmpty(collection["Miembros"])))
+                {
+                    string[] l_miembros = collection["Miembros"].Split(';');
+                    foreach (string s in l_miembros)
+                    {
+                        miembros.Add(s);
+                    }
+                }
+                String idgru = gru.New_(p_lider: User.Identity.GetUserName(), p_nombre: collection["Nombre"], p_descripcion: descripcion, p_imagen: fileName, p_aceptaMiembros: acepta, p_completo: completo, p_miembros: miembros);
 
                 return RedirectToRoute(new
                 {
@@ -67,7 +116,7 @@ namespace InDMoviesWeb.Controllers
                     action = "Details",
                     id = idgru,
                 });
-                return RedirectToAction("Index");
+                
             }
             catch
             {
@@ -76,20 +125,73 @@ namespace InDMoviesWeb.Controllers
         }
 
         // GET: Grupo/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
+            SessionInitialize();
+            GrupoEN grupo = new GrupoCEN(new GrupoCAD(session)).ReadOID(id);
+            GrupoModel grupoModel = GrupoAssembler.convertENToModelUI(grupo);
+            SessionClose();
+            ViewBag.Id = grupo.Nombre;
             return View();
         }
 
         // POST: Grupo/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, FormCollection collection, HttpPostedFileBase file)
         {
             try
             {
                 // TODO: Add update logic here
+         
+                GrupoCEN gru = new GrupoCEN();
 
-                return RedirectToAction("Index");
+                GrupoEN grupoEN = gru.ReadOID(id);
+
+                string fileName = grupoEN.Imagen;
+                if (file != null && file.ContentLength > 0)
+                {
+                    fileName = file.FileName;
+                    string path = "";
+                    // extract only the fielname
+                    fileName = User.Identity.GetUserName() + Path.GetFileName(file.FileName);
+                    // store the file inside ~/App_Data/uploads folder
+                    path = Path.Combine(Server.MapPath("~/Images/Uploads"), fileName);
+                    //string pathDef = path.Replace(@"\\", @"\");
+                    file.SaveAs(path);
+                    fileName = "/Images/Uploads/" + fileName;
+                }
+
+                bool completo = grupoEN.Completo;
+                if (!string.IsNullOrEmpty(collection["Completo"]))
+                {
+                    string[] check = collection["Completo"].Split(',');
+                    bool checkB = Convert.ToBoolean(check[0]);
+                    completo = checkB;
+                }
+
+                bool acepta = grupoEN.AceptaMiembros;
+                if (!string.IsNullOrEmpty(collection["AceptaMiembros"]))
+                {
+                    string[] check = collection["AceptaMiembros"].Split(',');
+                    bool checkB = Convert.ToBoolean(check[0]);
+                    acepta = checkB;
+                }
+
+                string descripcion = grupoEN.Descripcion;
+                if (!string.IsNullOrEmpty(collection["Descripcion"]))
+                {
+                    descripcion = collection["Descripcion"];
+                }
+
+                gru.Modify(p_Grupo_OID: id, p_descripcion: descripcion, p_imagen: fileName, p_aceptaMiembros: acepta, p_completo: completo);
+       
+                return RedirectToRoute(new
+                {
+                    controller = "Grupo",
+                    action = "Details",
+                    id = id,
+                });
+
             }
             catch
             {

@@ -10,7 +10,7 @@ namespace InDMoviesWeb.Models
     public class GrupoModel
     {
 
-        [Key]
+        [Required]
         public virtual string Nombre
         {
             get;set;
@@ -49,5 +49,6 @@ namespace InDMoviesWeb.Models
             get; set;
         }
 
+        public virtual string Miembros { get; set; }
     }
 }
