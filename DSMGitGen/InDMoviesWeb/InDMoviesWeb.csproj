@@ -335,6 +335,9 @@
     <Content Include="Views\Respuesta\Edit.cshtml" />
     <Content Include="Views\Comentario\Index.cshtml" />
     <Content Include="Views\Comentario\Create.cshtml" />
+    <Content Include="Views\Sugerencia\Create.cshtml" />
+    <Content Include="Views\Sugerencia\Details.cshtml" />
+    <Content Include="Views\Sugerencia\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

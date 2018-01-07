@@ -109,3 +109,4 @@ C:\Users\carlo\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNH
 C:\Users\carlo\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.pdb
 C:\Users\carlo\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache
 C:\Users\N3wman-G\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache
+C:\Users\Carlos\git\InDMovies\DSMGitGen\DSMGitGenNHibernate\obj\Debug\DSMGitGenNHibernate.csprojResolveAssemblyReference.cache
