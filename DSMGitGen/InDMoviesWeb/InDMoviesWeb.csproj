@@ -351,6 +351,7 @@
     <Content Include="Views\Comentario\Edit.cshtml" />
     <Content Include="Views\Valoracion\Create.cshtml" />
     <Content Include="Views\Valoracion\DetailsVideo.cshtml" />
+    <Content Include="Views\Grupo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

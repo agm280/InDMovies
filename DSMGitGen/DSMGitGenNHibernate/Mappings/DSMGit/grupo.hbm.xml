@@ -87,5 +87,6 @@
 		  <query name="GrupoENdameGruposPorDescHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Descripcion LIKE ('%'+:p_desc+'%')]]></query>
 		  <query name="GrupoENdameGruposQueAceptenNuevosHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.AceptaMiembros=true]]></query>
 		  <query name="GrupoENdameGruposQueRechacenNuevosHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.AceptaMiembros=false]]></query>
+		  <query name="GrupoENdameGrupoPorUsuarioHQL"><![CDATA[Select gru FROM GrupoEN as gru inner join gru.Miembros as m where m.Email =:p_email]]></query>
 		</hibernate-mapping>
 	

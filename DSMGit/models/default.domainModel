@@ -224,6 +224,9 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_rAYzIPI3EeeGlL9zGXFTyA" name="p_descripcion"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_tJzWsPI3EeeGlL9zGXFTyA" name="p_imagen"/>
       </operations>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_2VYzwPRsEeel-8bRBULTkg" name="dameGrupoPorUsuario" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_0AkpgLgIEeeQKK3fhnmurw" filter="Select gru FROM GrupoEN as gru inner join gru.Miembros as m where m.Email =:p_email" automaticSynchronize="false">
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_8TfJ4PRsEeel-8bRBULTkg" name="p_email"/>
+      </operations>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_1Ha80LgIEeeQKK3fhnmurw" alias="nombre" name="nombre" isOID="true" unique="true"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_548LELgIEeeQKK3fhnmurw" alias="imagen" name="imagen"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_6f3BILgIEeeQKK3fhnmurw" alias="descripcion" name="descripcion"/>
@@ -1113,6 +1116,13 @@
           <styles xmi:type="notation:FontStyle" xmi:id="_sdsbcvIzEeeGlL9zGXFTyA" fontName="Segoe UI"/>
           <styles xmi:type="notation:FillStyle" xmi:id="_sdsbc_IzEeeGlL9zGXFTyA"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_sdsbdPIzEeeGlL9zGXFTyA"/>
+        </children>
+        <children xmi:type="notation:Node" xmi:id="_2VgIgPRsEeel-8bRBULTkg" type="3004" element="_2VYzwPRsEeel-8bRBULTkg">
+          <children xmi:type="notation:DecorationNode" xmi:id="_2VgvkPRsEeel-8bRBULTkg" type="5004"/>
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_2VgIgfRsEeel-8bRBULTkg"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_2VgIgvRsEeel-8bRBULTkg" fontName="Segoe UI"/>
+          <styles xmi:type="notation:FillStyle" xmi:id="_2VgIg_RsEeel-8bRBULTkg"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_2VgIhPRsEeel-8bRBULTkg"/>
         </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_0AtzergIEeeQKK3fhnmurw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_0Atze7gIEeeQKK3fhnmurw"/>
@@ -2156,7 +2166,7 @@
       </children>
       <styles xmi:type="notation:RoutingStyle" xmi:id="_BRorJLiyEeeZr70_jq7rZA"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_BRorJbiyEeeZr70_jq7rZA" fontName="Segoe UI"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BRorJriyEeeZr70_jq7rZA" points="[0, 38, 126, -97]$[0, 135, 126, 0]$[-119, 135, 7, 0]"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_BRorJriyEeeZr70_jq7rZA" points="[0, 44, 127, -66]$[0, 110, 127, 0]$[-120, 110, 7, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BRorL7iyEeeZr70_jq7rZA" id="(0.02,0.8)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_BRorMLiyEeeZr70_jq7rZA" id="(0.9744897959183674,0.04827586206896552)"/>
     </edges>

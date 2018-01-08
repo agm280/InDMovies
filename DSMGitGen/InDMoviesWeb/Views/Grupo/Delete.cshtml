@@ -1,0 +1,23 @@
+﻿@model InDMoviesWeb.Models.GrupoModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2><span class="glyphicon glyphicon-warning-sign"></span>¡¿Estas seguro de querer borrar el grupo @ViewBag.Id?!</h2>
+
+<div>
+    <p><strong>@ViewBag.Id</strong> será borrado permanentemente.</p>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+
+        <ul class="pagination">
+            <li>@Html.ActionLink("Atrás", "Details", new { id = ViewBag.Id })</li>
+        </ul>
+        
+    }
+</div>

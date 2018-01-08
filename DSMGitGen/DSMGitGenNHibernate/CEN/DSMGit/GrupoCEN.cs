@@ -165,5 +165,9 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> D
 {
         return _IGrupoCAD.DameGruposQueRechacenNuevos ();
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGrupoPorUsuario (string p_email)
+{
+        return _IGrupoCAD.DameGrupoPorUsuario (p_email);
+}
 }
 }

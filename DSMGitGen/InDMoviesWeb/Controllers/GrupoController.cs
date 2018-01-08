@@ -9,6 +9,7 @@ using InDMoviesWeb.Models;
 using DSMGitGenNHibernate.CEN.DSMGit;
 using Microsoft.AspNet.Identity;
 using System.IO;
+using DSMGitGenNHibernate.CP.DSMGit;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -40,7 +41,7 @@ namespace InDMoviesWeb.Controllers
         {
             SessionInitialize();
             GrupoCAD grupoCAD = new GrupoCAD(session);
-            IList<GrupoEN> grupo = grupoCAD.DameGruposLideradosPorEmail(id);
+            IList<GrupoEN> grupo = grupoCAD.DameGrupoPorUsuario(id);
             IEnumerable<GrupoModel> grupos = GrupoAssembler.convertListToModelUI(grupo).ToList();
             return PartialView(grupos);
         }
@@ -58,7 +59,9 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add insert logic here
+
                 GrupoCEN gru = new GrupoCEN();
+                UsuarioCEN usu = new UsuarioCEN();
 
                 string fileName = "/Images/Uploads/defaultUser.png";
 
@@ -100,6 +103,11 @@ namespace InDMoviesWeb.Controllers
 
                 IList<string> miembros = new List<string>() { User.Identity.GetUserName() };
 
+                
+                String idgru = gru.New_(p_lider: User.Identity.GetUserName(), p_nombre: collection["Nombre"], p_descripcion: descripcion, p_imagen: fileName, p_aceptaMiembros: acepta, p_completo: completo, p_miembros: miembros);
+
+
+                miembros = new List<string>();
                 if ((!string.IsNullOrEmpty(collection["Miembros"])))
                 {
                     string[] l_miembros = collection["Miembros"].Split(';');
@@ -108,7 +116,8 @@ namespace InDMoviesWeb.Controllers
                         miembros.Add(s);
                     }
                 }
-                String idgru = gru.New_(p_lider: User.Identity.GetUserName(), p_nombre: collection["Nombre"], p_descripcion: descripcion, p_imagen: fileName, p_aceptaMiembros: acepta, p_completo: completo, p_miembros: miembros);
+
+                gru.MeterUsuario(p_Grupo_OID: idgru, p_miembros_OIDs: miembros);
 
                 return RedirectToRoute(new
                 {
@@ -200,19 +209,25 @@ namespace InDMoviesWeb.Controllers
         }
 
         // GET: Grupo/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
+            SessionInitialize();
+            GrupoEN grupo = new GrupoCEN(new GrupoCAD(session)).ReadOID(id);
+            GrupoModel grupoModel = GrupoAssembler.convertENToModelUI(grupo);
+            SessionClose();
+            ViewBag.Id = grupo.Nombre;
             return View();
         }
 
         // POST: Grupo/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                GrupoCEN grupoCEN = new GrupoCEN();
+                grupoCEN.Destroy(id);
                 return RedirectToAction("Index");
             }
             catch

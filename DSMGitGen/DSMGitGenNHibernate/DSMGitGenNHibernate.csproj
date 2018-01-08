@@ -178,6 +178,7 @@
 			
 			<Compile Include="CP\DSMGit\GrupoCP_CrearGrupo.cs" />
 			
+			
 	<Compile Include="EN\DSMGit\VideoEN.cs" />
 	<Compile Include="CEN\DSMGit\VideoCEN.cs" />
 	<Compile Include="CAD\DSMGit\IVideoCAD.cs" />

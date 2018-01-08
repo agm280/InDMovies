@@ -8,19 +8,23 @@
 
 
 
-<h2>Details</h2>
+<h2> @Html.DisplayFor(model => model.Nombre)</h2>
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-cog"></span><span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><span class="glyphicon glyphicon-edit"></span></li>
+        <li>@Html.ActionLink("Editar", "Edit", new { id = Model.Nombre })</li>
+        <li>@Html.ActionLink("Borrar", "Delete", new { id = Model.Nombre })</li>
+        <li><a href="#">Opcion</a></li>
+    </ul>
+</div>
 
 <div>
-    <h4>GrupoModel</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Imagen)
         </dt>
@@ -63,9 +67,9 @@
     </dl>
 </div>
 
+<h3>Miembros</h3>
 @Html.Action("DetailsGrupo","Usuario", new { id = Model.Nombre })
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Nombre }) |
-    @Html.ActionLink("Back to List", "Index")
+    <span class="glyphicon glyphicon-menu-left"></span>@Html.ActionLink("Back to List", "Index")
 </p>

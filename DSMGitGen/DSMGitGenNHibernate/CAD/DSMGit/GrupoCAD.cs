@@ -635,5 +635,36 @@ public string CrearGrupo (GrupoEN grupo)
 
         return grupo.Nombre;
 }
+
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGrupoPorUsuario (string p_email)
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM GrupoEN self where Select gru FROM GrupoEN as gru inner join gru.Miembros as m where m.Email =:p_email";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("GrupoENdameGrupoPorUsuarioHQL");
+                query.SetParameter ("p_email", p_email);
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.GrupoEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in GrupoCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

@@ -60,5 +60,7 @@ System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGrup
 
 
 string CrearGrupo (GrupoEN grupo);
+
+System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGrupoPorUsuario (string p_email);
 }
 }
