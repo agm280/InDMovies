@@ -32,6 +32,7 @@ namespace InDMoviesWeb.Controllers
 
             v.Miniatura = videoEN.Miniatura;
             v.Url = videoEN.Url;
+            v.Texto = "";
 
             return v;
 

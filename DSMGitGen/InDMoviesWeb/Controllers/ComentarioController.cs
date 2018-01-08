@@ -41,7 +41,7 @@ namespace InDMoviesWeb.Controllers
         }
 
         // GET: Comentario/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             return View();
         }
@@ -54,8 +54,10 @@ namespace InDMoviesWeb.Controllers
             {
                 // TODO: Add insert logic here
                 ComentarioCEN comentarioCEN = new ComentarioCEN();
-                comentarioCEN.New_(p_texto: collection["Texto"], p_usuario: User.Identity.GetUserName(), p_video: id);
 
+                if(!collection["Texto"].Equals(""))
+                comentarioCEN.New_(p_texto: collection["Texto"], p_usuario: User.Identity.GetUserName(), p_video: id);
+                
 
                 return RedirectToRoute(new
                 {
@@ -64,7 +66,6 @@ namespace InDMoviesWeb.Controllers
                     id = id,
                 });
                 
-                return RedirectToAction("Index");
             }
             catch
             {
@@ -104,19 +105,23 @@ namespace InDMoviesWeb.Controllers
 
                 SessionClose();
 
-
-                cen.Modify(p_Comentario_OID: com.Id, p_texto: collection["Texto"]);
-
-                if (true) {
+                if (!collection["Texto"].Equals(""))
+                {
+                    cen.Modify(p_Comentario_OID: com.Id, p_texto: collection["Texto"]);
+                    
+                }
+                if (true)
+                {
                     return RedirectToRoute(new
                     {
                         controller = "Video",
                         action = "Details",
                         id = vid.Id,
                     });
-                    
-                }else
-                    return View();
+
+                }
+
+
             }
             catch
             {
