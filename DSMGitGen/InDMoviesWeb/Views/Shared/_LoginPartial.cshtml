@@ -7,16 +7,16 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hola " + User.Identity.GetUserName() + " !", "Details", "Usuario", new { id = User.Identity.GetUserName()+'/' }, null)
+            @Html.ActionLink(User.Identity.GetUserName(), "Details", "Usuario", new { id = User.Identity.GetUserName()+'/'}, new {@style = "color: white" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()" style="color: white" >Cerrar sesión</a></li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Registrarse", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @style="color: white" })</li>
+        <li>@Html.ActionLink("Iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @style = "color: white" })</li>
     </ul>
 }

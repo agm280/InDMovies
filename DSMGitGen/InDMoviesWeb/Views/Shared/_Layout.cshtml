@@ -8,29 +8,51 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    
+
+    <style>
+
+        .navLista {
+            color: red;
+        }
+        .navLista:hover {
+            background-color: #222945;
+            color: red;
+        }
+        a.navbar-brand {
+            
+            color: red;
+        
+        }
+
+    </style>
+
 </head>
+
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="
+    
+    background-color: #333A56;
+    border-color: #333A56;
+
+    ">
+        <div class="container" >
+            <div class="navbar-header" >
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("InDMovies", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("InDMovies", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", @style= "color:#67AECA" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Temas", "Index", "Tema")</li>
-                    <li>@Html.ActionLink("Videos", "Index", "Video")</li>
-                    <li>@Html.ActionLink("Sugerencias", "Index", "Sugerencia")</li>
-                    <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
-                    <li>@Html.ActionLink("Grupos", "Index", "Grupo")</li>
-                    <li>@Html.ActionLink("Comentarios", "Index", "Comentario")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                <ul class="nav navbar-nav" >
+                    <li class="navLista">@Html.ActionLink("Inicio", "Index", "Home",null , new { @style="color:#FFF"})</li>
+                    <li class="navLista">@Html.ActionLink("Videos", "Index", "Video", null, new { @style = "color:#FFF" })</li>
+                    <li class="navLista">@Html.ActionLink("Grupos", "Index", "Grupo", null, new { @style = "color:#FFF" })</li>
+                    <li class="navLista">@Html.ActionLink("Temas", "Index", "Tema", null, new { @style = "color:#FFF" })</li>
+                    <li class="navLista">@Html.ActionLink("Busqueda", "Create", "Busqueda", null, new {@style = "color:#FFF" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -40,9 +62,19 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>
+                &copy; @DateTime.Now.Year - Mi aplicación ASP.NET
+                
+            </p>
+            <p>
+                ¿Tienes alguna sugerencia para la web? Hazla aquí: 
+                @Html.ActionLink("Sugerencias", "Create", "Sugerencia", null, new { @style = "color:#67AECA" })
+
+            </p>
         </footer>
     </div>
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
