@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using InDMoviesWeb.Models;
+using System.Net;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -333,7 +334,40 @@ namespace InDMoviesWeb.Controllers
             base.Dispose(disposing);
         }
 
-#region Aplicaciones auxiliares
+        public async Task<ActionResult> Eliminarcuenta()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var userId = User.Identity.GetUserId();
+            var a = User.Identity.GetUserName();
+            if (userId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var deleteusu = new UsuarioController();
+            deleteusu.Delete(a);
+
+            var user = await UserManager.FindByIdAsync(userId);
+            var logins = user.Logins;
+            var rolesForUser = await UserManager.GetRolesAsync(userId);
+            using (var transaction = db)
+            {
+                foreach (var login in logins.ToList())
+                {
+                    await UserManager.RemoveLoginAsync(login.UserId, new UserLoginInfo(login.LoginProvider, login.ProviderKey));
+                }
+                if (rolesForUser.Count() > 0)
+                {
+                    foreach (var item in rolesForUser.ToList())
+                    {
+                        var result = await UserManager.RemoveFromRoleAsync(user.Id, item);
+                    }
+                }
+                await UserManager.DeleteAsync(user);
+            }
+            return RedirectToAction("LogOff2", "Account");
+        }
+
+        #region Aplicaciones auxiliares
         // Se usan para protección XSRF al agregar inicios de sesión externos
         private const string XsrfKey = "XsrfId";
 

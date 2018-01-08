@@ -108,5 +108,9 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Valoracion
 {
         return _IValoracionCAD.DameValoracionPorVideoID (p_id);
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> DameValoracionPorEmail (string user)
+{
+        return _IValoracionCAD.DameValoracionPorEmail (user);
+}
 }
 }

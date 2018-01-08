@@ -39,5 +39,6 @@
 		  
 		  <query name="ValoracionENReadAllHQL">from ValoracionEN</query>
 		  <query name="ValoracionENdameValoracionPorVideoIDHQL"><![CDATA[FROM ValoracionEN as val WHERE val.Video.Id=:p_id]]></query>
+		  <query name="ValoracionENdameValoracionPorEmailHQL"><![CDATA[FROM ValoracionEN as val WHERE val.Usuario.Email=:user]]></query>
 		</hibernate-mapping>
 	

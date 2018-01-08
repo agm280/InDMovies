@@ -108,5 +108,9 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Comentario
 {
         return _IComentarioCAD.DameComentarioPorVideoID (p_id);
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> DameComentarioPorEmail (string user)
+{
+        return _IComentarioCAD.DameComentarioPorEmail (user);
+}
 }
 }

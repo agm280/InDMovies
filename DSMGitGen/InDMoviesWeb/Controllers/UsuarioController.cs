@@ -9,6 +9,9 @@ using InDMoviesWeb.Models;
 using DSMGitGenNHibernate.CEN.DSMGit;
 using System.IO;
 using System.Web.Security;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using System.Net;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -126,102 +129,137 @@ namespace InDMoviesWeb.Controllers
         }
 
         // GET: Usuario/Delete/5
-        public ActionResult Delete(string id)
+        public void Delete(string id)
         {
-            try
+            SessionInitialize();
+            UsuarioCAD usuCAD = new UsuarioCAD(session);
+            UsuarioCEN usuCEN = new UsuarioCEN(usuCAD);
+            UsuarioEN usuEN = usuCEN.ReadOID(id);
+            UsuarioModel tema = UsuarioAssembler.crearUsu(usuEN);
+
+            TemaCAD temCAD = new TemaCAD(session);
+            TemaCEN temCEN = new TemaCEN(temCAD);
+            IList<TemaEN> temEN = temCEN.DameTemaPorEmail(id);
+            IList<TemaModel> temasU = new TemaAssembler().ConvertListENToModel(temEN);
+
+            RespuestaCAD res2CAD = new RespuestaCAD(session);
+            RespuestaCEN res2CEN = new RespuestaCEN(res2CAD);
+            IList<RespuestaEN> res2EN = res2CEN.DameRespuestaPorEmail(id);
+            IList<RespuestaModel> resU = RespuestaAssembler.ConvertListENToModel(res2EN);
+
+            VideoCAD videoCAD = new VideoCAD(session);
+            VideoCEN videoCEN = new VideoCEN(videoCAD);
+            IList<VideoEN> videoEN = videoCEN.DameVideoPorEmail(id);
+            IList<VideoModel> videosU = VideoAssembler.convertListENToModel(videoEN);
+
+            ComentarioCAD comentarioCAD = new ComentarioCAD(session);
+            ComentarioCEN comentarioCEN = new ComentarioCEN(comentarioCAD);
+            IList<ComentarioEN> comentarioEN = comentarioCEN.DameComentarioPorEmail(id);
+            IList<ComentarioModel> comentarioU = ComentarioAssembler.convertListENToModel(comentarioEN);
+
+            ValoracionCAD valoracionCAD = new ValoracionCAD(session);
+            ValoracionCEN valoracionCEN = new ValoracionCEN(valoracionCAD);
+            IList<ValoracionEN> valoracionEN = valoracionCEN.DameValoracionPorEmail(id);
+            IList<ValoracionModel> valoracionU = ValoracionAssembler.convertListENToModel(valoracionEN);
+
+            GrupoCAD gruposTCAD = new GrupoCAD(session);
+            GrupoCEN gruposTCEN = new GrupoCEN(gruposTCAD);
+            //IList<GrupoEN> gruposTEN = GrupoCENGrupos por usuario(todos en general)gruposT
+            //IList<GrupoModel> gruposTU = GrupoAssembler.convertListENToModel(gruposTEN);
+
+            //GrupoCEN gruposLCEN = new GruposCEN(gruposLCAD);
+            //IList<GrupoEN> gruposLEN = GruposCEN//Grupos por usuario(todos en general)gruposL
+            //IList<GrupoModel> gruposLU = GruposAssembler.convertListENToModel(gruposLEN);
+
+            NotificacionCAD notiCAD = new NotificacionCAD(session);
+            NotificacionCEN notiCEN = new NotificacionCEN(notiCAD);
+            IList<NotificacionEN> notiEN = notiCEN.DameNotificacionPorEmail(id);
+            IList<NotificacionModel> notisU = NotificacionAssembler.ConvertListENToModel(notiEN);
+
+            SugerenciaCAD sugCAD = new SugerenciaCAD(session);
+            SugerenciaCEN sugCEN = new SugerenciaCEN(sugCAD);
+            IList<SugerenciaEN> sugEN = sugCEN.DameSugerenciaPorEmail(id);
+            IList<SugerenciaModel> sugU = SugerenciaAssembler.convertListENToModel(sugEN);
+
+            SessionClose();
+
+            foreach (RespuestaModel r in resU)
             {
-                // TODO: Add delete logic here
+                new RespuestaCEN().Destroy(r.Id);
+            }
 
+            foreach (TemaModel t in temasU)
+            {
                 SessionInitialize();
-                UsuarioCAD usuCAD = new UsuarioCAD(session);
-                UsuarioCEN usuCEN = new UsuarioCEN(usuCAD);
-                UsuarioEN usuEN = usuCEN.ReadOID(id);
-                UsuarioModel tema = UsuarioAssembler.crearUsu(usuEN);
-
-                TemaCAD temCAD = new TemaCAD(session);
-                TemaCEN temCEN = new TemaCEN(temCAD);
-                IList<TemaEN> temEN = temCEN.DameTemaPorEmail(id);
-                IList<TemaModel> temasU = new TemaAssembler().ConvertListENToModel(temEN);
-
-                VideoCAD videoCAD = new VideoCAD(session);
-                VideoCEN videoCEN = new VideoCEN(videoCAD);
-                IList<VideoEN> videoEN = videoCEN.DameVideoPorEmail(id);
-                IList<VideoModel> videosU = VideoAssembler.convertListENToModel(videoEN);
-
-                NotificacionCAD notiCAD = new NotificacionCAD(session);
-                NotificacionCEN notiCEN = new NotificacionCEN(notiCAD);
-                IList<NotificacionEN> notiEN = notiCEN.DameNotificacionPorEmail(id);
-                IList<NotificacionModel> notisU = NotificacionAssembler.ConvertListENToModel(notiEN);
-
-                SugerenciaCAD sugCAD = new SugerenciaCAD(session);
-                SugerenciaCEN sugCEN = new SugerenciaCEN(sugCAD);
-                IList<SugerenciaEN> sugEN = sugCEN.DameSugerenciaPorEmail(id);
-                IList<SugerenciaModel> sugU = SugerenciaAssembler.convertListENToModel(sugEN);
-
-                RespuestaCAD res2CAD = new RespuestaCAD(session);
-                RespuestaCEN res2CEN = new RespuestaCEN(res2CAD);
-                IList<RespuestaEN> res2EN = res2CEN.DameRespuestaPorEmail(id);
-                IList<RespuestaModel> res2 = RespuestaAssembler.ConvertListENToModel(res2EN);
-
+                RespuestaCAD resCAD = new RespuestaCAD(session);
+                RespuestaCEN resCEN = new RespuestaCEN(resCAD);
+                IList<RespuestaEN> resEN = resCEN.DameRespuestaPorTema(t.Id);
+                IList<RespuestaModel> res = RespuestaAssembler.ConvertListENToModel(resEN);
                 SessionClose();
 
-                foreach (RespuestaModel r in res2)
+                foreach (RespuestaModel r in res)
                 {
                     new RespuestaCEN().Destroy(r.Id);
                 }
 
-                foreach (TemaModel t in temasU)
-                {
-                    SessionInitialize();
-                    RespuestaCAD resCAD = new RespuestaCAD(session);
-                    RespuestaCEN resCEN = new RespuestaCEN(resCAD);
-                    IList<RespuestaEN> resEN = resCEN.DameRespuestaPorTema(t.Id);
-                    IList<RespuestaModel> res = RespuestaAssembler.ConvertListENToModel(resEN);
-                    SessionClose();
-
-                    foreach (RespuestaModel r in res)
-                    {
-                        new RespuestaCEN().Destroy(r.Id);
-                    }
-
-                    new TemaCEN().Destroy(t.Id);
-                }
-
-                foreach (VideoModel v in videosU)
-                {
-                    SessionInitialize();
-                    ComentarioCAD comCAD = new ComentarioCAD(session);
-                    ComentarioCEN comCEN = new ComentarioCEN(comCAD);
-                    IList<ComentarioEN> comEN = comCEN.DameComentarioPorVideoID(v.Id);
-                    IList<ComentarioModel> cres = ComentarioAssembler.convertListENToModel(comEN);
-                    SessionClose();
-
-                    foreach (ComentarioModel c in cres)
-                    {
-                        new ComentarioCEN().Destroy(c.Id);
-                    }
-
-                    new VideoCEN().Destroy(v.Id);
-                }
-
-                foreach(SugerenciaModel s in sugU)
-                {
-                    new SugerenciaCEN().Destroy(s.Id);
-                }
-
-                foreach (NotificacionModel n in notisU)
-                {
-                    new NotificacionCEN().Destroy(n.Id);
-                }
-
-                new UsuarioCEN().Destroy(id);
-
-                return RedirectToAction("LogOff2", "Account");
+                new TemaCEN().Destroy(t.Id);
             }
-            catch
+
+
+            foreach (ComentarioModel c in comentarioU)
             {
-                return View();
+                new ComentarioCEN().Destroy(c.Id);
             }
+
+            foreach (ValoracionModel v in valoracionU)
+            {
+                new ValoracionCEN().Destroy(v.Id);
+            }
+
+            foreach (VideoModel v in videosU)
+            {
+                SessionInitialize();
+                ComentarioCAD comCAD = new ComentarioCAD(session);
+                ComentarioCEN comCEN = new ComentarioCEN(comCAD);
+                IList<ComentarioEN> comEN = comCEN.DameComentarioPorVideoID(v.Id);
+                IList<ComentarioModel> cres = ComentarioAssembler.convertListENToModel(comEN);
+                SessionClose();
+
+                foreach (ComentarioModel c in cres)
+                {
+                    new ComentarioCEN().Destroy(c.Id);
+                }
+
+                SessionInitialize();
+                ValoracionCAD valCAD = new ValoracionCAD(session);
+                ValoracionCEN valCEN = new ValoracionCEN(valCAD);
+                IList<ValoracionEN> valEN = valCEN.DameValoracionPorVideoID(v.Id);
+                IList<ValoracionModel> vals = ValoracionAssembler.convertListENToModel(valEN);
+                SessionClose();
+
+                foreach (ValoracionModel valo in vals)
+                {
+                    new ValoracionCEN().Destroy(valo.Id);
+                }
+
+                new VideoCEN().Destroy(v.Id);
+            }
+
+            foreach (SugerenciaModel s in sugU)
+            {
+                new SugerenciaCEN().Destroy(s.Id);
+            }
+
+            foreach (NotificacionModel n in notisU)
+            {
+                new NotificacionCEN().Destroy(n.Id);
+            }
+            //algo de los grupos aqui joeh
+
+            new UsuarioCEN().Destroy(id);
+
+
+
         }
 
         // POST: Usuario/Delete/5

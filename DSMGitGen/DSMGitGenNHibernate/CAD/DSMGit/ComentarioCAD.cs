@@ -295,5 +295,35 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Comentario
 
         return result;
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> DameComentarioPorEmail (string user)
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN as com WHERE com.Usuario.Email=:user";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENdameComentarioPorEmailHQL");
+                query.SetParameter ("user", user);
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in ComentarioCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

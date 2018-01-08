@@ -30,5 +30,8 @@ System.Collections.Generic.IList<ComentarioEN> ReadAll (int first, int size);
 
 
 System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> DameComentarioPorVideoID (int ? p_id);
+
+
+System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ComentarioEN> DameComentarioPorEmail (string user);
 }
 }

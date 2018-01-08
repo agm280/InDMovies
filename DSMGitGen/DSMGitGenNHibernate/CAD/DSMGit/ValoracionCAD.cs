@@ -295,5 +295,35 @@ public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.Valoracion
 
         return result;
 }
+public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> DameValoracionPorEmail (string user)
+{
+        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM ValoracionEN self where FROM ValoracionEN as val WHERE val.Usuario.Email=:user";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ValoracionENdameValoracionPorEmailHQL");
+                query.SetParameter ("user", user);
+
+                result = query.List<DSMGitGenNHibernate.EN.DSMGit.ValoracionEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in ValoracionCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

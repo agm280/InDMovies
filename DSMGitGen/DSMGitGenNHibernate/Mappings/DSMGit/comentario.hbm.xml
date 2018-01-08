@@ -39,5 +39,6 @@
 		  
 		  <query name="ComentarioENReadAllHQL">from ComentarioEN</query>
 		  <query name="ComentarioENdameComentarioPorVideoIDHQL"><![CDATA[FROM ComentarioEN as com WHERE com.Video.Id=:p_id]]></query>
+		  <query name="ComentarioENdameComentarioPorEmailHQL"><![CDATA[FROM ComentarioEN as com WHERE com.Usuario.Email=:user]]></query>
 		</hibernate-mapping>
 	
