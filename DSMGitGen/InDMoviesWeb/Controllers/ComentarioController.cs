@@ -36,6 +36,7 @@ namespace InDMoviesWeb.Controllers
             ComentarioCAD comentCAD = new ComentarioCAD(session);
             IList<ComentarioEN> comentEN = comentCAD.DameComentarioPorVideoID(id);
             IEnumerable<ComentarioModel> comentarios = ComentarioAssembler.convertListENToModel(comentEN).ToList();
+            SessionClose();
             return PartialView(comentarios);
         }
 

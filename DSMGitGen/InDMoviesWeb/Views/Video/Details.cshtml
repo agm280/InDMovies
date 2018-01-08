@@ -78,6 +78,8 @@
 
 @Html.ActionLink("Comentar este video", "Create", "Valoracion", new { id = Model.Id }, null)
 
+@Html.Action("DetailsVideo", "Valoracion", new { id = Model.Id })
+
 <h4>Comentarios</h4>
 
 @Html.ActionLink("Comentar este video", "Create", "Comentario", new { id = Model.Id }, null)

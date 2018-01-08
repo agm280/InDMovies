@@ -30,6 +30,34 @@ namespace InDMoviesWeb.Controllers
             return View();
         }
 
+        public ActionResult DetailsVideo(int id)
+        {
+            SessionInitialize();
+            ValoracionCAD valoracionCAD = new ValoracionCAD(session);
+            IList<ValoracionEN> valoracionEN = valoracionCAD.DameValoracionPorVideoID(id);
+            IEnumerable<ValoracionModel> valoraciones = ValoracionAssembler.convertListENToModel(valoracionEN).ToList();
+            SessionClose();
+
+            int total=0;
+            int suma = 0;
+            int media = 0;
+            
+            foreach (ValoracionModel v in valoraciones) {
+
+                suma = suma + v.Valor;
+                total = total +1;
+
+            }
+            
+            media = suma / total;
+            
+
+            ViewBag.Media = media;
+            ViewBag.Total = total;
+
+            return PartialView(valoraciones);
+        }
+
         // GET: Valoracion/Create
         public ActionResult Create(int id)
         {
