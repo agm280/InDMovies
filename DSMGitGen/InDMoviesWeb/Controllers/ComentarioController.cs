@@ -55,10 +55,11 @@ namespace InDMoviesWeb.Controllers
                 // TODO: Add insert logic here
                 ComentarioCEN comentarioCEN = new ComentarioCEN();
 
-                if(!collection["Texto"].Equals(""))
+                if(!collection["Texto"].Equals("")){
                 comentarioCEN.New_(p_texto: collection["Texto"], p_usuario: User.Identity.GetUserName(), p_video: id);
-                
-
+                var ctrl = new NotificacionController();
+                ctrl.CreateNV(id, User.Identity.GetUserName());
+		}
                 return RedirectToRoute(new
                 {
                     controller = "Video",

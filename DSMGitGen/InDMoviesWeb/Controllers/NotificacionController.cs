@@ -32,18 +32,33 @@ namespace InDMoviesWeb.Controllers
         // GET: Notificacion/Create
         public void CreateNT(int tema, string usuario)
         {
+                SessionInitialize();
+                TemaCAD temCAD = new TemaCAD(session);
+                TemaEN temaa = temCAD.ReadOIDDefault(tema);
+                UsuarioCAD usuCAD = new UsuarioCAD(session);
+                UsuarioEN usuEN = usuCAD.ReadOIDDefault(usuario);
+
+                string receptor = temaa.Usuario.Email;
+                string nombret = temaa.Titulo;
+                string nombreu = usuEN.Nick;
+
+                NotificacionCEN noti = new NotificacionCEN();
+                noti.New_(nombreu + " te ha respondido al tema " + nombret + " .", receptor);
+        }
+
+        public void CreateNV(int video, string usuario)
+        {
             SessionInitialize();
-            TemaCAD temCAD = new TemaCAD(session);
-            TemaEN temaa = temCAD.ReadOIDDefault(tema);
+            VideoCAD videoCAD = new VideoCAD(session);
+            VideoEN videoEN = videoCAD.ReadOIDDefault(video);
             UsuarioCAD usuCAD = new UsuarioCAD(session);
             UsuarioEN usuEN = usuCAD.ReadOIDDefault(usuario);
 
-            string receptor = temaa.Usuario.Email;
-            string nombret = temaa.Titulo;
+            string receptor = videoEN.Usuario.Email;
+            string nombrev = videoEN.Titulo;
             string nombreu = usuEN.Nick;
-            
             NotificacionCEN noti = new NotificacionCEN();
-            noti.New_(nombreu + " te ha respondido al tema " + nombret + ".", receptor);
+            noti.New_(nombreu + " ha comentado tu video " + nombrev + " .", receptor);
         }
 
         // POST: Notificacion/Create

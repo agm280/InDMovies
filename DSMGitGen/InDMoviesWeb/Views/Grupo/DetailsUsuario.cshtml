@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<InDMoviesWeb.Models.GrupoModel>
+@using Microsoft.AspNet.Identity
 
 <table class="table">
     <tr>
@@ -6,10 +7,13 @@
             @Html.DisplayNameFor(model => model.Imagen)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Lider)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Completo)
@@ -23,20 +27,27 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Imagen)
+            <img height="100" width="100" src="@Html.DisplayFor(modelItem => item.Imagen)" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Descripcion)
+            @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Lider)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Completo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AceptaMiembros)
         </td>
+            <td>
+               @Html.ActionLink("Detalles", "Details", new { id = item.Nombre },new { @class = "btn btn-primary btn-md", @role = "button" })
+            </td>
     </tr>
 }
 

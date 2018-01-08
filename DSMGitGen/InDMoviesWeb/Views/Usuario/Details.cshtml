@@ -1,5 +1,5 @@
 ﻿@model InDMoviesWeb.Models.UsuarioModel
-
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,12 +10,41 @@
 <div>
     <h4>UsuarioModel</h4>
     <hr />
-    @Html.ActionLink("Notificaciones", "Index", "Notificacion", new { id = Model.Email + '/'} ,"")
+    @if (User.Identity.GetUserName() == Model.Email)
+    {
+        <p>
+            @Html.ActionLink("Notificaciones", "Index", "Notificacion", new { id = Model.Email + '/' }, new { @class = "btn btn-primary btn-md", @role = "button" })
+        </p>
+    }
+    @if (User.Identity.GetUserName() == Model.Email)
+    {
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = Model.Email + '/' })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = Model.Email + '/' })</li>
+                </ul>
+            </div>
+        </td>
+    }
     <dl class="dl-horizontal">
+        <dd>
+            <img height="200" width="200" src="@Html.DisplayFor(model => model.Imagen)" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nick)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nick)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
-
+        
         <dd>
             @Html.DisplayFor(model => model.Nombre)
         </dd>
@@ -28,13 +57,7 @@
             @Html.DisplayFor(model => model.Apellidos)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nick)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nick)
-        </dd>
+        
 
         <dt>
             @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
@@ -50,15 +73,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.Rol)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
-
-        <dd>
-            <img height="200" width="200" src="@Html.DisplayFor(model => model.Imagen)" />
-        </dd>
+        </dd>     
 
         <dt>
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -70,15 +85,13 @@
 
     </dl>
 </div>
+
 <h4>Temas</h4>
 @Html.Action("DetailsUsuario", "Tema", new { id = Model.Email })
-
 <h4>Grupos</h4>
 @Html.Action("DetailsUsuario", "Grupo", new { id = Model.Email })
-
 <h4>Videos</h4>
 @Html.Action("DetailsUsuario", "Video", new { id = Model.Email })
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Email+'/' }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
