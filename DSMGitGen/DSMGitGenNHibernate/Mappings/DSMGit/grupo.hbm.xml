@@ -15,9 +15,6 @@
 					<property name="Descripcion" type="string"> 
 						<column name="descripcion"  not-null="true"/>
 					</property>
-					<property name="Completo" type="boolean"> 
-						<column name="completo"  not-null="true"/>
-					</property>
 					<property name="AceptaMiembros" type="boolean"> 
 						<column name="aceptaMiembros"  not-null="true"/>
 					</property>
@@ -65,8 +62,6 @@
 						</many-to-one>
 											 					
 			
-			
-					
 					
 					
 					
@@ -79,8 +74,6 @@
 		 </class>	
 		  
 		  <query name="GrupoENReadAllHQL">from GrupoEN</query>
-		  <query name="GrupoENdameGruposNoLlenosHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Completo=false]]></query>
-		  <query name="GrupoENdameGruposLlenosHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Completo=true]]></query>
 		  <query name="GrupoENdameGruposLideradosPorNickHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Lider.Nick LIKE ('%'+:p_nick+'%')]]></query>
 		  <query name="GrupoENdameGruposLideradosPorEmailHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Lider.Email=:p_email]]></query>
 		  <query name="GrupoENdameGruposPorNombreHQL"><![CDATA[FROM GrupoEN as gru WHERE gru.Nombre LIKE ('%'+:p_nombre+'%')]]></query>

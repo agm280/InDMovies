@@ -7,6 +7,15 @@
 
 <h2>Crear Grupo</h2>
 
+@if(@ViewBag.Error == true){
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Parámetros incorrectos. Por favor, compruebe los campos.
+    </div>
+}
+
+
 @using (Html.BeginForm("Create", "GrupoController", FormMethod.Post, new { enctype = "multipart/form-data", @action = "/Grupo/Create" }))
 {
     @Html.AntiForgeryToken()
@@ -35,16 +44,6 @@
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Completo, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Completo)
-                @Html.ValidationMessageFor(model => model.Completo, "", new { @class = "text-danger" })
-            </div>
         </div>
     </div>
 

@@ -110,10 +110,10 @@ public static void InitializeData ()
                 enviaUsu.Add ("ejemplo@gmail.com");
 
                 GrupoCEN grupo = new GrupoCEN ();
-                grupo.New_ (p_nombre: "Grupo1", p_imagen: "/Images/Uploads/defaultGroup.png", p_descripcion: "El mejor grupo", p_miembros: enviaUsu, p_lider: "ejemplo@gmail.com", p_completo: false, p_aceptaMiembros: true);
-                grupo.New_ (p_nombre: "Grupo2", p_imagen: "/Images/Uploads/defaultGroup.png", p_descripcion: "El segundo mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_completo: false, p_aceptaMiembros: true);
+                grupo.New_ (p_nombre: "Grupo1", p_imagen: "/Images/Uploads/defaultGroup.png", p_descripcion: "El mejor grupo", p_miembros: enviaUsu, p_lider: "ejemplo@gmail.com", p_aceptaMiembros: true);
+                grupo.New_ (p_nombre: "Grupo2", p_imagen: "/Images/Uploads/defaultGroup.png", p_descripcion: "El segundo mejor grupo", p_miembros: null, p_lider: "ejemplo@gmail.com", p_aceptaMiembros: true);
                 //Grupo usado para la mayoria de ejemplos de cps:
-                grupo.New_ (p_nombre: "Excalibur", p_imagen: "/Images/Uploads/defaultGroup.png", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_completo: false, p_aceptaMiembros: true);
+                grupo.New_ (p_nombre: "Excalibur", p_imagen: "/Images/Uploads/defaultGroup.png", p_descripcion: "Grupo de fans de las espadas", p_miembros: null, p_lider: "ejemplo2@gmail.com", p_aceptaMiembros: true);
 
 
                 InvitacionCEN invitacion = new InvitacionCEN ();

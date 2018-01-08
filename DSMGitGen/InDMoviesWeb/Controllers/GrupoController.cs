@@ -45,19 +45,88 @@ namespace InDMoviesWeb.Controllers
             IEnumerable<GrupoModel> grupos = GrupoAssembler.convertListToModelUI(grupo).ToList();
             return PartialView(grupos);
         }
-        public ActionResult DetailsBusqueda(string id)
+        public ActionResult HerramientasGrupo(string idUsu, string idGrup)
         {
             SessionInitialize();
-            GrupoCAD gruCAD = new GrupoCAD(session);
-            IList<GrupoEN> gruEN = gruCAD.DameGruposPorNombre(id);
-            IEnumerable<GrupoModel> grupos = GrupoAssembler.convertListToModelUI(gruEN).ToList();
+            GrupoEN grupo = new GrupoCEN(new GrupoCAD(session)).ReadOID(idGrup);
+            ViewBag.Nombre = grupo.Nombre;
+            ViewBag.Iguales = false;
+            if (String.Compare(grupo.Lider.Email, idUsu) == 0){
+                ViewBag.Iguales = true;
+            }
             SessionClose();
-
-            return PartialView(grupos);
+            return PartialView();
         }
+
+        public ActionResult ExpulsarMiembro(string id) {
+            ViewBag.IdGrupo = id;
+            ViewBag.Error = false;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ExpulsarMiembro(string id, FormCollection collection)
+        {
+            try
+            {
+                GrupoCEN grupo = new GrupoCEN();
+                NotificacionCEN notificacion = new NotificacionCEN();
+
+                GrupoEN grupoEN = grupo.ReadOID(id);
+                grupo.SacarUsuario(p_Grupo_OID: id, p_miembros_OIDs: new List<string>() { collection["Usuario"] });
+
+                string descripcion = "Expulsado del grupo" + grupoEN.Nombre;
+                if (!string.IsNullOrEmpty(collection["Descripcion"]))
+                {
+                    descripcion += collection["Descripcion"];
+                }
+                 
+                notificacion.New_(p_descripcion: descripcion, p_usuario: collection["Usuario"]);
+
+                return RedirectToAction("Details", new { id = id });
+            }
+            catch {
+                ViewBag.Error = true;
+                return View();
+            }
+            
+        }
+
+        public ActionResult UnirseAGrupo(string id, string idGrup)
+        {
+            try
+            {
+                SessionInitialize();
+                GrupoCEN grupoCEN = new GrupoCEN();
+
+                GrupoEN grupo = grupoCEN.ReadOID(idGrup);
+                bool une = true;
+                IList<UsuarioEN> miembros = new UsuarioCEN().DameUsuarioPorGrupo(idGrup);
+                foreach (UsuarioEN u in miembros)
+                {
+                    if (String.Compare(id, u.Email) == 0)
+                        une = false;
+                }
+
+                if (une)
+                {
+                    grupoCEN.MeterUsuario(p_Grupo_OID: idGrup, p_miembros_OIDs: new List<string>() { id });
+                }
+                SessionClose();
+                return RedirectToAction("Details", new { id = idGrup });
+            }
+            catch {
+                return RedirectToAction("Details", new { id = idGrup });
+            }
+           
+            
+        }
+
+
         // GET: Grupo/Create
         public ActionResult Create()
         {
+            ViewBag.Error = false;
             return View();
         }
 
@@ -87,14 +156,6 @@ namespace InDMoviesWeb.Controllers
                     fileName = "/Images/Uploads/" + fileName;
                 }
 
-                bool completo = false;
-                if (!string.IsNullOrEmpty(collection["Completo"]))
-                {
-                    string[] check = collection["Completo"].Split(',');
-                    bool checkB = Convert.ToBoolean(check[0]);
-                    completo = checkB;
-                }
-
                 bool acepta = false;
                 if (!string.IsNullOrEmpty(collection["AceptaMiembros"]))
                 {
@@ -113,7 +174,7 @@ namespace InDMoviesWeb.Controllers
                 IList<string> miembros = new List<string>() { User.Identity.GetUserName() };
 
                 
-                String idgru = gru.New_(p_lider: User.Identity.GetUserName(), p_nombre: collection["Nombre"], p_descripcion: descripcion, p_imagen: fileName, p_aceptaMiembros: acepta, p_completo: completo, p_miembros: miembros);
+                String idgru = gru.New_(p_lider: User.Identity.GetUserName(), p_nombre: collection["Nombre"], p_descripcion: descripcion, p_imagen: fileName, p_aceptaMiembros: acepta, p_miembros: miembros);
 
 
                 miembros = new List<string>();
@@ -138,6 +199,7 @@ namespace InDMoviesWeb.Controllers
             }
             catch
             {
+                ViewBag.Error = true;
                 return View();
             }
         }
@@ -179,13 +241,7 @@ namespace InDMoviesWeb.Controllers
                     fileName = "/Images/Uploads/" + fileName;
                 }
 
-                bool completo = grupoEN.Completo;
-                if (!string.IsNullOrEmpty(collection["Completo"]))
-                {
-                    string[] check = collection["Completo"].Split(',');
-                    bool checkB = Convert.ToBoolean(check[0]);
-                    completo = checkB;
-                }
+     
 
                 bool acepta = grupoEN.AceptaMiembros;
                 if (!string.IsNullOrEmpty(collection["AceptaMiembros"]))
@@ -201,7 +257,7 @@ namespace InDMoviesWeb.Controllers
                     descripcion = collection["Descripcion"];
                 }
 
-                gru.Modify(p_Grupo_OID: id, p_descripcion: descripcion, p_imagen: fileName, p_aceptaMiembros: acepta, p_completo: completo);
+                gru.Modify(p_Grupo_OID: id, p_descripcion: descripcion, p_imagen: fileName, p_aceptaMiembros: acepta);
        
                 return RedirectToRoute(new
                 {
@@ -244,5 +300,18 @@ namespace InDMoviesWeb.Controllers
                 return View();
             }
         }
+
+        public ActionResult DetailsBusqueda(string id)
+        {
+            SessionInitialize();
+            GrupoCAD gruCAD = new GrupoCAD(session);
+            IList<GrupoEN> gruEN = gruCAD.DameGruposPorNombre(id);
+            IEnumerable<GrupoModel> grupos = GrupoAssembler.convertListToModelUI(gruEN).ToList();
+            SessionClose();
+
+            return PartialView(grupos);
+        }
+
+
     }
 }

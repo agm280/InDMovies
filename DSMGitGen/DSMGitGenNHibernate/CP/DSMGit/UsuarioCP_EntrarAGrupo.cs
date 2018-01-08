@@ -65,18 +65,13 @@ public bool EntrarAGrupo (string p_oid, string p_nombreGrupo)
 
                         if (existe == true) {
                                 if (grupoEN.AceptaMiembros == true) {
-                                        if (grupoEN.Completo == false) {
-                                                //esto podria modificarse para reutilizar el metodo GrupoCP_AnadirUsuario.
-                                                /* IList<string> enviaUsu = new List<string>();
-                                                 * enviaUsu.Add(p_oid);
-                                                 * grupoCEN.MeterUsuario(p_oid, enviaUsu);
-                                                 * resultadoOperacion = true;*/
-                                                GrupoCP grupoCP = new GrupoCP (session);
-                                                resultadoOperacion = grupoCP.AnadirUsuario (p_nombreGrupo, p_oid);
-                                        }
-                                        else {
-                                                System.Console.WriteLine ("El grupo esta lleno.");
-                                        }
+                                        //esto podria modificarse para reutilizar el metodo GrupoCP_AnadirUsuario.
+                                        /* IList<string> enviaUsu = new List<string>();
+                                         * enviaUsu.Add(p_oid);
+                                         * grupoCEN.MeterUsuario(p_oid, enviaUsu);
+                                         * resultadoOperacion = true;*/
+                                        GrupoCP grupoCP = new GrupoCP (session);
+                                        resultadoOperacion = grupoCP.AnadirUsuario (p_nombreGrupo, p_oid);
                                 }
                         }
 

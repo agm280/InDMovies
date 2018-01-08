@@ -38,7 +38,7 @@ public IGrupoCAD get_IGrupoCAD ()
         return this._IGrupoCAD;
 }
 
-public string New_ (string p_nombre, string p_imagen, string p_descripcion, System.Collections.Generic.IList<string> p_miembros, string p_lider, bool p_completo, bool p_aceptaMiembros)
+public string New_ (string p_nombre, string p_imagen, string p_descripcion, System.Collections.Generic.IList<string> p_miembros, string p_lider, bool p_aceptaMiembros)
 {
         GrupoEN grupoEN = null;
         string oid;
@@ -73,8 +73,6 @@ public string New_ (string p_nombre, string p_imagen, string p_descripcion, Syst
                 grupoEN.Lider.Email = p_lider;
         }
 
-        grupoEN.Completo = p_completo;
-
         grupoEN.AceptaMiembros = p_aceptaMiembros;
 
         //Call to GrupoCAD
@@ -83,7 +81,7 @@ public string New_ (string p_nombre, string p_imagen, string p_descripcion, Syst
         return oid;
 }
 
-public void Modify (string p_Grupo_OID, string p_imagen, string p_descripcion, bool p_completo, bool p_aceptaMiembros)
+public void Modify (string p_Grupo_OID, string p_imagen, string p_descripcion, bool p_aceptaMiembros)
 {
         GrupoEN grupoEN = null;
 
@@ -92,7 +90,6 @@ public void Modify (string p_Grupo_OID, string p_imagen, string p_descripcion, b
         grupoEN.Nombre = p_Grupo_OID;
         grupoEN.Imagen = p_imagen;
         grupoEN.Descripcion = p_descripcion;
-        grupoEN.Completo = p_completo;
         grupoEN.AceptaMiembros = p_aceptaMiembros;
         //Call to GrupoCAD
 
@@ -120,14 +117,6 @@ public System.Collections.Generic.IList<GrupoEN> ReadAll (int first, int size)
 
         list = _IGrupoCAD.ReadAll (first, size);
         return list;
-}
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposNoLlenos ()
-{
-        return _IGrupoCAD.DameGruposNoLlenos ();
-}
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposLlenos ()
-{
-        return _IGrupoCAD.DameGruposLlenos ();
 }
 public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposLideradosPorNick (string p_nick)
 {

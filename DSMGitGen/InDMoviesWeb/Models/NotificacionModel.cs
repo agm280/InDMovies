@@ -24,7 +24,7 @@ namespace InDMoviesWeb.Models
          }
  
  
- 
+        [Required]
          public virtual string Usuario
          {
              get;

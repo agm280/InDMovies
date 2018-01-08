@@ -4,23 +4,14 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    String lider = Model.Lider;
+    string nombre = Model.Nombre;
 }
-
 
 
 <h2> @Html.DisplayFor(model => model.Nombre)</h2>
 
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-cog"></span><span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-        <li><span class="glyphicon glyphicon-edit"></span></li>
-        <li>@Html.ActionLink("Editar", "Edit", new { id = Model.Nombre })</li>
-        <li>@Html.ActionLink("Borrar", "Delete", new { id = Model.Nombre })</li>
-        <li><a href="#">Opcion</a></li>
-    </ul>
-</div>
+@Html.Action("HerramientasGrupo", "Grupo", new { idUsu = User.Identity.Name.ToString(), idGrup = Model.Nombre })
 
 <div>
     <hr />
@@ -67,9 +58,30 @@
     </dl>
 </div>
 
+
+@{
+    string Visibility = "hidden";
+    if (Request.IsAuthenticated)
+    {
+        if (Model.AceptaMiembros == true) { Visibility = "visible"; }
+
+    }
+}
+<div style="visibility:@Visibility;">
+        @Html.ActionLink("Unirse a grupo", "UnirseAGrupo", new { id = User.Identity.Name.ToString() + "/" , idGrup = Model.Nombre} , new { @class = "btn btn-success btn-md", @role = "button"})
+</div>
+
+
+
 <h3>Miembros</h3>
+
 @Html.Action("DetailsGrupo","Usuario", new { id = Model.Nombre })
 
 <p>
-    <span class="glyphicon glyphicon-menu-left"></span>@Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Index", "Grupo")" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        Back to Index
+    </a>
 </p>
+
+

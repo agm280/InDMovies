@@ -1,0 +1,58 @@
+﻿@model InDMoviesWeb.Models.NotificacionModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    String id = ViewBag.IdGrupo;
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("ExpulsarMiembro", "GrupoController", FormMethod.Post, new { enctype = "multipart/form-data", @action = "/Grupo/ExpulsarMiembro/" + @id }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>NotificacionModel</h4>
+        @if (@ViewBag.Error == true)
+        {
+            <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                Parámetros incorrectos. Por favor, compruebe los campos.
+            </div>
+        }
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <h4>Introduce el usuario a expulsar:</h4>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <h4>Motivo de su expulsión:</h4>
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Expulsar" class="btn btn-warning" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

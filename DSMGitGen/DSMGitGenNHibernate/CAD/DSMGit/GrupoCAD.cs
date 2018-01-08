@@ -101,9 +101,6 @@ public void ModifyDefault (GrupoEN grupo)
 
 
 
-                grupoEN.Completo = grupo.Completo;
-
-
                 grupoEN.AceptaMiembros = grupo.AceptaMiembros;
 
                 session.Update (grupoEN);
@@ -175,9 +172,6 @@ public void Modify (GrupoEN grupo)
 
 
                 grupoEN.Descripcion = grupo.Descripcion;
-
-
-                grupoEN.Completo = grupo.Completo;
 
 
                 grupoEN.AceptaMiembros = grupo.AceptaMiembros;
@@ -284,64 +278,6 @@ public System.Collections.Generic.IList<GrupoEN> ReadAll (int first, int size)
         return result;
 }
 
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposNoLlenos ()
-{
-        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.Completo=false";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("GrupoENdameGruposNoLlenosHQL");
-
-                result = query.List<DSMGitGenNHibernate.EN.DSMGit.GrupoEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in GrupoCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
-public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposLlenos ()
-{
-        System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> result;
-        try
-        {
-                SessionInitializeTransaction ();
-                //String sql = @"FROM GrupoEN self where FROM GrupoEN as gru WHERE gru.Completo=true";
-                //IQuery query = session.CreateQuery(sql);
-                IQuery query = (IQuery)session.GetNamedQuery ("GrupoENdameGruposLlenosHQL");
-
-                result = query.List<DSMGitGenNHibernate.EN.DSMGit.GrupoEN>();
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is DSMGitGenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new DSMGitGenNHibernate.Exceptions.DataLayerException ("Error in GrupoCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-
-        return result;
-}
 public System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> DameGruposLideradosPorNick (string p_nick)
 {
         System.Collections.Generic.IList<DSMGitGenNHibernate.EN.DSMGit.GrupoEN> result;

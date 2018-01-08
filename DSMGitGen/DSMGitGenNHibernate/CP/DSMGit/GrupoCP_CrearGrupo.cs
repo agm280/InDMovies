@@ -69,7 +69,7 @@ public DSMGitGenNHibernate.EN.DSMGit.GrupoEN CrearGrupo (string p_nombre, System
                         grupoEN.Lider.Email = p_lider;
                 }
 
-                grupoEN.Completo = p_completo;
+
 
                 if (p_completo == true)
                         grupoEN.AceptaMiembros = false;

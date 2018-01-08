@@ -70,20 +70,12 @@ public bool AnadirUsuario (string p_oid, string p_email)
 
 
                                 if (result == true && grupito != null) {
-                                        if (grupito.Completo == false) {
-                                                //-------------AQUI-------------
+                                        IList<string> enviaUsu = new List<string>();
+                                        enviaUsu.Add (p_email);
 
-                                                IList<string> enviaUsu = new List<string>();
-                                                enviaUsu.Add (p_email);
+                                        grupoCEN.MeterUsuario (p_oid, enviaUsu);
 
-                                                grupoCEN.MeterUsuario (p_oid, enviaUsu);
-
-                                                //------------------------------------
-                                        }
-                                        else{
-                                                System.Console.WriteLine ("El grupo esta lleno.");
-                                                result = false;
-                                        }
+                                        //------------------------------------
                                 }
                                 else{
                                         result = false;

@@ -364,6 +364,8 @@
     <Content Include="Views\Busqueda\Index.cshtml" />
     <Content Include="Views\Video\DetailsBusqueda.cshtml" />
     <Content Include="Views\Usuario\Delete2.cshtml" />
+    <Content Include="Views\Grupo\ExpulsarMiembro.cshtml" />
+    <Content Include="Views\Grupo\HerramientasGrupo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
