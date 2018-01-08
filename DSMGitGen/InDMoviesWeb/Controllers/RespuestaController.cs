@@ -62,7 +62,8 @@ namespace InDMoviesWeb.Controllers
                 RespuestaCEN res = new RespuestaCEN();
                 DateTime fech = new DateTime();
                 fech = System.DateTime.Now;
-
+                var ctrl = new NotificacionController();
+                ctrl.CreateNT(id, User.Identity.GetUserName());
                 res.New_(p_tema: id ,p_usuario: User.Identity.GetUserName(), p_descripcion: collection["Descripcion"],p_fecha: fech);
 
                 return RedirectToRoute(new

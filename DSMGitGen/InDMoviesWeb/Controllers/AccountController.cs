@@ -415,6 +415,12 @@ namespace InDMoviesWeb.Controllers
             return View(model);
         }
 
+
+        public ActionResult LogOff2()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
         //
         // POST: /Account/LogOff
         [HttpPost]

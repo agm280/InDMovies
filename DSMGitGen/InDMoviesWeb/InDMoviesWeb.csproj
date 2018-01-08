@@ -224,6 +224,8 @@
     <Compile Include="Controllers\GrupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NotificacionAssembler.cs" />
+    <Compile Include="Controllers\NotificacionController.cs" />
     <Compile Include="Controllers\RespuestaAssembler.cs" />
     <Compile Include="Controllers\RespuestaController.cs" />
     <Compile Include="Controllers\SugerenciaAssembler.cs" />
@@ -243,6 +245,7 @@
     <Compile Include="Models\GrupoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NotificacionModel.cs" />
     <Compile Include="Models\RespuestaModel.cs" />
     <Compile Include="Models\SugerenciaModel.cs" />
     <Compile Include="Models\TemaModel.cs" />
@@ -340,6 +343,7 @@
     <Content Include="Views\Sugerencia\Create.cshtml" />
     <Content Include="Views\Sugerencia\Details.cshtml" />
     <Content Include="Views\Sugerencia\Delete.cshtml" />
+    <Content Include="Views\Notificacion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

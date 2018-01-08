@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using InDMoviesWeb.Models;
 using DSMGitGenNHibernate.CEN.DSMGit;
 using System.IO;
+using System.Web.Security;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -107,7 +108,7 @@ namespace InDMoviesWeb.Controllers
                 
 
                 cen.Modify(p_Usuario_OID:id,p_nombre:usu.Nombre,p_apellidos:usu.Apellidos,p_nick:usu.Nick,p_contrasenya:contraseña,p_fecha_nac:usu.Fecha_Nacimiento, p_rol: usu.Rol,p_imagen:fileName,p_descripcion:usu.Descripcion);
-                return RedirectToAction("Index");
+                return RedirectToRoute(new{controller = "Usuario", action = "Details", id = id+'/'});
             }
             catch
             {
@@ -127,11 +128,86 @@ namespace InDMoviesWeb.Controllers
                 UsuarioCEN usuCEN = new UsuarioCEN(usuCAD);
                 UsuarioEN usuEN = usuCEN.ReadOID(id);
                 UsuarioModel tema = UsuarioAssembler.crearUsu(usuEN);
+
+                TemaCAD temCAD = new TemaCAD(session);
+                TemaCEN temCEN = new TemaCEN(temCAD);
+                IList<TemaEN> temEN = temCEN.DameTemaPorEmail(id);
+                IList<TemaModel> temasU = new TemaAssembler().ConvertListENToModel(temEN);
+
+                VideoCAD videoCAD = new VideoCAD(session);
+                VideoCEN videoCEN = new VideoCEN(videoCAD);
+                IList<VideoEN> videoEN = videoCEN.DameVideoPorEmail(id);
+                IList<VideoModel> videosU = VideoAssembler.convertListENToModel(videoEN);
+
+                NotificacionCAD notiCAD = new NotificacionCAD(session);
+                NotificacionCEN notiCEN = new NotificacionCEN(notiCAD);
+                IList<NotificacionEN> notiEN = notiCEN.DameNotificacionPorEmail(id);
+                IList<NotificacionModel> notisU = NotificacionAssembler.ConvertListENToModel(notiEN);
+
+                SugerenciaCAD sugCAD = new SugerenciaCAD(session);
+                SugerenciaCEN sugCEN = new SugerenciaCEN(sugCAD);
+                IList<SugerenciaEN> sugEN = sugCEN.DameSugerenciaPorEmail(id);
+                IList<SugerenciaModel> sugU = SugerenciaAssembler.convertListENToModel(sugEN);
+
+                RespuestaCAD res2CAD = new RespuestaCAD(session);
+                RespuestaCEN res2CEN = new RespuestaCEN(res2CAD);
+                IList<RespuestaEN> res2EN = res2CEN.DameRespuestaPorEmail(id);
+                IList<RespuestaModel> res2 = RespuestaAssembler.ConvertListENToModel(res2EN);
+
                 SessionClose();
+
+                foreach (RespuestaModel r in res2)
+                {
+                    new RespuestaCEN().Destroy(r.Id);
+                }
+
+                foreach (TemaModel t in temasU)
+                {
+                    SessionInitialize();
+                    RespuestaCAD resCAD = new RespuestaCAD(session);
+                    RespuestaCEN resCEN = new RespuestaCEN(resCAD);
+                    IList<RespuestaEN> resEN = resCEN.DameRespuestaPorTema(t.Id);
+                    IList<RespuestaModel> res = RespuestaAssembler.ConvertListENToModel(resEN);
+                    SessionClose();
+
+                    foreach (RespuestaModel r in res)
+                    {
+                        new RespuestaCEN().Destroy(r.Id);
+                    }
+
+                    new TemaCEN().Destroy(t.Id);
+                }
+
+                foreach (VideoModel v in videosU)
+                {
+                    SessionInitialize();
+                    ComentarioCAD comCAD = new ComentarioCAD(session);
+                    ComentarioCEN comCEN = new ComentarioCEN(comCAD);
+                    IList<ComentarioEN> comEN = comCEN.DameComentarioPorVideoID(v.Id);
+                    IList<ComentarioModel> cres = ComentarioAssembler.convertListENToModel(comEN);
+                    SessionClose();
+
+                    foreach (ComentarioModel c in cres)
+                    {
+                        new ComentarioCEN().Destroy(c.Id);
+                    }
+
+                    new VideoCEN().Destroy(v.Id);
+                }
+
+                foreach(SugerenciaModel s in sugU)
+                {
+                    new SugerenciaCEN().Destroy(s.Id);
+                }
+
+                foreach (NotificacionModel n in notisU)
+                {
+                    new NotificacionCEN().Destroy(n.Id);
+                }
 
                 new UsuarioCEN().Destroy(id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("LogOff2", "Account");
             }
             catch
             {

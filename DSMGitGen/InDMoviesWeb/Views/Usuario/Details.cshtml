@@ -10,6 +10,7 @@
 <div>
     <h4>UsuarioModel</h4>
     <hr />
+    @Html.ActionLink("Notificaciones", "Index", "Notificacion", new { id = Model.Email + '/'} ,"")
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Nombre)
