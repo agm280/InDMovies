@@ -106,14 +106,15 @@ namespace InDMoviesWeb.Controllers
 
                         }
                     }
-
-                    if (repetido == false)
-                    {
-                        valoracionCEN.New_(p_valor: auxI, p_usuario: User.Identity.GetUserName(), p_video: id);
-                    }
-                    else
-                    {
-                        valoracionCEN.Modify(p_Valoracion_OID: auxID, p_valor: auxI);
+                    if (auxI<=5 && auxI>=0) {
+                        if (repetido == false)
+                        {
+                            valoracionCEN.New_(p_valor: auxI, p_usuario: User.Identity.GetUserName(), p_video: id);
+                        }
+                        else
+                        {
+                            valoracionCEN.Modify(p_Valoracion_OID: auxID, p_valor: auxI);
+                        }
                     }
                 }
                 return RedirectToRoute(new
@@ -125,7 +126,12 @@ namespace InDMoviesWeb.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToRoute(new
+                {
+                    controller = "Video",
+                    action = "Details",
+                    id = id,
+                });
             }
         }
 

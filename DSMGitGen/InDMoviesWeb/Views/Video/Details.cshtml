@@ -1,27 +1,53 @@
 ﻿@model InDMoviesWeb.Models.VideoModel
-
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Videos</h2>
 
+@if (Request.IsAuthenticated)
+{
+    <h2>
+        @Html.ActionLink("Subir video", "Create", null, new { @class = "btn btn-primary btn-md", @role = "button", @style = "background-color:#E52A6F; border-color:#E52A6F; font-size:16pt" })
+    </h2>
+}
+else
+{
+    <h2>
+        @Html.ActionLink("Subir video", "Create", null, new { @class = "btn btn-primary btn-md disabled", @role = "button", @style = "background-color:#E52A6F; border-color:#E52A6F; font-size:16pt" })
+
+    </h2>
+    <p style="font-size:12pt; color: #222945">
+        Debes iniciar sesión para subir un video
+    </p>
+}
+
+@if (Model.Email == User.Identity.GetUserName())
+{
+    <p>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-md", @role = "button", @style = "background-color:#67AECA; border-color:#67AECA; font-size:12pt" })
+        @Html.ActionLink("Eliminar", "Delete", new { id = Model.Id }, new { @class = "btn btn-primary btn-md", @role = "button", @style = "background-color:#67AECA; border-color:#67AECA; font-size:12pt" })
+    </p>
+}
+<hr />
 <div>
-    <h4>VideoModel</h4>
+    <iframe width="560" height="315" src=@Html.DisplayFor(model => model.Url) frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen style="width:100%; max-width:560px;"></iframe>
+    <h3>@Html.DisplayFor(model => model.Titulo)</h3>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
+</div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
+<div style="color:white; background-color:#222945; padding: 10px;">
+    
+
+    
+
+    <dl class="dl-horizontal" style="color:white">
 
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            Descripción: 
         </dt>
 
         <dd>
@@ -29,7 +55,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Usuario)
+            Autor: 
         </dt>
 
         <dd>
@@ -37,111 +63,66 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Valoraciones)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Valoraciones)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_subida)
+            Fecha de subida: 
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Fecha_subida)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Url)
-        </dt>
+    </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.Url)
-        </dd>
+    @Html.Action("DetailsVideo", "Valoracion", new { id = Model.Id })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Miniatura)
-        </dt>
+    <dl class="dl-horizontal">
+        @using (Html.BeginForm("Create", "Valoracion", new { id = Model.Id }, FormMethod.Post, null))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <dt>
+                Valorar video:
+            </dt>
+            <dt>
+                (del 1 al 5)
+            </dt>
+            <dd>
+                @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control", @style="width: 65px;"} })
+                
+            </dd>
+            <dd>
+                <input type="submit" value="Valorar" class="btn btn-default style = " background-color:#67AECA; border-color:#67AECA" />
 
-        <dd>
-            <img height="200" width="200" src="@Html.DisplayFor(model => model.Miniatura)" />
-        </dd>
+            </dd>
+
+        }
 
     </dl>
 </div>
-
-<h4>Video</h4>
-
-<iframe width="560" height="315" src=@Html.DisplayFor(model => model.Url) frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-
-<h4>Valoracion</h4>
-
-@Html.ActionLink("Comentar este video", "Create", "Valoracion", new { id = Model.Id }, null)
-
-
-
-@using (Html.BeginForm("Create", "Valoracion", new { id = Model.Id }, FormMethod.Post, null))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>ValoracionModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-
-}
-
-
-
-
-@Html.Action("DetailsVideo", "Valoracion", new { id = Model.Id })
-
-<h4>Comentarios</h4>
+<hr />
+<h3>Comentarios</h3>
 
 @using (Html.BeginForm("Create", "Comentario", new { id = Model.Id }, FormMethod.Post, null))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>ComentarioModel</h4>
-        <hr />
+
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-1" })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-    
+        @Html.TextAreaFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control", @style = "width: 305px;" } })
+        @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+
+        <input type="submit" value="Create" class="btn btn-default" />
+   
 }
+<br />
+<hr />
 
-@Html.Action("DetailsVideo", "Comentario", new { id = Model.Id })
+<div style="color:white; background-color:#222945; padding: 10px;">
+    @Html.Action("DetailsVideo", "Comentario", new { id = Model.Id })
+</div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
