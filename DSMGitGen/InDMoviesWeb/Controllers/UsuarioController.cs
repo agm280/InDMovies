@@ -174,12 +174,8 @@ namespace InDMoviesWeb.Controllers
 
             GrupoCAD gruposTCAD = new GrupoCAD(session);
             GrupoCEN gruposTCEN = new GrupoCEN(gruposTCAD);
-            //IList<GrupoEN> gruposTEN = GrupoCENGrupos por usuario(todos en general)gruposT
-            //IList<GrupoModel> gruposTU = GrupoAssembler.convertListENToModel(gruposTEN);
-
-            //GrupoCEN gruposLCEN = new GruposCEN(gruposLCAD);
-            //IList<GrupoEN> gruposLEN = GruposCEN//Grupos por usuario(todos en general)gruposL
-            //IList<GrupoModel> gruposLU = GruposAssembler.convertListENToModel(gruposLEN);
+            IList<GrupoEN> gruposTEN = gruposTCEN.DameGrupoPorUsuario(id);
+            IList<GrupoModel> gruposTU = GrupoAssembler.convertListToModelUI(gruposTEN);
 
             NotificacionCAD notiCAD = new NotificacionCAD(session);
             NotificacionCEN notiCEN = new NotificacionCEN(notiCAD);
@@ -214,7 +210,6 @@ namespace InDMoviesWeb.Controllers
 
                 new TemaCEN().Destroy(t.Id);
             }
-
 
             foreach (ComentarioModel c in comentarioU)
             {
@@ -264,12 +259,40 @@ namespace InDMoviesWeb.Controllers
             {
                 new NotificacionCEN().Destroy(n.Id);
             }
-            //algo de los grupos aqui joeh
 
+            foreach (GrupoModel g in gruposTU)
+            {
+                if (g.Lider == id)
+                {
+                    SessionInitialize();
+                    UsuarioCAD usu2CAD = new UsuarioCAD(session);
+                    UsuarioCEN usu2CEN = new UsuarioCEN(usuCAD);
+                    IList<UsuarioEN> usu2EN = usuCEN.DameUsuarioPorGrupo(g.Nombre);
+                    IList<UsuarioModel> usu = UsuarioAssembler.crearListaUsus(usu2EN);
+                    SessionClose();
+
+                    foreach (UsuarioModel usuf in usu)
+                    {
+                        GrupoCEN grupo = new GrupoCEN();
+                        NotificacionCEN notificacion = new NotificacionCEN();
+
+                        GrupoEN grupoEN = grupo.ReadOID(g.Nombre);
+                        grupo.SacarUsuario(p_Grupo_OID:g.Nombre , p_miembros_OIDs: new List<string>() { usuf.Email });
+
+                        string descripcion = "Expulsado del grupo" + grupoEN.Nombre;
+
+                        notificacion.New_(p_descripcion: descripcion, p_usuario: usuf.Email);
+                    }
+                }
+                else
+                {
+                    GrupoCEN grupo = new GrupoCEN();
+                    GrupoEN grupoEN = grupo.ReadOID(g.Nombre);
+                    grupo.SacarUsuario(p_Grupo_OID:g.Nombre, p_miembros_OIDs: new List<string>() { id });
+                }
+                new GrupoCEN().Destroy(g.Nombre);
+            }
             new UsuarioCEN().Destroy(id);
-
-
-
         }
 
         // POST: Usuario/Delete/5

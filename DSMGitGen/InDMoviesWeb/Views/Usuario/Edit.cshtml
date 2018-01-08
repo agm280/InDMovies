@@ -5,15 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
-
 @using (Html.BeginForm("Edit","UsuarioController", FormMethod.Post, new { enctype = "multipart/form-data", @action = "/Usuario/Edit/"+ViewBag.Usu+ "/" }))
 {
 
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>UsuarioModel</h4>
+        <h2>Editar Usuario</h2>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Email)
@@ -81,13 +79,9 @@
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-        @Html.ActionLink("Cambiar la contraseña", "ChangePassword", "Manage");
+        @Html.ActionLink("Cambiar la contraseña", "ChangePassword", "Manage",null , new { @class = "btn btn-primary btn-md", @role = "button", @style = "background-color:#67AECA; border-color:#67AECA; width:200px" })
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
