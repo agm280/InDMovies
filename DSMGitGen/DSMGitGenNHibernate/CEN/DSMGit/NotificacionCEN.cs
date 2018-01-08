@@ -38,15 +38,13 @@ public INotificacionCAD get_INotificacionCAD ()
         return this._INotificacionCAD;
 }
 
-public string New_ (string p_id, string p_descripcion, string p_usuario)
+public int New_ (string p_descripcion, string p_usuario)
 {
         NotificacionEN notificacionEN = null;
-        string oid;
+        int oid;
 
         //Initialized NotificacionEN
         notificacionEN = new NotificacionEN ();
-        notificacionEN.Id = p_id;
-
         notificacionEN.Descripcion = p_descripcion;
 
 
@@ -63,7 +61,7 @@ public string New_ (string p_id, string p_descripcion, string p_usuario)
         return oid;
 }
 
-public void Modify (string p_Notificacion_OID, string p_descripcion)
+public void Modify (int p_Notificacion_OID, string p_descripcion)
 {
         NotificacionEN notificacionEN = null;
 
@@ -76,13 +74,13 @@ public void Modify (string p_Notificacion_OID, string p_descripcion)
         _INotificacionCAD.Modify (notificacionEN);
 }
 
-public void Destroy (string id
+public void Destroy (int id
                      )
 {
         _INotificacionCAD.Destroy (id);
 }
 
-public NotificacionEN ReadOID (string id
+public NotificacionEN ReadOID (int id
                                )
 {
         NotificacionEN notificacionEN = null;

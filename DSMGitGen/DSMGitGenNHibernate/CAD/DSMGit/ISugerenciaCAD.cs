@@ -6,23 +6,23 @@ namespace DSMGitGenNHibernate.CAD.DSMGit
 {
 public partial interface ISugerenciaCAD
 {
-SugerenciaEN ReadOIDDefault (string id
+SugerenciaEN ReadOIDDefault (int id
                              );
 
 void ModifyDefault (SugerenciaEN sugerencia);
 
 
 
-string New_ (SugerenciaEN sugerencia);
+int New_ (SugerenciaEN sugerencia);
 
 void Modify (SugerenciaEN sugerencia);
 
 
-void Destroy (string id
+void Destroy (int id
               );
 
 
-SugerenciaEN ReadOID (string id
+SugerenciaEN ReadOID (int id
                       );
 
 

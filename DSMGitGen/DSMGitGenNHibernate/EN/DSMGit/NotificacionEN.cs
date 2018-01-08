@@ -8,7 +8,7 @@ public partial class NotificacionEN
 /**
  *	Atributo id
  */
-private string id;
+private int id;
 
 
 
@@ -29,7 +29,7 @@ private DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario;
 
 
 
-public virtual string Id {
+public virtual int Id {
         get { return id; } set { id = value;  }
 }
 
@@ -55,7 +55,7 @@ public NotificacionEN()
 
 
 
-public NotificacionEN(string id, string descripcion, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario
+public NotificacionEN(int id, string descripcion, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario
                       )
 {
         this.init (Id, descripcion, usuario);
@@ -67,7 +67,7 @@ public NotificacionEN(NotificacionEN notificacion)
         this.init (Id, notificacion.Descripcion, notificacion.Usuario);
 }
 
-private void init (string id
+private void init (int id
                    , string descripcion, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario)
 {
         this.Id = id;

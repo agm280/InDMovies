@@ -38,15 +38,13 @@ public ISugerenciaCAD get_ISugerenciaCAD ()
         return this._ISugerenciaCAD;
 }
 
-public string New_ (string p_id, string p_titulo, string p_descripcion, string p_usuario)
+public int New_ (string p_titulo, string p_descripcion, string p_usuario)
 {
         SugerenciaEN sugerenciaEN = null;
-        string oid;
+        int oid;
 
         //Initialized SugerenciaEN
         sugerenciaEN = new SugerenciaEN ();
-        sugerenciaEN.Id = p_id;
-
         sugerenciaEN.Titulo = p_titulo;
 
         sugerenciaEN.Descripcion = p_descripcion;
@@ -65,7 +63,7 @@ public string New_ (string p_id, string p_titulo, string p_descripcion, string p
         return oid;
 }
 
-public void Modify (string p_Sugerencia_OID, string p_titulo, string p_descripcion)
+public void Modify (int p_Sugerencia_OID, string p_titulo, string p_descripcion)
 {
         SugerenciaEN sugerenciaEN = null;
 
@@ -79,13 +77,13 @@ public void Modify (string p_Sugerencia_OID, string p_titulo, string p_descripci
         _ISugerenciaCAD.Modify (sugerenciaEN);
 }
 
-public void Destroy (string id
+public void Destroy (int id
                      )
 {
         _ISugerenciaCAD.Destroy (id);
 }
 
-public SugerenciaEN ReadOID (string id
+public SugerenciaEN ReadOID (int id
                              )
 {
         SugerenciaEN sugerenciaEN = null;

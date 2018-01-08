@@ -29,7 +29,7 @@ public SugerenciaCAD(ISession sessionAux) : base (sessionAux)
 
 
 
-public SugerenciaEN ReadOIDDefault (string id
+public SugerenciaEN ReadOIDDefault (int id
                                     )
 {
         SugerenciaEN sugerenciaEN = null;
@@ -116,7 +116,7 @@ public void ModifyDefault (SugerenciaEN sugerencia)
 }
 
 
-public string New_ (SugerenciaEN sugerencia)
+public int New_ (SugerenciaEN sugerencia)
 {
         try
         {
@@ -178,7 +178,7 @@ public void Modify (SugerenciaEN sugerencia)
                 SessionClose ();
         }
 }
-public void Destroy (string id
+public void Destroy (int id
                      )
 {
         try
@@ -205,7 +205,7 @@ public void Destroy (string id
 
 //Sin e: ReadOID
 //Con e: SugerenciaEN
-public SugerenciaEN ReadOID (string id
+public SugerenciaEN ReadOID (int id
                              )
 {
         SugerenciaEN sugerenciaEN = null;

@@ -6,7 +6,10 @@
 		    
 			
 				<class name="NotificacionEN" table="Notificacion"> 
-						<id name="Id" column="id"/> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
 			
 					
 					<property name="Descripcion" type="string"> 

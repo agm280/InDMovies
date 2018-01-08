@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using InDMoviesWeb.Models;
+using DSMGitGenNHibernate.CEN.DSMGit;
+using Microsoft.AspNet.Identity;
 
 namespace InDMoviesWeb.Controllers
 {
@@ -41,7 +43,15 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add insert logic here
+                SugerenciaCEN sugerencia = new SugerenciaCEN();
 
+                int idsugerencia = sugerencia.New_(p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_usuario: User.Identity.GetUserName());
+                return RedirectToRoute(new
+                {
+                    controller = "Sugerencia",
+                    action = "Details",
+                    id = idsugerencia,
+                });
                 return RedirectToAction("Index");
             }
             catch
@@ -75,7 +85,23 @@ namespace InDMoviesWeb.Controllers
         // GET: Sugerencia/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                SessionInitialize();
+                SugerenciaCAD sugerenciaCAD = new SugerenciaCAD(session);
+                SugerenciaCEN sugerenciaCEN = new SugerenciaCEN(sugerenciaCAD);
+                SugerenciaEN sugerenciaEN = sugerenciaCEN.ReadOID(id);
+                SugerenciaModel sugerencia = SugerenciaAssembler.convertENToModelUI(sugerenciaEN);
+                SessionClose();
+
+                new SugerenciaCEN().Destroy(id);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // POST: Sugerencia/Delete/5

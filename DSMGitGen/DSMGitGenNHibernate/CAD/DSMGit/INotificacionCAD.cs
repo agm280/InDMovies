@@ -6,23 +6,23 @@ namespace DSMGitGenNHibernate.CAD.DSMGit
 {
 public partial interface INotificacionCAD
 {
-NotificacionEN ReadOIDDefault (string id
+NotificacionEN ReadOIDDefault (int id
                                );
 
 void ModifyDefault (NotificacionEN notificacion);
 
 
 
-string New_ (NotificacionEN notificacion);
+int New_ (NotificacionEN notificacion);
 
 void Modify (NotificacionEN notificacion);
 
 
-void Destroy (string id
+void Destroy (int id
               );
 
 
-NotificacionEN ReadOID (string id
+NotificacionEN ReadOID (int id
                         );
 
 

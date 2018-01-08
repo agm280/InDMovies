@@ -135,15 +135,15 @@ public static void InitializeData ()
                 respuesta.New_ (p_descripcion: "Hasta luego", p_tema: idtema3, p_usuario: "ejemplo@gmail.com", p_fecha: new DateTime (2017, 9, 9));
 
                 NotificacionCEN notificacion = new NotificacionCEN ();
-                notificacion.New_ (p_id: "1234", p_descripcion: "Tienes una nueva invitacion de grupo", p_usuario: "ejemplo@gmail.com");
-                notificacion.New_ (p_id: "5678", p_descripcion: "El usuario Pepito ha aceptado tu peticion", p_usuario: "ejemplo2@gmail.com");
-                notificacion.New_ (p_id: "9876", p_descripcion: "Tienes una nueva valoracion en uno de tus videos", p_usuario: "ejemplo@gmail.com");
+                notificacion.New_ (p_descripcion: "Tienes una nueva invitacion de grupo", p_usuario: "ejemplo@gmail.com");
+                notificacion.New_ (p_descripcion: "El usuario Pepito ha aceptado tu peticion", p_usuario: "ejemplo2@gmail.com");
+                notificacion.New_ (p_descripcion: "Tienes una nueva valoracion en uno de tus videos", p_usuario: "ejemplo@gmail.com");
 
 
                 SugerenciaCEN sugerencia = new SugerenciaCEN ();
-                sugerencia.New_ (p_id: "S1", p_titulo: "Reproductor", p_descripcion: "El tama�o del reproductor esta un poco desproporcionado", p_usuario: "ejemplo@gmail.com");
-                sugerencia.New_ (p_id: "S2", p_titulo: "Temas", p_descripcion: "Deberia haber mas control en los temas", p_usuario: "ejemplo2@gmail.com");
-                sugerencia.New_ (p_id: "S3", p_titulo: "Grupos", p_descripcion: "Mejora en el manejo de las invitaciones porfa", p_usuario: "ejemplo@gmail.com");
+                sugerencia.New_ (p_titulo: "Reproductor", p_descripcion: "El tama�o del reproductor esta un poco desproporcionado", p_usuario: "ejemplo@gmail.com");
+                sugerencia.New_ (p_titulo: "Temas", p_descripcion: "Deberia haber mas control en los temas", p_usuario: "ejemplo2@gmail.com");
+                sugerencia.New_ (p_titulo: "Grupos", p_descripcion: "Mejora en el manejo de las invitaciones porfa", p_usuario: "ejemplo@gmail.com");
 
 
                 ValoracionCEN valoracion1 = new ValoracionCEN ();

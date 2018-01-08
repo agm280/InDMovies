@@ -60,8 +60,7 @@ namespace InDMoviesWeb.Controllers
                 TemaCEN tema = new TemaCEN();
                 DateTime fech = new DateTime();
                 fech = System.DateTime.Today;
-
-
+                
                 int idtem = tema.New_(p_usuario: User.Identity.GetUserName(), p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
                 return RedirectToRoute(new
                 {

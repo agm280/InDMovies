@@ -8,7 +8,7 @@ public partial class SugerenciaEN
 /**
  *	Atributo id
  */
-private string id;
+private int id;
 
 
 
@@ -36,7 +36,7 @@ private DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario;
 
 
 
-public virtual string Id {
+public virtual int Id {
         get { return id; } set { id = value;  }
 }
 
@@ -68,7 +68,7 @@ public SugerenciaEN()
 
 
 
-public SugerenciaEN(string id, string titulo, string descripcion, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario
+public SugerenciaEN(int id, string titulo, string descripcion, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario
                     )
 {
         this.init (Id, titulo, descripcion, usuario);
@@ -80,7 +80,7 @@ public SugerenciaEN(SugerenciaEN sugerencia)
         this.init (Id, sugerencia.Titulo, sugerencia.Descripcion, sugerencia.Usuario);
 }
 
-private void init (string id
+private void init (int id
                    , string titulo, string descripcion, DSMGitGenNHibernate.EN.DSMGit.UsuarioEN usuario)
 {
         this.Id = id;

@@ -29,7 +29,7 @@ public NotificacionCAD(ISession sessionAux) : base (sessionAux)
 
 
 
-public NotificacionEN ReadOIDDefault (string id
+public NotificacionEN ReadOIDDefault (int id
                                       )
 {
         NotificacionEN notificacionEN = null;
@@ -113,7 +113,7 @@ public void ModifyDefault (NotificacionEN notificacion)
 }
 
 
-public string New_ (NotificacionEN notificacion)
+public int New_ (NotificacionEN notificacion)
 {
         try
         {
@@ -172,7 +172,7 @@ public void Modify (NotificacionEN notificacion)
                 SessionClose ();
         }
 }
-public void Destroy (string id
+public void Destroy (int id
                      )
 {
         try
@@ -199,7 +199,7 @@ public void Destroy (string id
 
 //Sin e: ReadOID
 //Con e: NotificacionEN
-public NotificacionEN ReadOID (string id
+public NotificacionEN ReadOID (int id
                                )
 {
         NotificacionEN notificacionEN = null;

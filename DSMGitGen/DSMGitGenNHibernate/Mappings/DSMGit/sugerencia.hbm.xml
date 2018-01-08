@@ -6,7 +6,10 @@
 		    
 			
 				<class name="SugerenciaEN" table="Sugerencia"> 
-						<id name="Id" column="id"/> 
+				  	
+						<id name="Id" column="id" type="integer"> 
+							<generator class="hilo"/>
+						</id>
 			
 					
 					<property name="Titulo" type="string"> 

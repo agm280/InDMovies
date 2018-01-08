@@ -41,19 +41,9 @@ namespace InDMoviesWeb.Controllers
             string receptor = temaa.Usuario.Email;
             string nombret = temaa.Titulo;
             string nombreu = usuEN.Nick;
-
-            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var stringChars = new char[8];
-            var random = new Random();
-
-            for (int i = 0; i < stringChars.Length; i++)
-            {
-                stringChars[i] = chars[random.Next(chars.Length)];
-            }
-
-            var finalString = new String(stringChars);
+            
             NotificacionCEN noti = new NotificacionCEN();
-            noti.New_(finalString, nombreu + " te ha respondido al tema " + nombret + ".", receptor);
+            noti.New_(nombreu + " te ha respondido al tema " + nombret + ".", receptor);
         }
 
         // POST: Notificacion/Create
@@ -95,7 +85,7 @@ namespace InDMoviesWeb.Controllers
         }
 
         // GET: Notificacion/Delete/5
-        public ActionResult Delete(string id, string usu)
+        public ActionResult Delete(int id, string usu)
         {
             SessionInitialize();
             NotificacionCAD notiCAD = new NotificacionCAD(session);
