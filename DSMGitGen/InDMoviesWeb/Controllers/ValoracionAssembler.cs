@@ -18,6 +18,7 @@ namespace InDMoviesWeb.Controllers
             v.Valor = valoracionEN.Valor;
             v.Usuario = valoracionEN.Usuario.Nick;
             v.Video = valoracionEN.Video.Id;
+            v.Email = valoracionEN.Usuario.Email;
 
             return v;
 

@@ -69,11 +69,22 @@ namespace InDMoviesWeb.Models
             get; set;
         }
 
-        [Required]
+        
         public virtual string Texto
         {
             get; set;
         }
 
+       
+        public virtual int Valor
+        {
+            get; set;
+        }
+
+        
+        public virtual string Email
+        {
+            get; set;
+        }
     }
 }

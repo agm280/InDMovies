@@ -18,6 +18,7 @@ namespace InDMoviesWeb.Controllers
             c.Texto = comentarioEN.Texto;
             c.Usuario = comentarioEN.Usuario.Nick;
             c.Video = comentarioEN.Video.Id;
+            c.Email = comentarioEN.Usuario.Email;
 
             return c;
         }

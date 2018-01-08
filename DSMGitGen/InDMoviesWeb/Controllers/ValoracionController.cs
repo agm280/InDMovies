@@ -48,8 +48,11 @@ namespace InDMoviesWeb.Controllers
                 total = total +1;
 
             }
-            
-            media = suma / total;
+
+            if (total != 0)
+            {
+                media = suma / total;
+            }
             
 
             ViewBag.Media = media;
@@ -71,13 +74,54 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add insert logic here
-                ValoracionCEN valoracionCEN = new ValoracionCEN();
-                string auxS = collection["Valor"];
-                int auxI;
-                int.TryParse(auxS, out auxI);
-                valoracionCEN.New_(p_valor: auxI, p_usuario: User.Identity.GetUserName(), p_video: id);
+                if (User.Identity.GetUserName() != null)
+                {
+                    ValoracionCEN valoracionCEN = new ValoracionCEN();
+                    string auxS = collection["Valor"];
+                    int auxI;
+                    int.TryParse(auxS, out auxI);
+                    bool repetido = false;
+                    int auxID = 0;
 
-                return RedirectToAction("Index");
+                    SessionInitialize();
+                    ValoracionCAD valCAD = new ValoracionCAD(session);
+                    ValoracionCEN valCEN = new ValoracionCEN(valCAD);
+                    IList<ValoracionEN> valEN = valCEN.DameValoracionPorVideoID(id);
+                    IList<ValoracionModel> vals = ValoracionAssembler.convertListENToModel(valEN);
+                    VideoModel vidM = null;
+                    UsuarioModel usu = null;
+                    VideoEN videoEN = new VideoCAD(session).ReadOIDDefault(id);
+                    UsuarioEN usuarioEN = new UsuarioCAD(session).ReadOIDDefault(User.Identity.GetUserName());
+                    vidM = VideoAssembler.convertENToModelUI(videoEN);
+                    usu = UsuarioAssembler.crearUsu(usuarioEN);
+                    SessionClose();
+
+                    foreach (ValoracionModel vl in vals)
+                    {
+                        if (vl.Usuario.Equals(usu.Nick))
+                        {
+
+                            repetido = true;
+                            auxID = vl.Id;
+
+                        }
+                    }
+
+                    if (repetido == false)
+                    {
+                        valoracionCEN.New_(p_valor: auxI, p_usuario: User.Identity.GetUserName(), p_video: id);
+                    }
+                    else
+                    {
+                        valoracionCEN.Modify(p_Valoracion_OID: auxID, p_valor: auxI);
+                    }
+                }
+                return RedirectToRoute(new
+                {
+                    controller = "Video",
+                    action = "Details",
+                    id = id,
+                });
             }
             catch
             {

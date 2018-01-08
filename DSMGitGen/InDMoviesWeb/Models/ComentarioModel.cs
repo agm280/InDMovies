@@ -33,5 +33,11 @@ namespace InDMoviesWeb.Models
         {
             get; set;
         }
+
+        
+        public virtual string Email
+        {
+            get; set;
+        }
     }
 }

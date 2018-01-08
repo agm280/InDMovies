@@ -94,7 +94,7 @@ namespace InDMoviesWeb.Controllers
             vid = VideoAssembler.convertENToModelUI(videoEN);
             SessionClose();
 
-            return View();
+            return View(vid);
         }
 
         // POST: Video/Edit/5
@@ -159,6 +159,29 @@ namespace InDMoviesWeb.Controllers
             try
             {
                 // TODO: Add delete logic here
+                SessionInitialize();
+                ValoracionCAD valCAD = new ValoracionCAD(session);
+                ValoracionCEN valCEN = new ValoracionCEN(valCAD);
+                IList<ValoracionEN> valEN = valCEN.DameValoracionPorVideoID(id);
+                IList<ValoracionModel> vals = ValoracionAssembler.convertListENToModel(valEN);
+                SessionClose();
+
+                foreach (ValoracionModel vl in vals)
+                {
+                    new ValoracionCEN().Destroy(vl.Id);
+                }
+
+                SessionInitialize();
+                ComentarioCAD comCAD = new ComentarioCAD(session);
+                ComentarioCEN comCEN = new ComentarioCEN(comCAD);
+                IList<ComentarioEN> comEN = comCEN.DameComentarioPorVideoID(id);
+                IList<ComentarioModel> cres = ComentarioAssembler.convertListENToModel(comEN);
+                SessionClose();
+
+                foreach (ComentarioModel c in cres)
+                {
+                    new ComentarioCEN().Destroy(c.Id);
+                }
 
                 SessionInitialize();
                 VideoCAD videoCAD = new VideoCAD(session);

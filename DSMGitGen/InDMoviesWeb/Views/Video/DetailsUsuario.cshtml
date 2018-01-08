@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<InDMoviesWeb.Models.VideoModel>
-@using Microsoft.AspNet.Identity
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Miniatura)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.Titulo)
         </th>
@@ -13,17 +12,22 @@
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Usuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valoraciones)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Fecha_subida)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.Miniatura)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            <img height="100" width="100" src="@Html.DisplayFor(modelItem => item.Miniatura)" />
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Titulo)
         </td>
@@ -31,28 +35,22 @@
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Usuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valoraciones)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Fecha_subida)
         </td>
-        
-        @if (User.Identity.GetUserName() == item.Usuario)
-        {
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>@Html.ActionLink("Editar", "Edit", new { id = item.Id })</li>
-                        <li>@Html.ActionLink("Detalles", "Delete", new { id = item.Id })</li>
-                        <li>@Html.ActionLink("Borrar", "Delete", new { id = item.Id })</li>
-                    </ul>
-                </div>
-            </td>
-        }
-        else
-        {
-            <td>@Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-md", @role = "button" })</td>
-        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Miniatura)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
     </tr>
 }
 
