@@ -46,12 +46,7 @@ namespace InDMoviesWeb.Controllers
                 SugerenciaCEN sugerencia = new SugerenciaCEN();
 
                 int idsugerencia = sugerencia.New_(p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_usuario: User.Identity.GetUserName());
-                return RedirectToRoute(new
-                {
-                    controller = "Sugerencia",
-                    action = "Details",
-                    id = idsugerencia,
-                });
+                return RedirectToRoute(new { controller = "Sugerencia", action = "Index", id = idsugerencia });
                 return RedirectToAction("Index");
             }
             catch
