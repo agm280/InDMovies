@@ -363,6 +363,7 @@
     <Content Include="Views\Busqueda\Details.cshtml" />
     <Content Include="Views\Busqueda\Index.cshtml" />
     <Content Include="Views\Video\DetailsBusqueda.cshtml" />
+    <Content Include="Views\Usuario\Delete2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

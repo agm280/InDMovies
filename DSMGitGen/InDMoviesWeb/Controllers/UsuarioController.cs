@@ -129,6 +129,16 @@ namespace InDMoviesWeb.Controllers
         }
 
         // GET: Usuario/Delete/5
+        public ActionResult Delete2(string id)
+        {
+            UsuarioModel usu = null;
+            SessionInitialize();
+            UsuarioEN usuEN = new UsuarioCAD(session).ReadOIDDefault(id);
+            usu = UsuarioAssembler.crearUsu(usuEN);
+            SessionClose();
+            return View(usu);
+        }
+
         public void Delete(string id)
         {
             SessionInitialize();

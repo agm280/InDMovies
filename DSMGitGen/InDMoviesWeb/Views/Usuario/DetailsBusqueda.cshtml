@@ -23,9 +23,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contrasenya)
-        </th>
         <th></th>
     </tr>
 
@@ -44,14 +41,13 @@
             @Html.DisplayFor(modelItem => item.Fecha_Nacimiento)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Imagen)
+        <td>
+            <img height="200" width="200" src="@Html.DisplayFor(modelItem => item.Imagen)"/>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contrasenya)
-        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Email }) |
             @Html.ActionLink("Details", "Details", new { id=item.Email }) |

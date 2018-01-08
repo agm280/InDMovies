@@ -51,7 +51,7 @@
                     <ul class="dropdown-menu">
                         <li>@Html.ActionLink("Editar", "Edit", new { id = item.Email + '/' })</li>
                         <li>@Html.ActionLink("Detalles", "Details", new { id = item.Email + '/' })</li>
-                        <li>@Html.ActionLink("Delete", "Eliminarcuenta", "Manage", null, null)</li>
+                        <li>@Html.ActionLink("Delete", "Delete2", new { id = item.Email + '/' })</li>
                     </ul>
                 </div>
             }
