@@ -8,7 +8,6 @@ namespace InDMoviesWeb.Models
 {
     public class TemaModel
     {
-
         [Key]
         public virtual int Id
         {
@@ -32,9 +31,6 @@ namespace InDMoviesWeb.Models
         {
             get; set;
         }
-
-
-
         public virtual string Usuario
         {
             get; set;
@@ -45,6 +41,10 @@ namespace InDMoviesWeb.Models
             get; set;
         }
         public virtual string Email
+        {
+            get; set;
+        }
+        public virtual string Texto
         {
             get; set;
         }

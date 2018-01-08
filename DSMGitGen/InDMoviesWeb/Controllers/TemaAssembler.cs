@@ -19,6 +19,7 @@ namespace InDMoviesWeb.Controllers
             tema.Estado = en.Estado.ToString();
             tema.Usuario = en.Usuario.Nick;
             tema.Email = en.Usuario.Email;
+            tema.Texto = "";
 
             try
             {

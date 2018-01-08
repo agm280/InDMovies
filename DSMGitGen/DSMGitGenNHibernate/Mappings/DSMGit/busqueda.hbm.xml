@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+		<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+		                   assembly="DSMGitGenNHibernate"
+		                   namespace="DSMGitGenNHibernate.EN.DSMGit">
+		    
+		    
+			
+				<class name="BusquedaEN" table="Busqueda"> 
+				  	
+						<id name="Id" column="idBusqueda" type="integer"> 
+							<generator class="hilo"/>
+						</id>
+			
+					
+					<property name="Texto" type="string"> 
+						<column name="Texto"  not-null="true"/>
+					</property>
+			
+			
+			
+					
+					
+		
+		 </class>	
+		  
+		  <query name="BusquedaENReadAllHQL">from BusquedaEN</query>
+		</hibernate-mapping>
+	

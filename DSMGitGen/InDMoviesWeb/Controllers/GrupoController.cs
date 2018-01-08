@@ -45,7 +45,16 @@ namespace InDMoviesWeb.Controllers
             IEnumerable<GrupoModel> grupos = GrupoAssembler.convertListToModelUI(grupo).ToList();
             return PartialView(grupos);
         }
+        public ActionResult DetailsBusqueda(string id)
+        {
+            SessionInitialize();
+            GrupoCAD gruCAD = new GrupoCAD(session);
+            IList<GrupoEN> gruEN = gruCAD.DameGruposPorNombre(id);
+            IEnumerable<GrupoModel> grupos = GrupoAssembler.convertListToModelUI(gruEN).ToList();
+            SessionClose();
 
+            return PartialView(grupos);
+        }
         // GET: Grupo/Create
         public ActionResult Create()
         {

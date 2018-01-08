@@ -294,6 +294,16 @@
 			
 			
 			
+	<Compile Include="EN\DSMGit\BusquedaEN.cs" />
+	<Compile Include="CEN\DSMGit\BusquedaCEN.cs" />
+	<Compile Include="CAD\DSMGit\IBusquedaCAD.cs" />
+	<Compile Include="CAD\DSMGit\BusquedaCAD.cs" />
+	<Compile Include="CP\DSMGit\BusquedaCP.cs" />
+			
+			
+			
+			
+			
 	<Compile Include="Enumerated\DSMGit\RolEnum.cs" />
 	<Compile Include="Enumerated\DSMGit\EstadoTemaEnum.cs" />
 	
@@ -323,6 +333,7 @@
 	<EmbeddedResource Include="Mappings\DSMGit\publicacion.hbm.xml" />
 	<EmbeddedResource Include="Mappings\DSMGit\invitacion.hbm.xml" />
 	<EmbeddedResource Include="Mappings\DSMGit\admin.hbm.xml" />
+	<EmbeddedResource Include="Mappings\DSMGit\busqueda.hbm.xml" />
 	
 	
 

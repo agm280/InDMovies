@@ -41,6 +41,19 @@ namespace InDMoviesWeb.Controllers
             TemaCAD temCAD = new TemaCAD(session);
             IList<TemaEN> temasEN = temCAD.DameTemaPorEmail(id);
             IEnumerable<TemaModel> temas = new TemaAssembler().ConvertListENToModel(temasEN).ToList();
+            SessionClose();
+
+            return PartialView(temas);
+        }
+
+        public ActionResult DetailsBusqueda(string id)
+        {
+            SessionInitialize();
+            TemaCAD temCAD = new TemaCAD(session);
+            IList<TemaEN> temasEN = temCAD.DameTemaPorTitulo(id);
+            IEnumerable<TemaModel> temas = new TemaAssembler().ConvertListENToModel(temasEN).ToList();
+            SessionClose();
+
             return PartialView(temas);
         }
 
@@ -52,7 +65,7 @@ namespace InDMoviesWeb.Controllers
 
         // POST: Tema/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TemaModel tem,FormCollection collection)
         {
             try
             {
@@ -60,8 +73,9 @@ namespace InDMoviesWeb.Controllers
                 TemaCEN tema = new TemaCEN();
                 DateTime fech = new DateTime();
                 fech = System.DateTime.Today;
-                
-                int idtem = tema.New_(p_usuario: User.Identity.GetUserName(), p_titulo: collection["Titulo"], p_descripcion: collection["Descripcion"], p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
+
+
+                int idtem = tema.New_(p_usuario: User.Identity.GetUserName(), p_titulo: collection["Titulo"], p_descripcion: tem.Descripcion, p_estado: DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto, p_fecha: fech);
                 return RedirectToRoute(new
                 {
                     controller = "Tema",
@@ -144,25 +158,14 @@ namespace InDMoviesWeb.Controllers
         // GET: Tema/Delete/5
         public ActionResult Delete(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            TemaModel tem = null;
+            SessionInitialize();
+            TemaEN temaEN = new TemaCAD(session).ReadOIDDefault(id);
+            tem = TemaAssembler.ConvertENToModelUI(temaEN);
+            SessionClose();
 
-                SessionInitialize();
-                TemaCAD temaCAD = new TemaCAD(session);
-                TemaCEN temaCEN = new TemaCEN(temaCAD);
-                TemaEN temaEN = temaCEN.ReadOID(id);
-                TemaModel tema = TemaAssembler.ConvertENToModelUI(temaEN);
-                SessionClose();
 
-                new TemaCEN().Destroy(id);
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(tem);
         }
 
         // POST: Tema/Delete/5
@@ -173,7 +176,74 @@ namespace InDMoviesWeb.Controllers
             {
                 // TODO: Add delete logic here
 
+                SessionInitialize();
+                TemaCAD temaCAD = new TemaCAD(session);
+                TemaCEN temaCEN = new TemaCEN(temaCAD);
+                TemaEN temaEN = temaCEN.ReadOID(id);
+                TemaModel tema = TemaAssembler.ConvertENToModelUI(temaEN);
 
+                RespuestaCAD resCAD = new RespuestaCAD(session);
+                RespuestaCEN resCEN = new RespuestaCEN(resCAD);
+                IList<RespuestaEN> resEN = resCEN.DameRespuestaPorTema(tema.Id);
+                IList<RespuestaModel> res = RespuestaAssembler.ConvertListENToModel(resEN);
+                SessionClose();
+
+                foreach (RespuestaModel r in res)
+                {
+                    new RespuestaCEN().Destroy(r.Id);
+                }
+
+
+                SessionClose();
+
+                new TemaCEN().Destroy(id);
+
+
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult AbrirCerrar(int id)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                TemaCEN cen = new TemaCEN();
+
+                SessionInitialize();
+                TemaModel tem = null;
+                TemaEN temaEN = new TemaCAD(session).ReadOIDDefault(id);
+                tem = TemaAssembler.ConvertENToModelUI(temaEN);
+
+                DateTime fecha = temaEN.Fecha.Value;
+                SessionClose();
+
+                DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum estado;
+                if (DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto.ToString() == tem.Estado)
+                {
+                    estado = DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.cerrado;
+                    cen.Modify(p_Tema_OID: tem.Id, p_titulo: tem.Titulo, p_descripcion: tem.Descripcion, p_estado: estado, p_fecha: fecha);
+
+
+                }
+                else
+                {
+                    estado = DSMGitGenNHibernate.Enumerated.DSMGit.EstadoTemaEnum.abierto;
+                    cen.Modify(p_Tema_OID: tem.Id, p_titulo: tem.Titulo, p_descripcion: tem.Descripcion, p_estado: estado, p_fecha: fecha);
+
+                }
+
+                return RedirectToRoute(new
+                {
+                    controller = "Tema",
+                    action = "Details",
+                    id = id,
+                });
 
                 return RedirectToAction("Index");
             }

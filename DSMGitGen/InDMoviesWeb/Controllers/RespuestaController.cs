@@ -79,7 +79,40 @@ namespace InDMoviesWeb.Controllers
                 return View();
             }
         }
+        // GET: Comentario/Create
+        public ActionResult CreateBox(int id)
+        {
+            return View();
+        }
 
+        // POST: Comentario/Create
+        [HttpPost]
+        public ActionResult CreateBox(FormCollection collection, int id)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                RespuestaCEN respuestaCEN = new RespuestaCEN();
+                DateTime fech = new DateTime();
+                fech = System.DateTime.Now;
+
+                if (!collection["Texto"].Equals(""))
+                    respuestaCEN.New_(p_descripcion: collection["Texto"], p_usuario: User.Identity.GetUserName(), p_tema: id, p_fecha: fech);
+
+
+                return RedirectToRoute(new
+                {
+                    controller = "Tema",
+                    action = "Details",
+                    id = id,
+                });
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
         // GET: Respuesta/Edit/5
         public ActionResult Edit(int id)
         {

@@ -1,4 +1,5 @@
 ﻿@model InDMoviesWeb.Models.TemaModel
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "Details";
@@ -9,8 +10,44 @@
 
 <div>
     <h4>TemaModel</h4>
+
+    @if (User.Identity.GetUserName() == Model.Email)
+    {
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-cog"></span> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><span class="glyphicon glyphicon-edit"></span>@Html.ActionLink("Editar", "Edit", new { id = Model.Id })</li>
+                <li><span class="glyphicon glyphicon-trash"></span>@Html.ActionLink("Borrar", "Delete", new { id = Model.Id })</li>
+            </ul>
+        </div>
+    }
+
+    @if (User.Identity.GetUserName() == Model.Email)
+    {
+        if (Model.Estado == "abierto")
+        {
+            <p>¿Deseas cerrar este tema?</p>
+            <p>@Html.ActionLink("Cerrar el tema", "AbrirCerrar", new { id = Model.Id }, new { @class = "btn btn-primary btn-md", @role = "button" })</p>
+
+
+        }
+        else
+        {
+            <p>El tema esta cerrado y no admite nuevas respuestas.</p>
+        }
+    }
+    else
+    {
+        <p>Tema creado por </p> @Html.DisplayFor(model => model.Usuario)
+
+    }
+
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.Titulo)
         </dt>
@@ -56,13 +93,55 @@
 
 <h4>Respuestas</h4>
 
-@Html.ActionLink("Responder a este tema", "Create", "Respuesta", new { id = Model.Id }, null)
-
-
-@Html.Action("DetailsTema", "Respuesta", new { id = Model.Id })
-
-
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    @if (Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Responder a este tema", "Create", "Respuesta", new { id = Model.Id }, new { @class = "btn btn-primary btn-md", @role = "button" })
+    }
+    else
+    {
+    <p>Debes Iniciar Sesion.</p>}
+
+
+
+    @using (Html.BeginForm("CreateBox", "Respuesta", new { id = Model.Id }, FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>RespuestaModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Texto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" style="width:100%">
+                    @Html.TextAreaFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
+                
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    }
+
+
+
+
+
+
+
+
+
+    @Html.Action("DetailsTema", "Respuesta", new { id = Model.Id })
+
+
+    <p>
+    <p>@Html.ActionLink("Volver a la lista de temas", "Index", null, new { @class = "btn btn-primary btn-md", @role = "button" })</p>
+
+    </p>

@@ -44,6 +44,14 @@ namespace InDMoviesWeb.Controllers
             IEnumerable<VideoModel> videos = VideoAssembler.convertListENToModel(videoEN).ToList();
             return PartialView(videos);
         }
+        public ActionResult DetailsBusqueda(string id)
+        {
+            SessionInitialize();
+            VideoCAD videoCAD = new VideoCAD(session);
+            IList<VideoEN> videoEN = videoCAD.DameVideoPorTitulo(id);
+            IEnumerable<VideoModel> videos = VideoAssembler.convertListENToModel(videoEN).ToList();
+            return PartialView(videos);
+        }
 
         // GET: Video/Create
         public ActionResult Create()

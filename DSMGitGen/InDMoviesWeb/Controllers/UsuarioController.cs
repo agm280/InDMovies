@@ -44,7 +44,16 @@ namespace InDMoviesWeb.Controllers
             IEnumerable<UsuarioModel> usuarios = UsuarioAssembler.crearListaUsus(l_usurarioEN).ToList();
             return PartialView("~/Views/Usuario/List.cshtml",usuarios);
         }
+        public ActionResult DetailsBusqueda(string id)
+        {
+            SessionInitialize();
+            UsuarioCAD usuCAD = new UsuarioCAD(session);
+            IList<UsuarioEN> usuEN = usuCAD.DameUsuarioPorNick(id);
+            IEnumerable<UsuarioModel> usuarios = UsuarioAssembler.crearListaUsus(usuEN).ToList();
+            SessionClose();
 
+            return PartialView(usuarios);
+        }
         // GET: Usuario/Create
         public ActionResult Create()
         {
