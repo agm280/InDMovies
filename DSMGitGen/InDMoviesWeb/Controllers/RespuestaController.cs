@@ -168,6 +168,21 @@ namespace InDMoviesWeb.Controllers
         // GET: Respuesta/Delete/5
         public ActionResult Delete(int id)
         {
+            RespuestaModel res = null;
+            SessionInitialize();
+            RespuestaEN respuestaEN = new RespuestaCAD(session).ReadOIDDefault(id);
+            res = RespuestaAssembler.ConvertENToModelUI(respuestaEN);
+            SessionClose();
+
+
+            return View(res);
+        }
+        
+
+        // POST: Respuesta/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
             try
             {
                 // TODO: Add delete logic here
@@ -181,7 +196,7 @@ namespace InDMoviesWeb.Controllers
                 TemaModel tem = new TemaModel();
                 TemaEN temEN = new TemaCAD(session).ReadOIDDefault(respuestaEN.Tema.Id);
                 tem = TemaAssembler.ConvertENToModelUI(temEN);
-                
+
                 SessionClose();
 
                 new RespuestaCEN().Destroy(id);
@@ -194,39 +209,6 @@ namespace InDMoviesWeb.Controllers
                     action = "Details",
                     id = tem.Id,
                 });
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // POST: Respuesta/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-                SessionInitialize();
-                RespuestaModel res = null;
-                RespuestaEN resEN = new RespuestaCAD(session).ReadOIDDefault(id);
-                res = RespuestaAssembler.ConvertENToModelUI(resEN);
-
-
-                TemaModel tem = new TemaModel();
-                TemaEN temEN = new TemaCAD(session).ReadOIDDefault(resEN.Tema.Id);
-                tem = TemaAssembler.ConvertENToModelUI(temEN);
-
-                SessionClose();
-
-                return RedirectToRoute(new
-                {
-                    controller = "Tema",
-                    action = "Details",
-                    id = tem.Id,
-                });
-                return RedirectToAction("Index");
             }
             catch
             {

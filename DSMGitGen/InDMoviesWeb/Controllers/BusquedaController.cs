@@ -53,6 +53,18 @@ namespace InDMoviesWeb.Controllers
                 BusquedaCEN bus = new BusquedaCEN();
 
 
+
+                SessionInitialize();
+                BusquedaCAD busquedaCAD = new BusquedaCAD(session);
+                IList<BusquedaEN> borradas = busquedaCAD.ReadAllDefault(0, -1);
+                IList<BusquedaModel> busquedas = new BusquedaAssembler().ConvertListENToModel(borradas);
+                SessionClose();
+
+                foreach (BusquedaModel r in busquedas)
+                {
+                    new BusquedaCEN().Destroy(r.Id);
+                }
+
                 int idbus = bus.New_(p_Texto: collection["Texto"]);
                 return RedirectToRoute(new
                 {

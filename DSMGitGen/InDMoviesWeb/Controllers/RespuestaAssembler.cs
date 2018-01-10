@@ -21,6 +21,8 @@ namespace InDMoviesWeb.Controllers
             r.Tema = respuestaEN.Tema.Titulo;
             r.Usuario = respuestaEN.Usuario.Nick;
             r.Email = respuestaEN.Usuario.Email;
+            r.TemaID = respuestaEN.Tema.Id;
+
 
             try
             {

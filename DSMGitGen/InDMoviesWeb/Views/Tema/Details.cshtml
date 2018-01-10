@@ -6,12 +6,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Página de tema</h2>
 
 <div>
-    <h4>TemaModel</h4>
+    <br>
+    <h4><strong>@Model.Titulo</strong></h4>
 
-    @if (User.Identity.GetUserName() == Model.Email)
+    @if (User.Identity.GetUserName() == Model.Email || User.Identity.GetUserName()=="admin@admin.com")
     {
 
         <div class="dropdown">
@@ -25,7 +26,36 @@
         </div>
     }
 
-    @if (User.Identity.GetUserName() == Model.Email)
+    <div class="list-group">
+        <div class="row">
+            <div class="col-sm-12">
+
+                @Model.Descripcion
+            </div>
+        </div>
+
+    </div>
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            <strong>Creado por:</strong>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario)
+        </dd>
+
+        <dt>
+            <strong>A dia:</strong>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+    </dl>
+
+    @if (User.Identity.GetUserName() == Model.Email || User.Identity.GetUserName() == "admin@admin.com")
     {
         if (Model.Estado == "abierto")
         {
@@ -41,75 +71,34 @@
     }
     else
     {
-        <p>Tema creado por </p> @Html.DisplayFor(model => model.Usuario)
+        if (Model.Estado == "abierto")
+        {
+            <p>El tema está abierto a respuestas. ¿Por qué no aportas tu granito de arena?</p>
 
+
+        }
+        else
+        {
+            <p>El tema está cerrado y no admite más respuestas, pero puedes leer las respuestas.</p>
+
+        }
     }
+
 
     <hr />
-    <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
-
-    </dl>
 </div>
 
-<h4>Respuestas</h4>
+    <h4>Respuestas</h4>
 
-<p>
-    @if (Request.IsAuthenticated)
+    <p>
+        @if (Request.IsAuthenticated)
     {
-        @Html.ActionLink("Responder a este tema", "Create", "Respuesta", new { id = Model.Id }, new { @class = "btn btn-primary btn-md", @role = "button" })
-    }
-    else
-    {
-    <p>Debes Iniciar Sesion.</p>}
-
-
-
-    @using (Html.BeginForm("CreateBox", "Respuesta", new { id = Model.Id }, FormMethod.Post, null))
+        using (Html.BeginForm("CreateBox", "Respuesta", new { id = Model.Id }, FormMethod.Post, null))
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>RespuestaModel</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -117,17 +106,22 @@
                 <div class="col-md-10" style="width:100%">
                     @Html.TextAreaFor(model => model.Texto, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Texto, "", new { @class = "text-danger" })
-                
+
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Responder" class="btn btn-default" style="text-color:#ffffff;#E52A6F; border-color:#E52A6F"/>
                 </div>
             </div>
         </div>
 
+}
+}
+else
+{
+<p>Debes @Html.ActionLink("registrarte", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" }) o @Html.ActionLink("iniciar sesión", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" }) para responder.</p>
     }
 
 
@@ -138,10 +132,16 @@
 
 
 
-    @Html.Action("DetailsTema", "Respuesta", new { id = Model.Id })
 
 
-    <p>
-    <p>@Html.ActionLink("Volver a la lista de temas", "Index", null, new { @class = "btn btn-primary btn-md", @role = "button" })</p>
 
-    </p>
+        @Html.Action("DetailsTema", "Respuesta", new { id = Model.Id })
+
+
+        <p>
+
+
+           
+        <p>@Html.ActionLink("Volver a la lista de temas", "Index", null, new { @class = "btn btn-primary btn-md", @role = "button", @style = "background-color:#E52A6F; border-color:#E52A6F" })</p>
+
+        </p>

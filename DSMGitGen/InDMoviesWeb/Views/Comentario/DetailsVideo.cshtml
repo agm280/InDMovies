@@ -13,7 +13,7 @@
             &emsp;&emsp;@Html.DisplayFor(modelItem => item.Texto)
         </p>
         
-        if (item.Email == User.Identity.GetUserName())
+        if (item.Email == User.Identity.GetUserName() || User.Identity.GetUserName() == "admin@admin.com")
         {
         <p>
             &emsp;&emsp; 

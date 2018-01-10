@@ -51,7 +51,8 @@ namespace InDMoviesWeb.Controllers
             GrupoEN grupo = new GrupoCEN(new GrupoCAD(session)).ReadOID(idGrup);
             ViewBag.Nombre = grupo.Nombre;
             ViewBag.Iguales = false;
-            if (String.Compare(grupo.Lider.Email, idUsu) == 0){
+            if (String.Compare(grupo.Lider.Email, idUsu) == 0 || String.Compare("admin@admin.com", idUsu) == 0)
+            {
                 ViewBag.Iguales = true;
             }
             SessionClose();

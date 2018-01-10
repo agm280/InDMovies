@@ -9,79 +9,60 @@
 }
 
 
-<h2> @Html.DisplayFor(model => model.Nombre)</h2>
+<h2 style="text-align:center"> @Html.DisplayFor(model => model.Nombre)</h2>
 
 @Html.Action("HerramientasGrupo", "Grupo", new { idUsu = User.Identity.Name.ToString(), idGrup = Model.Nombre })
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
 
-        <dd>
-            <img height="200" width="200" src="@Html.DisplayFor(model => model.Imagen)" />
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lider)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lider)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Completo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Completo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AceptaMiembros)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AceptaMiembros)
-        </dd>
-    </dl>
-</div>
+    <br />
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-9">
+                <img width="460" height="365" class="img-responsive" style="margin:auto" alt="Image" src="@Html.DisplayFor(model => model.Imagen)" />
+                <br />
+            </div>
+            <div class="col-sm-3">
+                <div class="well">
+                    <h4>Lider</h4>
+                    <p><em>@Html.DisplayFor(model => model.Lider)</em></p>
+                    <br />
+                    <h4>Descripción</h4>
+                    <p><em>@Html.DisplayFor(model => model.Descripcion)</em></p>
+                    <br />
+                    <h4>Acepta Miembros</h4>
+                    <p><em>@Html.DisplayFor(model => model.AceptaMiembros)</em></p>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-@{
-    string Visibility = "hidden";
-    if (Request.IsAuthenticated)
-    {
-        if (Model.AceptaMiembros == true) { Visibility = "visible"; }
 
+
+    @{
+        string Visibility = "hidden";
+        if (Request.IsAuthenticated)
+        {
+            if (Model.AceptaMiembros == true || String.Compare(User.Identity.Name,"admin@admin.com")==0) { Visibility = "visible"; }
+
+        }
     }
-}
-<div style="visibility:@Visibility;">
-        @Html.ActionLink("Unirse a grupo", "UnirseAGrupo", new { id = User.Identity.Name.ToString() + "/" , idGrup = Model.Nombre} , new { @class = "btn btn-success btn-md", @role = "button"})
-</div>
+    <div style="visibility:@Visibility;">
+        @Html.ActionLink("Unirse a grupo", "UnirseAGrupo", new { id = User.Identity.Name.ToString() + "/", idGrup = Model.Nombre }, new { @class = "btn btn-success btn-md", @role = "button" })
+    </div>
 
 
 
-<h3>Miembros</h3>
+    <h3>Miembros</h3>
 
-@Html.Action("DetailsGrupo","Usuario", new { id = Model.Nombre })
+    @Html.Action("DetailsGrupo", "Usuario", new { id = Model.Nombre })
 
-<p>
-    <a href="@Url.Action("Index", "Grupo")" class="btn btn-default">
-        <span class="glyphicon glyphicon-arrow-left"></span>
-        Back to Index
-    </a>
-</p>
+    <p>
+        <a href="@Url.Action("Index", "Grupo")" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            Back to Index
+        </a>
+    </p>
 
 

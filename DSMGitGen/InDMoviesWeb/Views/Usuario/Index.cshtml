@@ -42,7 +42,7 @@
 
 
         <td>
-            @if (User.Identity.GetUserName() == item.Email)
+            @if (User.Identity.GetUserName() == item.Email || User.Identity.GetUserName()=="admin@admin.com")
             {
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

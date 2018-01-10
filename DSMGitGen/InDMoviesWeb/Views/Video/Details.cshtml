@@ -25,7 +25,7 @@ else
     </p>
 }
 
-@if (Model.Email == User.Identity.GetUserName())
+@if (Model.Email == User.Identity.GetUserName() || User.Identity.GetUserName() == "admin@admin.com")
 {
     <p>
         @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-md", @role = "button", @style = "background-color:#67AECA; border-color:#67AECA; font-size:12pt" })

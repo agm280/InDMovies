@@ -6,7 +6,10 @@
 }
 
 <h2>Perfil</h2>
-
+@if (User.Identity.GetUserName() == "admin@admin.com")
+{
+    @Html.ActionLink("BotonSecreto", "IndexAdmin", "Home")
+}
 <div class="container">
     <hr />
     <div class="col-lg-5 col-sm-5 placeholder">
@@ -65,7 +68,7 @@
                 @Html.ActionLink("Notificaciones", "Index", "Notificacion", new { id = Model.Email + '/' }, new { @class = "btn btn-primary btn-md", @role = "button" })
             </p>
         }
-        @if (User.Identity.GetUserName() == Model.Email)
+        @if (User.Identity.GetUserName() == Model.Email || User.Identity.GetUserName()=="admin@admin.com")
         {
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">

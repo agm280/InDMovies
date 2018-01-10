@@ -1,0 +1,51 @@
+﻿@model InDMoviesWeb.Models.RespuestaModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>¡¡Estás a punto de eliminar una respuesta!! ¿Estás seguro de que quieres eliminarla?</h3>
+<div>
+    <h4>RespuestaModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tema)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tema)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+
+    </dl>
+    @Html.ActionLink("Volver al tema", "Details", "Tema", new { id = Model.Tema }, new { @class = "btn btn-primary btn-md", @role = "button" })
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+        </div>
+    }
+</div>

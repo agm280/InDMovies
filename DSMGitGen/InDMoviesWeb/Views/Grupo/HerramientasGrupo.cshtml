@@ -2,6 +2,7 @@
 
 @if (@ViewBag.Iguales == true)
 {
+    <br />
     <a href="@Url.Action("Edit", "Grupo",new { id = @ViewBag.Nombre })" class="btn btn-info">
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
          Editar
@@ -16,5 +17,5 @@
         <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
         Expulsar Miembro
     </a>
-
+    <br />
 }

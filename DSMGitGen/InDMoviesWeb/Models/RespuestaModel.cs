@@ -43,6 +43,10 @@ namespace InDMoviesWeb.Models
         {
             get; set;
         }
+        public virtual int TemaID
+        {
+            get; set;
+        }
 
     }
 }

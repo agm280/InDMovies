@@ -5,61 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Grupos</h2>
+<h2 style="text-align:center">Grupos</h2>
 
-<p>@Html.ActionLink("Crear Grupo", "Create", null, new { @class = "btn btn-primary btn-md", @role = "button" })</p>
-<div class="table-responsive">
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagen)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lider)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Completo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AceptaMiembros)
-            </th>
-            <th></th>
-        </tr>
+<p style="text-align:right">@Html.ActionLink("Crear Grupo", "Create", null, new { @class = "btn btn-primary btn-sm", @role = "button", @style = "background-color:#E52A6F; border-color:#E52A6F; font-size:16pt" })</p>
 
+<div class="container text-center">
         @foreach (var item in Model)
         {
 
-            string nombre = @Html.DisplayFor(modelItem => item.Nombre).ToString();
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-heading"> <h3>@Html.DisplayFor(modelItem => item.Nombre)</h3></div>
+                <div class="panel-body">
+                    <img src="@Html.DisplayFor(modelItem => item.Imagen)" class="img-rounded" style="margin:auto;width:50%;height:50%" alt="Image">
+                    <p> </p>
+                    <p><em>@Html.DisplayFor(modelItem => item.Descripcion)</em></p>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Nombre }, new { @class = "btn btn-primary btn-md", @role = "button", @style = "background-color:#67AECA; border-color:#67AECA;" })
+                    <br>  
+                </div>
+            </div>          
+        </div>
 
-            <tr>
-                <td>
-                    @Html.ActionLink(nombre, "Details", new { id = item.Nombre })
-                </td>
-                <td>
-                    <img class="img-circle" height="100" width="100" src="@Html.DisplayFor(modelItem => item.Imagen)" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Lider)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Completo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AceptaMiembros)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Nombre })
-                </td>
-            </tr>
         }
-    </table>
 </div>

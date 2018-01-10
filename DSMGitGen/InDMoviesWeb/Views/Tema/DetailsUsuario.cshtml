@@ -34,7 +34,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Usuario)
         </td>
-@if (User.Identity.GetUserName() == item.Email)
+@if (User.Identity.GetUserName() == item.Email||User.Identity.GetUserName()=="admin@admin.com")
 {
     <td>
         <div class="dropdown">
